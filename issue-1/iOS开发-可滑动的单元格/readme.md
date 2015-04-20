@@ -1,4 +1,4 @@
-`可滑动的表格单元格`
+`iOS开发-可滑动的单元格`
 ---
 
 >* 原文链接 : [Swipeable table view cells in iOS apps](https://medium.com/ios-os-x-development/swipeable-table-view-cells-in-ios-apps-472da0af1935)
@@ -8,7 +8,7 @@
 
 I’ve been diving into iOS for the past month building an app for my startup. One of the things I want the app to do is to let the user swipe a cell in a table view to reveal more options (similar to how the Mail app reveals “More” and “Delete” options). In this article I will discuss a few way of doing this, including how to build it yourself.
 
-我在过去的一个月里致力于开发我的项目，其中有一项就是我想让用户通过左右滑动表格来显示更多的选项（就像系统自带的邮件程序现实更多和删除一样，在这篇文章中我将讨论一些关于这方面的方法，包括如何动手实现它）
+我在过去的一个月里致力于开发我的创业项目，其中有一个功能就是我想让用户通过左右滑动表格来显示更多的选项（就像系统自带的邮件程序现实更多和删除一样，在这篇文章中我将讨论一些关于这方面的方法，以及如何动手实现它）
 
 First, let’s go through the existing solutions out there:
 
@@ -67,7 +67,7 @@ This is the value that represents how much the scroll view is currently scrolled
 
 * contentInset
 
-这个属性将使我们的滚动视图实际上滚动。通常，当contentSize属性被设置为与frame相同的（或更小）的尺寸作为视图本身，视图并不会产生滚动的效果。然而，contentInset将延长是内容外滚动，让你可以滚动过去的内容边界的区域。这有什么用吗？它可以用在上拉至刷新的控制上，例如，以允许活动指示器，以显示上述内容。在我们的例子中，我们将使用它来腾出空间已显示额外的按钮。
+这个属性将使我们的滚动视图实际上滚动。通常，当contentSize属性被设置为与frame相同的（或更小）的尺寸作为视图本身，视图并不会产生滚动的效果。然而，contentInset将延长使内容产生滚动，让你可以滚动过去的内容边界的区域。这有什么用吗？它可以用在上拉至刷新的控制上，例如，以允许活动指示器，以显示上述内容。在这个例子中，我们将使用它来腾出空间已显示额外的按钮。
 
 * contentOffset
 
