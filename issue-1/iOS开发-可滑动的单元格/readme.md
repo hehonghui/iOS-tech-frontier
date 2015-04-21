@@ -27,7 +27,7 @@ Another full-featured implementation, with even more functionality.
 
 * [SWTableViewCell](https://github.com/CEWendel/SWTableViewCell)
 
-这是一个功能很全的按钮库，既支持从左滑到右也支持右滑到左，同时也可以在iOS8以前的版本中使用
+这是一个功能很全的按钮库，支持左滑和右滑，同时也可以在iOS8以前的版本中使用
 
 * [MGSwipeTableCell](https://github.com/MortimerGoro/MGSwipeTableCell)
 
@@ -35,7 +35,7 @@ Another full-featured implementation, with even more functionality.
 
 Hopefully, if you’re looking for swipeable table view cells, you’ll find what you need in one of the above solutions. But then why am I writing about how to build it yourself? In my case, I needed some of the functionality of MGSwipeTableCell, but it turned out to do things in ways that didn’t work for me. If you’re also looking to build it from scratch, or just want to know how it works, read on!
 
-如果你想要实现表格的左右滑动功能，你可以从上面的解决方按照找到你需要的。但是我为什么要写通过自己来实现它呢？就我而言，我需要MGSwipeTableCell的一些功能，当时有时候它对我并没有用，如果你想要自己来实现它，或者仅仅只是想要知道它的原来，那么接下去看。
+如果你想要实现表格的左右滑动功能，你可以从上面的解决方按照找到你需要的。但是为什么我们还要自己来实现呢？就我而言，我需要MGSwipeTableCell的一些功能，但是有的功能它对我并没有用，如果你想要自己来实现它，或者仅仅只是想要知道它的原理，那么接下去看。
 
 Anatomy of a swipeable UITableViewCell
 Making a table view cell swipeable is actually pretty simple. The gist of it is to create a UIScrollView inside the cell’s contentView and then populate it with one UIView for the buttons and one UIView for the content. The hardest part is really configuring the scroll view. Here’s an image showing the main values we’ll be touching on the UIScrollView:
@@ -43,7 +43,7 @@ Making a table view cell swipeable is actually pretty simple. The gist of it is 
 
 ##原理剖析
 
-制作一个可滑动的UITableViewCell其实是一件非常简单的事情，它的要点就是创建一个在UIScrollView在单元格的contentView里面，在UIScrollView里面有两个UIView，一个用于放置按钮，一个用于放置单元格的内容，它的难点在于如何配置滑动页面，下面是一张图片来展示UIScrollView里的主要内容。
+制作一个可滑动的UITableViewCell其实是一件非常简单的事情，它的要点就是在contentView里面包含了UIScrollView，在UIScrollView里面有两个UIView，一个用于放置按钮，一个用于放置单元格的内容，难点在于如何配置滑动页面，下面是一张图片来展示UIScrollView里的主要内容。
 
 ![这里写图片描述](http://img.blog.csdn.net/20150420235653232)
 
@@ -63,15 +63,15 @@ This is the value that represents how much the scroll view is currently scrolled
 
 * contentSize
 
-在可滚动的视图中，通常显示的大小和实际内容的大小是不同的，当实际内容比显示的内容要大的时候，就可以进行滚动，以便让用户看到所有的内容。这个属性代表了在scrollview里面的内容的宽和高。在我们的例子中，我们实际上会保持它和视图大小相同，这要归功于一个叫做contentInset属性
+在可滚动的视图中，显示的大小和常常与实际内容的大小不同，当实际内容比显示的内容要大的时候，就可以进行滚动，以便让用户看到所有的内容。这个属性代表了在scrollview实际内容的宽和高。在这个例子中，我们实际上会保持它和视图大小相同，这要归功于一个叫做contentInset属性
 
 * contentInset
 
-这个属性将使我们的滚动视图实际上滚动。通常，当contentSize属性被设置为与frame相同的（或更小）的尺寸作为视图本身，视图并不会产生滚动的效果。然而，contentInset将延长使内容产生滚动，让你可以滚动过去的内容边界的区域。这有什么用吗？它可以用在上拉至刷新的控制上，例如，以允许活动指示器，以显示上述内容。在这个例子中，我们将使用它来腾出空间已显示额外的按钮。
+这个属性将使我们的扩大内容区域之外的可滚动范围。通常，当contentSize属性被设置为与frame相同的（或更小）的尺寸作为视图本身，视图并不会产生滚动的效果。然而，contentInset将延长使内容产生滚动，让你可以滚动至内容边界的区域。这有什么用吗？例如，它可以用在显示上拉刷新的加载画面之中。在这个例子中，我们将使用它来腾出空间已显示额外的按钮。
 
 * contentOffset
 
-这个值代表当前滚动视图的滚动量，当用户滚动的时候，这个值将会被改变，你也可以通过程序来改变它的值，我们随后将会用这个值来让按钮出现。
+这个值代表当前滚动视图的滚动量，当用户滚动的时候，这个值将会被改变，你也可以通过程序来改变它的值，我们随后将会通过改变这个值来控制按钮的出现。
 
 Implementing the cell, step by step
 This section will demonstrate how to actually make the cell display buttons when swiping on it. The code examples will be simplified to focus on the concept. At the end I will provide a full implementation.
@@ -82,7 +82,7 @@ The easiest way to subclass classes is to go to File > New > File… (⌘N). Pic
 
 ##一步步实现
 
-本节将展示如何通过滑动来使单元格显示按钮。代码将被简化以便更好的理解这一概念。最后我将提供完整的代码。
+本节将展示如何通过滑动来使单元格显示按钮。代码将被简化以便更好的理解这一概念。最后我将提供[完整的代码](https://github.com/blixt/SwipeableTableViewCell)。
 
 第一步，子类化UITableViewCell
 
@@ -105,7 +105,7 @@ Since we’ll want to have control over scroll behaviors, we need to specify tha
 Next up, we’ll set up the scroll view. This is done when the cell initializes. Depending on how you create your cells, the cell may initialize in either initWithCoder: or initWithStyle:reuseIdentifier:. I would recommend creating a common method for setting up your cell and calling it from both places.
 
 
-接下来，我们将设置滚动视图。这会在初始化的时候被完成。选择你初始化的方式，可以是`initWithCoder：`也可以是 `initWithStyle：reuseIdentifier：` 。我建议创建一个common方法来配置单元格，以便从不同的初始化放来调用。
+接下来，我们将在单元格初始化的时候配置滚动视图。选择你想要的初始化方式，可以是`initWithCoder：`也可以是 `initWithStyle：reuseIdentifier：` 。我建议创建一个common方法来配置单元格，以便从不同的初始化放来调用。
 
 ```
 // 创建一个可以横向滚动的滚动视图
@@ -124,7 +124,7 @@ self.scrollView = scrollView;
 
 There’s a few things happening here after we create the scroll view. First, we set its resizing mask. This means how the view will act when its super view changes size. We want the scroll view to fill the entire cell when it changes size at runtime (which is likely to happen with iPhone 5, 6 and 6 Plus all having different screen widths). Then we set the content size to be the same, but also add a left inset with the width of the buttons we intend to add. Setting scrollsToTop to be turned off means this scroll view doesn’t care about the status bar being tapped (which normally scrolls a view to the top). This’ll let our table view take care of that instead of breaking that behavior. We also turn off horizontal and vertical scroll indicators so that the little translucent black bar doesn’t appear when we scroll.
 
-当我们我们创建滚动视图后，我们需要做一些事情。首先，我们设置它的大小的。这意味着在父视图大小发生改变的时候应该怎样改变。我们希望滚动视图填充整个单元格当它运行时改变大小的时候（这很可能发生在iPhone 5，6和6 plus都具有不同的屏幕宽度）。然后我们设置与滚动视图相同大小的内容，在左边插入与我们所需要添加的按钮宽度相同的视图。关闭scrollsToTop事件，因为我们不关心这个状态栏是否被点击（通常用于滚动视图顶部）。这将让我们的表视图利用这特性，而不是打破这一行为。同时我们也关掉水平和垂直滚动栏，这样，当我们滚动的时候半透明的黑条不会出现。
+当我们我们创建滚动视图后，我们需要做一些事情。首先，我们设置它的大小的。这意味着在父视图大小发生改变的时候应该怎样改变。我们希望滚动视图填充整个单元格当它运行时改变大小的时候（这很可能发生，因为在iPhone 5，6和6 plus都具有不同的屏幕宽度）。然后我们设置与滚动视图相同大小的内容，在左边插入与我们所需要添加的按钮宽度相同的视图。关闭scrollsToTop事件，因为我们不关心这个状态栏是否被点击（这个功能通常用于滚动视图顶部）。这将让我们的表视图利用这特性，而不是打破这一行为。同时我们也关掉水平和垂直滚动栏，这样，当我们滚动的时候半透明的黑条不会出现。
 
 ```
 // 设置内容大小
@@ -143,7 +143,7 @@ self.scrollViewLabel = label;
 
 Nothing really surprising going on above, we’re just adding in the necessary parts for presenting the main area of the table cell (which is normally in the contentView).
 
-必须惊讶于上述代码，我们只是增加了必要的部分呈现的表格单元格的主要区域
+不必惊讶于上述代码，我们只是增加了必要的部分呈现的表格单元格的主要区域
 
 ```
 // 创建按钮的容器.
@@ -175,9 +175,9 @@ This creates a view which contains the action buttons. The important things to n
 If you run the app now, it should let you scroll to make the button appear. If you’re running this on an iPhone 6 or larger you may notice a glitch that we’ll fix later. Another thing missing is the snapping in place of the button being either visible or not visible when you stop scrolling. Let’s fix that now.
 
 
-这将创建一个包含按钮的视图。这里需要注意的是，视图宽度应该是所有的按钮宽度的总和，它的插入在页面的第一次层次结构（为了让显示下面的视图）。然后，我们只需要添加我们想要的按钮。为了使代码尽可能的简洁，我没有添加任何按钮的点击事件处理代码。
+这将创建一个包含按钮的视图。这里需要注意的是，视图宽度应该是所有的按钮宽度的总和，它的需要插入在滚动视图之前（为了让显示在下面）。然后，我们只需要添加我们想要的按钮。为了使代码尽可能的简洁，我没有添加任何按钮的点击事件处理代码。
 
-如果你此时运行程序，它可以滑动从而让按钮出现，但是如果你再iPhone6 或者更大的屏幕上运行的时候，将会遇到一个问题，我们稍后会解决它。另外一个需要解决的问题就是当我们在滑到一般就停止的时候会出现按钮显示一般的情况。我们先来修复它。
+如果你此时运行程序，它可以滑动从而让按钮出现，但是如果你再iPhone6 或者更大的屏幕上运行的时候，将会遇到一个问题，我们稍后会解决它。另外一个需要解决的问题就是当我们在滑到一半就停止的时候会出现按钮显示一半的情况。我们先来修复它。
 
 ```
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
@@ -201,7 +201,7 @@ The biggest problem with our code right now is handling of bigger screens (such 
 到了这里我们完成了一些基本的工作。接下来我们来处理一些细节上的问题。继续往下看
 
 
-我们当前最大的问题就是就是来适应更大的屏幕，（例如iPhone6）我们可以通过一个简单的方法来修复这个问题（如果你有更好的方法，务必告诉我）。
+接下来最大的问题就是就是来适应更大的屏幕，（例如iPhone6）我们可以通过一个简单的方法来修复这个问题（如果你有更好的方法，务必告诉我）。
 
 ```
 - (void)layoutSubviews {
