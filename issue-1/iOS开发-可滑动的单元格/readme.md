@@ -21,15 +21,15 @@ Another full-featured implementation, with even more functionality.
 
 首先，让我们来看一下现有的解决方法。
 
-*   UITableViewRowAction (new in iOS 8)
+* UITableViewRowAction (new in iOS 8)
 
 这是最好的方法如果你只是希望加一些从左滑到右才会出现的按钮。
 
-*   SWTableViewCell
+* [SWTableViewCell](https://github.com/CEWendel/SWTableViewCell)
 
 这是一个功能很全的按钮库，既支持从左滑到右也支持右滑到左，同时也可以在iOS8以前的版本中使用
 
-*  MGSwipeTableCell
+* [MGSwipeTableCell](https://github.com/MortimerGoro/MGSwipeTableCell)
 
 另外一个功能更加强大的库
 
