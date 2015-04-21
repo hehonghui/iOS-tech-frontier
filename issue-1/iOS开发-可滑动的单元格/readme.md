@@ -97,7 +97,7 @@ Since we’ll want to have control over scroll behaviors, we need to specify tha
 因为我们希望实现对滚动控制，所以我们需要指定我们的类实现UIScrollViewDelegate协议。方法是后面加上尖括号，在里面写上需要实现的协议
 
 ```
-@interface  SwipeableTableViewCell：的UITableViewCell <UIScrollViewDelegate>
+@interface  SwipeableTableViewCell：UITableViewCell <UIScrollViewDelegate>
 
 ```
 
