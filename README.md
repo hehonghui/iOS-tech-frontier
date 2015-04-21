@@ -61,4 +61,4 @@
 ## 已完成列表
 |       文章标题        |         译者           |        出处           |
 |----------------------|------------------------|-------------------------|
-|   |   |   |
+|  [iOS编程101-如何生成圆形和圆角的图像](issue-1/iOS编程101-如何生成圆形和圆角的图像) |  [7heaven](https://github.com/7heaven) |  [appcoda.com](http://www.appcoda.com/ios-programming-circular-image-calayer/)  |
