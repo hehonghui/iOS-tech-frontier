@@ -2,6 +2,14 @@
 
 # Xcode 6中的View调试
 
+>* 原文链接 : [view-debugging-in-xcode-6](http://www.raywenderlich.com/98356/view-debugging-in-xcode-6)
+* 原文作者 : [Scott Berrevoets](http://www.raywenderlich.com/98356/view-debugging-in-xcode-6)
+* [译文出自 :  开发技术前线 www.devtf.cn](www.devtf.cn)
+* 译者 : [Mr.Simple](https://github.com/bboyfeiyu) 
+* 校对者: [这里校对者的github用户名]()  
+* 状态 :  校对中 
+
+
 When you’re developing an app, sometimes there may be a bug with your views or auto layout constraints that isn’t easy to find just by looking through your code. 
 
 我们在开发app的时候经常会遇到一些在代码中难以发现的view中的bug或者自动布局限制。
