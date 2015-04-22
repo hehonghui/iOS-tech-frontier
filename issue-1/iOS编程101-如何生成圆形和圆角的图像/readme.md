@@ -56,7 +56,7 @@ self.profileImageView.clipsToBounds = YES;
 
 ##添加边缘
 
-接下来，我们给图像添加个边缘，让它看起来更完美。和上面一行，仅需两行代码便能实现这个效果。在viewDidLoad:方法的设置边缘半径的代码下添加以下两行代码:
+接下来，我们给图像添加个边缘，让它看起来更完美。和上面一样，仅需两行代码便能实现这个效果。在viewDidLoad:方法的设置边缘半径的代码下添加以下两行代码:
 
 ```
 self.profileImageView.layer.borderWidth = 3.0f;
