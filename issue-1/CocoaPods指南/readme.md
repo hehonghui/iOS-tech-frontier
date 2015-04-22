@@ -2,7 +2,7 @@
 ---
 
 >
-* 原文链接 : [原文标题](http://www.raywenderlich.com/64546/introduction-to-cocoapods-2)
+* 原文链接 : [Introduction to CocoaPods Tutorial](http://www.raywenderlich.com/64546/introduction-to-cocoapods-2)
 * 原文作者: [Joshua Greene](http://www.raywenderlich.com/u/JRG.Developer)
 * 译文出自: [开发技术前线http://www.devtf.cn/](http://www.devtf.cn/)
 * 译者 : [Lollypo](https://github.com/Lollypo) 
