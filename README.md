@@ -59,6 +59,9 @@
 
 <b id="articles" />
 ## 已完成列表
-|       文章标题        |         译者           |        出处           |
-|----------------------|------------------------|-------------------------|
-|  [iOS编程101-如何生成圆形和圆角的图像](issue-1/iOS编程101-如何生成圆形和圆角的图像) |  [7heaven](https://github.com/7heaven) |  [appcoda.com](http://www.appcoda.com/ios-programming-circular-image-calayer/)  |
+|       文章标题        |         译者           | 
+|----------------------|------------------------|
+|  [iOS编程101-如何生成圆形和圆角的图像](issue-1/iOS编程101-如何生成圆形和圆角的图像.md) |  [7heaven](https://github.com/7heaven) |  
+|  [CocoaPods指南](issue-1/CocoaPods指南.md) |  [Lollypo](https://github.com/Lollypo)  |  
+|  [iOS开发-可滑动的单元格](issue-1/iOS开发-可滑动的单元格.md) |  [Harries Chen](https://github.com/mrchenhao) | 
+|  [View Debugging in Xcode 6 ( 待校对 ) ](issue-1/View Debugging in Xcode 6.md) |  [Mr.Simple](https://github.com/bboyfeiyu) |  

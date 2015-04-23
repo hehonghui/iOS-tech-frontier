@@ -3,21 +3,9 @@
 
 >* 原文链接 : [Swipeable table view cells in iOS apps](https://medium.com/ios-os-x-development/swipeable-table-view-cells-in-ios-apps-472da0af1935)
 * 译者 : [Harries Chen](https://github.com/mrchenhao) 
-* 校对者: [这里校对者的github用户名](github链接)  
-* 状态 :  校对中
-
-I’ve been diving into iOS for the past month building an app for my startup. One of the things I want the app to do is to let the user swipe a cell in a table view to reveal more options (similar to how the Mail app reveals “More” and “Delete” options). In this article I will discuss a few way of doing this, including how to build it yourself.
+* 校对者: [Mr.Simple](https://github.com/mrchenhao)  
 
 我在过去的一个月里致力于开发我的创业项目，其中有一个功能就是我想让用户通过左右滑动表格来显示更多的选项（就像系统自带的邮件程序现实更多和删除一样，在这篇文章中我将讨论一些关于这方面的方法，以及如何动手实现它）
-
-First, let’s go through the existing solutions out there:
-
-UITableViewRowAction (new in iOS 8)
-This option is the best if you’re just looking to add a few buttons that appear when swiping left-to-right on the table view cell.
-SWTableViewCell
-A full-featured implementation of buttons for both right-to-left swipe and left-to-right swipe. This will work for older iOS versions too.
-MGSwipeTableCell
-Another full-featured implementation, with even more functionality.
 
 首先，让我们来看一下现有的解决方法。
 
@@ -31,14 +19,7 @@ Another full-featured implementation, with even more functionality.
 
 * [MGSwipeTableCell](https://github.com/MortimerGoro/MGSwipeTableCell)
 
-另外一个功能更加强大的库
-
-Hopefully, if you’re looking for swipeable table view cells, you’ll find what you need in one of the above solutions. But then why am I writing about how to build it yourself? In my case, I needed some of the functionality of MGSwipeTableCell, but it turned out to do things in ways that didn’t work for me. If you’re also looking to build it from scratch, or just want to know how it works, read on!
-
 如果你想要实现表格的左右滑动功能，你可以从上面的解决方按照找到你需要的。但是为什么我们还要自己来实现呢？就我而言，我需要MGSwipeTableCell的一些功能，但是有的功能它对我并没有用，如果你想要自己来实现它，或者仅仅只是想要知道它的原理，那么接下去看。
-
-Anatomy of a swipeable UITableViewCell
-Making a table view cell swipeable is actually pretty simple. The gist of it is to create a UIScrollView inside the cell’s contentView and then populate it with one UIView for the buttons and one UIView for the content. The hardest part is really configuring the scroll view. Here’s an image showing the main values we’ll be touching on the UIScrollView:
 
 
 ##原理剖析
@@ -46,16 +27,6 @@ Making a table view cell swipeable is actually pretty simple. The gist of it is 
 制作一个可滑动的UITableViewCell其实是一件非常简单的事情，它的要点就是在contentView里面包含了UIScrollView，在UIScrollView里面有两个UIView，一个用于放置按钮，一个用于放置单元格的内容，难点在于如何配置滑动页面，下面是一张图片来展示UIScrollView里的主要内容。
 
 ![这里写图片描述](http://img.blog.csdn.net/20150420235653232)
-
-frame
-The size of the view (the actual area that will be rendered on screen). In the picture above I gave it more height to make room for the labels, but in our code it will have the same height as the content.
-contentSize
-In scroll views, the content will often be a different size than the view itself. When content is bigger than the view, the view will scroll to let the user see all of the content. This property represents the width and height of the content inside of the scroll view. In our case, we’ll actually keep it the same size as the view, thanks to a property called contentInset.
-contentInset
-This is the property that will make our scroll view actually scroll. Normally, when the contentSize property is set to the same (or smaller) size as the view itself, the view won’t scroll. However, contentInset will extend the area that is scrollable outside the content, so that you can scroll past the content boundary. Why is this useful? It’s used by pull-to-refresh controls, for example, to allow a throbber to show above the content. In our case, we’ll use it to make room for revealing the buttons.
-contentOffset
-This is the value that represents how much the scroll view is currently scrolled. As the user scrolls around, this value will change. You can also change it programmatically, which we’ll do later to snap the scrolling to just where the buttons end.
-
 
 * frame
 
@@ -91,19 +62,12 @@ The easiest way to subclass classes is to go to File > New > File… (⌘N). Pic
 
 子类化最简单的方法就是文件>新建>文件...（⌘N）。选择的UITableViewCell作为类的子类。
 
-Since we’ll want to have control over scroll behaviors, we need to specify that our class supports the UIScrollViewDelegate protocol. Do this by adding the protocol in angle brackets after the interface declaration:
-
-
 因为我们希望实现对滚动控制，所以我们需要指定我们的类实现UIScrollViewDelegate协议。方法是后面加上尖括号，在里面写上需要实现的协议
 
 ```
 @interface  SwipeableTableViewCell：UITableViewCell <UIScrollViewDelegate>
 
 ```
-
-
-Next up, we’ll set up the scroll view. This is done when the cell initializes. Depending on how you create your cells, the cell may initialize in either initWithCoder: or initWithStyle:reuseIdentifier:. I would recommend creating a common method for setting up your cell and calling it from both places.
-
 
 接下来，我们将在单元格初始化的时候配置滚动视图。选择你想要的初始化方式，可以是`initWithCoder：`也可以是 `initWithStyle：reuseIdentifier：` 。我建议创建一个common方法来配置单元格，以便从不同的初始化放来调用。
 
@@ -122,8 +86,6 @@ self.scrollView = scrollView;
 
 ```
 
-There’s a few things happening here after we create the scroll view. First, we set its resizing mask. This means how the view will act when its super view changes size. We want the scroll view to fill the entire cell when it changes size at runtime (which is likely to happen with iPhone 5, 6 and 6 Plus all having different screen widths). Then we set the content size to be the same, but also add a left inset with the width of the buttons we intend to add. Setting scrollsToTop to be turned off means this scroll view doesn’t care about the status bar being tapped (which normally scrolls a view to the top). This’ll let our table view take care of that instead of breaking that behavior. We also turn off horizontal and vertical scroll indicators so that the little translucent black bar doesn’t appear when we scroll.
-
 当我们我们创建滚动视图后，我们需要做一些事情。首先，我们设置它的大小的。这意味着在父视图大小发生改变的时候应该怎样改变。我们希望滚动视图填充整个单元格当它运行时改变大小的时候（这很可能发生，因为在iPhone 5，6和6 plus都具有不同的屏幕宽度）。然后我们设置与滚动视图相同大小的内容，在左边插入与我们所需要添加的按钮宽度相同的视图。关闭scrollsToTop事件，因为我们不关心这个状态栏是否被点击（这个功能通常用于滚动视图顶部）。这将让我们的表视图利用这特性，而不是打破这一行为。同时我们也关掉水平和垂直滚动栏，这样，当我们滚动的时候半透明的黑条不会出现。
 
 ```
@@ -140,8 +102,6 @@ label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFle
 self.scrollViewLabel = label;
 
 ```
-
-Nothing really surprising going on above, we’re just adding in the necessary parts for presenting the main area of the table cell (which is normally in the contentView).
 
 不必惊讶于上述代码，我们只是增加了必要的部分呈现的表格单元格的主要区域
 
@@ -170,11 +130,6 @@ noButton.frame = CGRectMake(80, 0, 80, self.bounds.size.height);
 [self.buttonsView addSubview:noButton];
 ```
 
-This creates a view which contains the action buttons. The important things to note here is that the view has the same width as all the buttons together, and it’s inserted as the first view in the hierarchy (which will make it appear under everything else). Then we just add the buttons we want there. I didn’t add tap handlers to keep the example short.
-
-If you run the app now, it should let you scroll to make the button appear. If you’re running this on an iPhone 6 or larger you may notice a glitch that we’ll fix later. Another thing missing is the snapping in place of the button being either visible or not visible when you stop scrolling. Let’s fix that now.
-
-
 这将创建一个包含按钮的视图。这里需要注意的是，视图宽度应该是所有的按钮宽度的总和，它的需要插入在滚动视图之前（为了让显示在下面）。然后，我们只需要添加我们想要的按钮。为了使代码尽可能的简洁，我没有添加任何按钮的点击事件处理代码。
 
 如果你此时运行程序，它可以滑动从而让按钮出现，但是如果你再iPhone6 或者更大的屏幕上运行的时候，将会遇到一个问题，我们稍后会解决它。另外一个需要解决的问题就是当我们在滑到一半就停止的时候会出现按钮显示一半的情况。我们先来修复它。
@@ -189,12 +144,6 @@ If you run the app now, it should let you scroll to make the button appear. If y
 }
 
 ```
-
-When your class gets notified that the user has stopped swiping (via the UIScrollViewDelegate protocol), you make the scroll view scroll back to either exactly where the buttons end (if they swiped past the buttons), or back to hide the buttons completely (if they didn’t swipe far enough).
-
-That’s pretty much the basics of building a swipeable cell! We’ve got a few loose ends that we’ll tie up now, so keep reading.
-
-The biggest problem with our code right now is handling of bigger screens (such as iPhone 6). We can fix that with this simple “hack” (please let me know if this can be done better!)
 
 当你的类得到用户停止滑动的通知（通过UIScrollViewDelegate协议）你需要将滚动视图滚动到按钮的最左端（如果滑动量超过按钮）或者重新隐藏按钮（如果滑动量不够）
 
@@ -214,8 +163,6 @@ The biggest problem with our code right now is handling of bigger screens (such 
 
 ```
 
-That’ll avoid graphical glitches. Next up, we may want to prevent the cell from being scrollable in the other direction (which doesn’t have any buttons to show). That’s simple:
-
 这段代码的作用就是在单元格的面积发生变化的时候，修复内容大小和偏移量
 
 这会避免图形出现问题。接下来，我们需要阻止滚动视图向另外一个方向滚动，（因为没有任何按钮来显示）。这非常简单：
@@ -227,8 +174,6 @@ That’ll avoid graphical glitches. Next up, we may want to prevent the cell fro
     }
 }
 ```
-
-Finally, you may want the buttons to stay in place under the cell instead of moving with the cell content. To make that happen, we will simply move the buttons container view to counteract the scrolling offset. We’ll do this by changing the scrollViewDidScroll: method above to the following:
 
 如果用户向另外一个方向滑动，将偏移量设置为0来阻止它。
 
@@ -244,20 +189,6 @@ Finally, you may want the buttons to stay in place under the cell instead of mov
 }
 
 ```
-
-Where to go from here
-Now that we’ve gone through the basics there’s many things that can still be improved. Here’s a few:
-
-Auto-hiding buttons when scrolling the table view
-Auto-hiding buttons when swiping open another cell
-Allowing buttons on both sides of the cell
-Enabling button creation outside the class (e.g., in the view controller)
-Dynamically calculating the buttons container size
-Making opening/closing of the actions menu behave better
-To fast-forward a bit, I’ve implemented the features above and made the code available on GitHub: https://github.com/blixt/SwipeableTableViewCell
-
-Thank you for reading! Please reach out to me with any comments. The easiest way to reach me is on Twitter, where I’m known as @blixt.
-
 
 ##还可以做些什么
 现在，我们已经制作了最基本功能，还有很多地方仍然可以提高。比如说：
