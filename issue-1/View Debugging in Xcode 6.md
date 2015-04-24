@@ -12,29 +12,29 @@
 
 When you’re developing an app, sometimes there may be a bug with your views or auto layout constraints that isn’t easy to find just by looking through your code. 
 
-我们在开发app的时候经常会遇到一些在代码中难以发现的view中的bug或者自动布局限制。
+我们在开发app的时候经常会遇到一些在代码中难以发现的view中的bug或者自动布局约束。
    
 It pays to know the technique of view debugging – and this has never been easier with the advent of Xcode 6.    
 
-这时候，掌握view调试的技巧就显得很重要—但是在Xcode 6 中的调试也并非易事。
+这时候，掌握view调试的技巧就显得很重要—但是在Xcode6出现之前，调试view从未如此简单。
 
 
 Instead of printing frames to the console and trying to visualize layouts in your head, you’re now able to inspect an entire view hierarchy visually – right from within Xcode. What an incredible time to be alive!   
 
-我们现在可以直接在Xcode中直观地看到view的整个层级，而不是在console控制接口打印框架或者试图在脑海里凭空描绘布局。
+我们现在可以直接在Xcode中直观地看到view的整个层级，而不是在console中打印frames或者试图在脑海里凭空描绘布局。
 
  
 This tutorial will take you through all the different options that are at your disposal. So, are you ready to write some code? That’s too bad, because you won’t. :]    
 Instead, you’ll inspect the view hierarchy of an open source library to better understand how it was written — without even looking at any code.
 
-本教程会带大家一览各种选择，并自行决定选择适合自己的。那么，大家准备好写几行代码了吗？告诉大家一个好消息，其实不必写代码。相反，我们只需要观看开源库中的view层级来更好地了解它是怎么写出来的—我们甚至可以连代码都不用看。
+本教程会带大家一览各种选择，并自行决定选择适合自己的。那么，大家准备好写一些代码了吗？告诉大家一个好消息，其实不必写代码。相反，我们只需要观看开源库中的view层级来更好地了解它是怎么写出来的—我们甚至可以连代码都不用看。
 
 
 ![pic-1](http://cdn1.raywenderlich.com/wp-content/uploads/2015/04/app-view.jpg) 
 
 *Debugging views in Xcode has never been easier*
 
-*在Xcode中调试view不是件容易的事*
+*在Xcode中调试view从未如此简单*
 
 ##Getting Started
 
@@ -56,7 +56,7 @@ To get started, head over to the [GitHub project page](https://github.com/jesses
 
 Next, navigate to the unzipped project directory in Terminal and run `pod install` to install the required dependencies. Then, open `JSQMessages.xcworkspace` and build and run the app on the `iPhone 5s simulator`. (You can use any simulator, but dimensions in this tutorial are based on a 4-inch display, so choosing the same will make it easier to follow.)
 
-下一步，找到终端中刚才解压的项目路径然后运行`pod install`来安装所需的依赖关系。然后打开`JSQMessages.xcworkspace` 并在`iPhone 5s simulator`上运行这个app。（大家也可以使用其他的simulator，但是本教程是基于4英寸显示屏的尺寸，所以选择同样的尺寸比较容易推进。）
+下一步，找到终端中刚才解压的项目路径然后运行`pod install`来安装所需的依赖。然后打开`JSQMessages.xcworkspace` 并在`iPhone 5s simulator`上运行这个app。（大家也可以使用其他的simulator，但是本教程是基于4英寸显示屏的尺寸，所以选择同样的尺寸比较容易推进。）
 
 >Note: Live View Debugging is only available if you run your app on iOS 8. You cannot use this tool on iOS 7, even if you’re working in Xcode 6.
 
@@ -121,17 +121,17 @@ At the bottom of the pane, you’ll see two buttons on the left. Deselect both o
 
 The most natural and common perspective of this 3D model is to look at it from the left side — you’ll see why a little later in this tutorial — so manipulate it to get a point of view like the one below.
 
-这个3D模型最自然最通用的一面就是从左侧看到的面，如下图所示（稍后我会在本教程讲到原因）。
+用透视法观察这个3D模型的最自然和最通用的方法是从左侧来看，如下图所示（稍后我会在本教程讲到原因）。
 
 ![pic-8](http://cdn5.raywenderlich.com/wp-content/uploads/2015/03/Screenshot-4.png)
 
 This gives your view hierarchy some perspective that’s very useful if you want to visualize how it’s built. However, there seems to be many empty views at the “bottom” (on the left) of the stack. What’s that all about?
 
-这个图给了我们一些有用的切入面，如果我们想把其建造原理形象化，这个切入点非常重要。但是，堆栈的“底部”（左侧）似乎存在许多空白的view。这是为什么呢？
+如果你想查看这个app是如何构建的，这个图把view的层级用透视的感觉展现了出来。。但是，堆栈的“底部”（左侧）似乎存在许多空白的view。这是为什么呢？
 
 Click on the left-most view (i.e. the one in the very back) and you’ll see that Xcode highlights it to indicate your selection. You’ll also see the Jump Bar (just above the Canvas) update to show a UIWindow as the last item — that last item will always reflect the currently selected view and its class type.
 
-点击最左侧的view（也就是最后面那个）后，我们可以看到Xcode会将其显示高亮来标示我们选择的地方。我们还可以看到Jump Bar（就在画布的上方）把UIWindow显示为最后一项--最后一项会反应当前选择的view及其类的类型。
+点击最左侧的view（也就是最后面那个）后，我们可以看到Xcode会将其显示高亮来标示我们选择的地方。我们还可以看到Jump Bar（就在画布的上方）把UIWindow显示为最后一项--最后一项会反映当前选择的view及其类的类型。
 
 ![pic-9](http://cdn5.raywenderlich.com/wp-content/uploads/2015/03/Screenshot-5.png)
 
@@ -141,7 +141,7 @@ Since this app uses only one window, it’s safe to assume the `UIWindow` at the
 
 OK, it’s good to know how to find the window, but it’s unlikely that you’ll need to inspect that. What about the next view? In the canvas, click on the view to the right (i.e. on top) of the window and look at the Jump Bar again. `UILayoutContainerView`. That’s not even a public class!
 
-好了，这样我们就知道如何找到窗口了，但是我们似乎并不需要查看它。下一个view又该怎么弄呢？在画布上点击窗口右侧的view（也就是顶部）并重新观察Jump Bar。`UILayoutContainerView`对吧？这特么连一个公共类都算不上！
+好了，这样我们就知道如何找到window了，但是我们似乎并不需要查看它。下一个view又该怎么弄呢？在画布上点击窗口右侧的view（也就是顶部）并重新观察Jump Bar。`UILayoutContainerView`对吧？这特么连一个公共类都算不上！
 
 ![pic-10](http://cdn3.raywenderlich.com/wp-content/uploads/2015/03/iw21s.jpg)
 
@@ -202,7 +202,7 @@ Use the zoom control buttons, which are in a group of three buttons centered at 
 
 As you would expect, the + button zooms in, the – zooms out, and the = button resets the zoom to the normal zoom level. Zoom in to get a good visual of the navigation bar.
 
-大家肯呢过已经猜到了，+按钮代表放大，—按钮代表缩小，=代表将画面重置到正常尺寸。放大以后我们可以更清楚地观看导航条。
+大家可能已经猜到了，+按钮代表放大，—按钮代表缩小，=代表将画面重置到正常尺寸。放大以后我们可以更清楚地观看导航条。
 
 ![pic-14](http://cdn4.raywenderlich.com/wp-content/uploads/2015/03/Screenshot-7.png)
 
@@ -213,7 +213,7 @@ As you would expect, the + button zooms in, the – zooms out, and the = button 
 
 The extra detail you get by zooming in on the toolbar is nice, but the views still slightly overlap, so it’s not easy to tell which view is which.
 
-放大之后的工具条很容易看到细节部分，但是view之间会有些重叠，所以要区分哪个view是哪个并不容易。
+放大之后的toolbar很容易看到细节部分，但是view之间会有些重叠，所以要区分哪个view是哪个并不容易。
 
 To solve that problem, use the spacing slider in the bottom left corner of the canvas. The further you drag the thumb of the spacing slider to the right, the more spacing Xcode shows between different views.
 
@@ -223,13 +223,13 @@ To solve that problem, use the spacing slider in the bottom left corner of the c
 
 In this particular case, move the slider to the right as much as needed to avoid overlapping views in the toolbar. You might have to play around with the perspective by click-dragging on the canvas to get the desired result.
 
-在这一特例中，我们需要将滑块尽量往右移动，避免view与工具条重叠。要想达到理想的效果，我们可能会需要在画布上单击并拖曳鼠标慢慢实现。
+在这一特例中，我们需要将滑块尽量往右移动，避免view与toolbar重叠。要想达到理想的效果，我们可能会需要在画布上单击并拖曳鼠标慢慢实现。
 
 ![pic-16](http://cdn4.raywenderlich.com/wp-content/uploads/2015/03/Screenshot-8.png)
 
 The 3D model is now perfectly manipulated so you can easily hide the navigation bar.
 
-现在我们就完美地操纵了3D模型，从而轻而易举地将导航条隐藏起来。
+现在我们就完美地操作了3D模型，从而轻而易举地将导航条隐藏起来。
 
 In the slider on the right (the one that hides views), drag the right thumb slowly to the left, up to the `UINavigationBar`. Remember that you can use the Jump Bar to identify each view’s class by selecting the topmost layer as you go. You’ll see the navigation items disappear first, then the buttons that contain them, followed by a few private views, and lastly, the navigation bar.
 
@@ -251,11 +251,11 @@ Moving a slider from the left to the right and having views disappear from the r
 
 Unfortunately, hiding the nav bar (with the root view of `_UIBackdropView`) view also causes the toolbar items’ content at the bottom of the screen to disappear. To see this, you may need to adjust the zoom level or move down the canvas.
 
-很遗憾，隐藏导航条（root view为`_UIBackdropView`）的同时，view会导致屏幕底部的工具条条目内容消失。我们调节缩放尺寸或者将画布往下移看看是什么情况。
+很遗憾，隐藏导航条（root view为`_UIBackdropView`）的同时，view会导致屏幕底部的toolbar的item内容消失。我们调节缩放尺寸或者将画布往下移看看是什么情况。
 
 You want to see the toolbar items as they are an important part of the screen, so only hide the views up until (but not including) the `_UIBackdropView`. The navbar stack should look something like the following once you’re done.
 
-由于工具条条目是屏幕的一个重要部分，所以我想大家有必要看看，所以我只隐藏了到`_UIBackdropView`（不含）的这一部分的view。操作完成后导航条堆栈应该是下图的样子。
+由于toolbar item是屏幕的一个重要部分，所以我想大家有必要看看，所以我只隐藏了到`_UIBackdropView`（不含）的这一部分的view。操作完成后导航条堆栈应该是下图的样子。
 
 ![pic-18](http://cdn3.raywenderlich.com/wp-content/uploads/2015/03/Screenshot-9.png)
 
@@ -269,7 +269,7 @@ Now that irrelevant views are hidden, it’s time to take a look at the screen f
 
 Look at the group of four buttons to the left of the zoom buttons. The third button from the left is the `ResetViewing Area` button. It undoes rotations and gives you the front perspective of the view hierarchy, just like in the simulator or on a device.
 
-看到缩放按钮左边的那silent按钮了吗？做起第三个是`ResetViewing Area`按钮。它的作用是撤销屏幕旋转并显示view层级的正面构造，就像simulator或设备上的一样。
+看到缩放按钮左边的那四个按钮了吗？左起第三个是`ResetViewing Area`按钮。它的作用是撤销屏幕旋转并显示view层级的正面构造，就像simulator或真机上的一样。
 
 ![pic-19](http://cdn1.raywenderlich.com/wp-content/uploads/2015/03/Screen-Shot-2015-03-15-at-5.03.26-PM-copy.png)
 
@@ -393,13 +393,13 @@ Below are constraints colored in gray that indicate those are constraints that d
 
 To get more details about a particular constraint, first expand that view in the view tree and then the Constraints item. You’ll also see the same constraints you saw in the Size navigator listed here.
 
-要想了解某个特定约束的细节，首先我们要展开树形view中的那个view，然后是约束条目。大家看到的是跟Size导航器中列出的相同的约束。
+要想了解某个特定约束的细节，首先我们要展开树形view中的那个view，然后是约束项。大家看到的是跟Size导航器中列出的相同的约束。
 
 ![pic-29](http://cdn3.raywenderlich.com/wp-content/uploads/2015/03/Screenshot-15.png)
 
 Click on the first constraint (for me it’s a constraint on self.midX) and switch to the Object inspector by pressing `cmd + option + 3`. You’ll see a constraint overview with the items, multiplier, constant and priority. This is much like the summary you see in Interface Builder when you edit a constraint.
 
-点击第一个约束（对我个人来说这是一个self.midX约束）并按住`cmd + option + 3`切换到Object inspector。此时可以看到约束和条目、倍增器、常数以及优先级重叠了view。这非常像我们在在Interface Builder里面编辑一个约束时看到的summary。
+点击第一个约束（对我个人来说这是一个self.midX约束）并按住`cmd + option + 3`切换到Object inspector。此时可以看到约束的item，multiplier，constant 和优先级。这非常像我们在在Interface Builder里面编辑一个约束时看到的summary。
 
 ![pic-30](http://cdn3.raywenderlich.com/wp-content/uploads/2015/03/Screenshot-16.png)
 
@@ -431,7 +431,7 @@ Select the image view from the tree and check out the Object inspector.
 
 Here you’re looking at the view that shows the user’s avatar — in this case, the author’s initials, JSQ. You can see the normal image, conveniently labeled Image, as well as the darker image, labeled Highlighted, that shows when the user taps on the cell.
 
-此时我们看到，view显示了用户的化身--在这种情况下，指的是作者的姓名首字母大写，JSQ。我们既可以查看正常图像，也可以查看带标记的图像以及颜色偏暗的图像，带标记高亮图像，这些图像可以反映用户何时点击单元。
+此时我们看到，view显示了用户的头像--在这种情况下，指的是作者的姓名首字母大写，JSQ。我们既可以查看正常图像，也可以查看带标记的图像以及颜色偏暗的图像，带标记高亮图像，这些图像可以反映用户何时点击单元。
 
 The other two instances of `JSQMessageLabel` in this cell’s root view don’t currently have text, but they are used for the sender’s name in incoming messages and an error message when sending an outgoing message fails.
 
@@ -585,7 +585,7 @@ This will print the hierarchy of the `JSQMessagesCollectionViewCellOutgoing`’s
 
 It’s rudimentary, but can be helpful when you want to debug a view hierarchy pre iOS 8.
 
-这看起来非常基础，但是我们想要在pre iOS 8中调试view层级的话它还是非常有用的。
+这看起来非常基础，但是我们想要在 iOS 8之前的系统中调试view层级的话它还是非常有用的。
 
 ###Using debugQuickLookObject
 
@@ -593,7 +593,7 @@ It’s rudimentary, but can be helpful when you want to debug a view hierarchy p
 
 Lastly, Xcode 5.1 introduced a feature called **`Debug Quick Look`**. This feature is most useful when you’re already debugging and aren’t wondering what an object looks like at a certain point in your code.
 
-最后，Xcode 5.1引入了一个叫做**`Debug Quick Look`**的特征。这个特征在我们已经进行调试并且知晓了代码中特定点的object的外形时非常有用。
+最后，Xcode 5.1引入了一个叫做**`Debug Quick Look`**的特性。这个特性在我们调试中并且知晓了代码中特定点的object的外形时非常有用。
 
 Your custom class can implement the method `debugQuickLookObject` and return anything that is visually presentable by Xcode. Then, when you’re debugging and you have an object you want to inspect, you can use quick look and Xcode will show you a visual representation of that object.
 
