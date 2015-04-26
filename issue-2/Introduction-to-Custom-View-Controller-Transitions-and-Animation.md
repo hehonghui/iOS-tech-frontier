@@ -197,7 +197,8 @@ Create a class named `CustomDismissAnimationController` that is a subclass of `N
 
 创建一个名为 `CustomDismissAnimationController` 的类，作为`NSObject`的子类。按照以下代码更改其声明。
 
-```class CustomDismissAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
+```
+class CustomDismissAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
 ```
 
 Add the following to the class.
