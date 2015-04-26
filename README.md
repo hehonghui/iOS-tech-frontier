@@ -10,10 +10,14 @@
 
 ## 参与步骤
 1. 将该项目fork到自己的github;
-2. 在对应期数里面 (比如 issue-2 , 代表第二期) 里面创建一个文件夹，文件夹命名格式为: 中文标题名，比如Android MVP模式与实践;
-3. 在该文件夹中创建readme.md(文章所需图片请存放到图床上，不要放在仓库中,图片宽度尽量控制在400 px左右);
-3. 将模板[template.md](template.md)中的内容拷贝到readme.md，按照模板填写、翻译完内容,完成翻译后将状态修改为"校对中",提交pull request到本项目;
+2. 在对应期数里面 (比如 issue-2 , 代表第二期) 里面创建一个markdown文件，文件命名格式为: 中文标题名，比如Android MVP模式与实践.md;
+3. 将模板[template.md](template.md)中的内容拷贝到markdown文件中，按照模板填写、翻译完内容(文章所需图片请存放到图床上，不要放在仓库中,图片宽度尽量控制在400 px左右),完成翻译后将状态修改为"校对中",提交pull request到本项目;
 4. 管理员校对完成之后便会发布.   
+
+## 注意事项
+1. 在翻译文章时，保留专有名词；
+2. 在忠于原文的基础上，进行适当的意译，以适应国人阅读习惯；
+3. 当翻译完成后，通读一遍，检查语句是否通顺，有无错别字等问题；
 
 [参与翻译、校对的流程](翻译项目协作流程.md)
 
@@ -23,9 +27,10 @@
 ## 文章分类
 |   来源    |   介绍     |
 |----------|-------------|
-| [Ray Wenderlich](raywenderlich) | iOS社区，经常更新优秀文章[Ray Wenderlich](http://www.raywenderlich.com/) |
-| [App Coda](appcoda) | iOS社区，经常更新优秀文章[App Coda](http://www.appcoda.com/) |
-| [Others](others) | 其他来源的优秀文章 |
+| [Ray Wenderlich] | iOS社区，经常更新优秀文章[Ray Wenderlich](http://www.raywenderlich.com/) |
+| [App Coda] | iOS社区，经常更新优秀文章[App Coda](http://www.appcoda.com/) |
+| [Medium] | 类似于Reddit的社区，这是其中的iOS板块[Medium](https://medium.com/ios-os-x-development/) |
+| [Others] | 其他来源的优秀文章 |
 
 <b id="recommend" />
 ## 推荐文章
@@ -54,3 +59,9 @@
 
 <b id="articles" />
 ## 已完成列表
+|       文章标题        |         译者           | 
+|----------------------|------------------------|
+|  [iOS编程101-如何生成圆形和圆角的图像](issue-1/iOS编程101-如何生成圆形和圆角的图像.md) |  [7heaven](https://github.com/7heaven) |  
+|  [CocoaPods指南](issue-1/CocoaPods指南.md) |  [Lollypo](https://github.com/Lollypo)  |  
+|  [iOS开发-可滑动的单元格](issue-1/iOS开发-可滑动的单元格.md) |  [Harries Chen](https://github.com/mrchenhao) | 
+|  [View Debugging in Xcode 6 ](issue-1/View Debugging in Xcode 6.md) |  [Mr.Simple](https://github.com/bboyfeiyu) |  
