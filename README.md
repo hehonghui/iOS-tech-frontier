@@ -19,7 +19,7 @@
 2. 在忠于原文的基础上，进行适当的意译，以适应国人阅读习惯；
 3. 当翻译完成后，通读一遍，检查语句是否通顺，有无错别字等问题；
 
-[参与翻译、校对的流程](翻译项目协作流程.md)
+[参与翻译、校对的流程](https://github.com/bboyfeiyu/android-tech-frontier/blob/master/%E7%BF%BB%E8%AF%91%E9%A1%B9%E7%9B%AE%E5%8D%8F%E4%BD%9C%E6%B5%81%E7%A8%8B.md)
 
 
 
