@@ -63,7 +63,8 @@
 ### 第一期 (2015.5.1)
 |       文章标题        |         译者           | 
 |----------------------|------------------------|
-|  [自定义ViewController切换效果与动画(待校对)](issue-2/自定义ViewController切换效果与动画) |  [Mr.Simple](https://github.com/bboyfeiyu) |  
+|  [使用Swift自定义ViewController切换效果与动画(待校对)](issue-2/自定义ViewController切换效果与动画.md) |  [Shopie](https:www.devtd.cn)  |  
+|  [Swift样式指南2015年4月更新](issue-2/Swift样式指南2015年4月更新.md) |  [liulinxu](https://github.com/liulinxu) |  
 
 
 ### 第一期 (2015.4.24)
@@ -72,4 +73,4 @@
 |  [iOS编程101-如何生成圆形和圆角的图像](issue-1/iOS编程101-如何生成圆形和圆角的图像.md) |  [7heaven](https://github.com/7heaven) |  
 |  [CocoaPods指南](issue-1/CocoaPods指南.md) |  [Lollypo](https://github.com/Lollypo)  |  
 |  [iOS开发-可滑动的单元格](issue-1/iOS开发-可滑动的单元格.md) |  [Harries Chen](https://github.com/mrchenhao) | 
-|  [View Debugging in Xcode 6 ](issue-1/View Debugging in Xcode 6.md) |  [Mr.Simple](https://github.com/bboyfeiyu) |  
+|  [View Debugging in Xcode 6 ](issue-1/View-Debugging-in-Xcode-6.md) |  [Mr.Simple](https://github.com/bboyfeiyu) |  

@@ -1,16 +1,16 @@
-#自定义ViewController切换效果与动画
-
-march 23, 2015 by joyce echessa
-
-2015年3月23日 作者：Joyce Echessa
+#使用Swift自定义ViewController切换效果与动画
+>* 原文链接 : [custom-view-controller-transitions-tutorial](http://www.appcoda.com/custom-view-controller-transitions-tutorial/)
+* 原文作者 : [joyce echessa](http://www.appcoda.com/custom-view-controller-transitions-tutorial/)
+* [译文出自 :  开发技术前线 www.devtf.cn](www.devtf.cn)
+* 译者 : [Shopie](https:www.devtd.cn)  
 
 Looking at the built in apps from Apple on your iOS device, you will notice the various animated transitions as you move from one view to another for example the way view controllers are presented in master-detail views with a swipe that slides the detail view controller over the master view controller as seen in the Messages app or Settings app and the various transitions that represent a segue to another view controller.
 
-当我们把从Apple iOS设备上内置的app从一个view切换到另一个的时候，我们可以看到各种不同的动态切换。比如，把详细view controller滑动到主view controller时view controller呈现在主细view的方式（通常在短信app或设置app中可以看到），以及代表了不同view controller之间切换的各种不间断过渡。
+当我们把从Apple iOS设备上内置的app从一个view切换到另一个的时候，我们可以看到各种不同的动态切换。比如，把详细view controller滑动到主view controller时呈现出的切换动画（通常在短信app或设置app中可以看到），以及代表了不同view controller之间切换的各种不间断过渡。
 
 iOS 7 introduced custom view controller transitions which make it possible for developers to create their own animated transitions from one view controller to the next in their apps. In this tutorial, we’ll take a look at how to do this. We’ll also look at how to create gesture driven transitions called interactive transitions. To follow along, download the starter project which we’ll be using throughout the tutorial.
 
-iOS 7引入了自定义view controller切换，使得开发人员能够在他们的app中实现不同 view controller之间的自定义动画切换。我们通过本教程来看看如何做到。本教程还会讲到如何创建手势切换，也就是交互式切换。首先，大家需要下载starter项目，我们在后续的整个教程中将会用到。
+iOS 7引入了自定义view controller切换，使得开发人员能够在他们的app中实现不同 view controller之间的自定义切换动画。我们通过本教程来看看如何自定义切换动画。本教程还会讲到如何创建手势切换，也就是交互式切换。首先，大家需要下载starter项目，我们在后续的整个教程中将会用到。
 
 ![pic-1](http://www.appcoda.com/wp-content/uploads/2015/03/custom-view-transition.jpg)
 
@@ -24,15 +24,15 @@ To create custom transitions you have to follow three steps:
 
 * Create a class that implements the `UIViewControllerAnimatedTransitioning` protocol. Here you will write code that performs the animation. This class is referred to as the animation controller.
 
-* 创建一个执行`UIViewControllerAnimatedTransitioning`协议的类。这里我们需要写执行动画的代码。我们把这个类叫做animation controller。
+* 创建一个实现了`UIViewControllerAnimatedTransitioning`协议的类。这里我们需要写执行动画的代码。我们把这个类叫做animation controller。
 
 * Before presenting a view controller, set a class as its transitioning delegate. The delegate will get a callback for the animation controller to be used when presenting the view controller.
 
-* 在呈现view controller之前，我们需要建立一个类作为其transitioning delegate。这个delegate会从animation controller得到一个回调信号用于呈现view controller。
+* 在展示view controller之前，我们需要建立一个类作为其transitioning delegate。这个delegate会从animation controller得到一个回调信号用于展示view controller。
 
 * Implement the callback method to return an instance of the animation controller from the first step.
 
-* 执行回调方法返回步骤一的animation controller实例。
+* 实现回调方法返回步骤一的animation controller实例。
 
 Run the starter project and you will be presented with a table view of a list of items. There is an Action button on the navigation bar and when you tap it you’ll be presented with another view that appears in the usual modal style of sliding up from the bottom. We will write a custom transition for this view.
 
@@ -46,17 +46,20 @@ Run the starter project and you will be presented with a table view of a list of
 
 The first thing to do as stated previously, is to create the animation controller. Create a new class called `CustomPresentAnimationController` and make it a subclass of NSObject. Change its declaration as shown.
 
-上文提到，我们首先要做的是创建一个animation controller。创建一个名为`CustomPresentAnimationController`的新的类并将其作为NSObject的一个子类。根据图示更改其定义。
+上文提到，我们首先要做的是创建一个animation controller。创建一个继承自NSObject的`CustomPresentAnimationController`类。根据图示更改其定义。
 
-
-```class CustomPresentAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
+```
+class CustomPresentAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
+	// ....
+}
 ```
 
 `UIViewControllerAnimatedTransitioning` protocol has two required methods which we’ll add next. Add the following methods to the class.
 
 `UIViewControllerAnimatedTransitioning`协议中有两个我们接下来需要添加的方法。将以下方法添加到类中。
 
-```func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -&gt; NSTimeInterval {
+```
+func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -&gt; NSTimeInterval {
     return 2.5
 }
     
@@ -78,7 +81,8 @@ func animateTransition(transitionContext: UIViewControllerContextTransitioning) 
             transitionContext.completeTransition(true)
             fromViewController.view.alpha = 1.0
     })
-}```
+}
+```
 
 The first method specifies the length of the transition animation. For the demo app we’ve set it at 2.5 seconds, but you probably should set it to a smaller number in a real app.
 
@@ -86,7 +90,7 @@ The first method specifies the length of the transition animation. For the demo 
 
 In the second method we use the transitionContext to get the view controller we are navigating from, to, the final frame the transition context should have after the animation completes and the container view which houses the views corresponding to the to and from view controllers.
 
-在第二个方法中我们使用transitionContext来获得我们导航于、导航至的view controller，动画完成后transition context应得到的最终框架，以及存储与to view controller和from view controller相关的view的container view。
+在第二个方法中我们使用transitionContext来获得我们从...导航、导航到的view controller，动画完成后transition context应得到的最终框架，以及存储与to view controller和from view controller相关的view的container view。
 
 We then position the `to view` just below the bottom of the screen. Then we add the `to view` to the container view and in the animate closure, we animate the `to view` by setting its final frame to the location given by the transition context. We also animate the `from view`‘s alpha value so that as the `to view` is sliding up the screen over the `from view`, the `from view` will be faded out. The duration of the animation used is the one set in `transitionDuration(transitionContext:)`. In the completion closure, we notify the transition context when the animation completes and then change the `from view`‘s alpha back to normal. The framework will then remove the `from view` from the container.
 
@@ -100,7 +104,8 @@ Open the ItemsTableViewController.swift file and change the class declaration as
 
 打开ItemsTableViewController.swift文件，按图所示更改类定义。
 
-```class ItemsTableViewController: UITableViewController, UIViewControllerTransitioningDelegate {
+```
+class ItemsTableViewController: UITableViewController, UIViewControllerTransitioningDelegate {
 ```
 
 UIViewController has a property named `transitionDelegate` that supports custom transitions. When transitioning to a view controller, the framework checks this property to see if a custom transition should be used. `UIViewControllerTransitioningDelegate` supplies custom transitions.
@@ -117,7 +122,8 @@ Back in ItemsTableViewController add the following to the class.
 
 返回ItemsTableViewController并将下列代码添加到类中。
 
-```let customPresentAnimationController = CustomPresentAnimationController()
+```
+let customPresentAnimationController = CustomPresentAnimationController()
 
 override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
@@ -125,7 +131,8 @@ override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let toViewController = segue.destinationViewController as UIViewController
         toViewController.transitioningDelegate = self
     }
-}```
+}
+```
 
 Here we create an instance of our animation controller and then in the `prepareForSegue()` function, we detect the segue for the Action screen and set the `transitionDelegate` property of the destination view controller.
 
@@ -135,9 +142,11 @@ Add the following `UIViewControllerTransitioningDelegate` method to the class. T
 
 将下列`UIViewControllerTransitioningDelegate`方法添加到类中。这一步会返回我们的自定义animation controller实例。
 
-```func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -&gt; UIViewControllerAnimatedTransitioning? {
+```
+func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -&gt; UIViewControllerAnimatedTransitioning? {
     return customPresentAnimationController
-}```
+}
+```
 
 Run the application and you should see the Action view slide up slowly from the screen and bounce a little before settling.
 
@@ -149,14 +158,16 @@ If you want a slightly different effect, then change this statement in CustomPre
 
 如果大家想看到一个稍微不同的结果，那么我们可以在CustomPresentAnimationController.swift稍作改变：
 
-```toViewController.view.frame = CGRectOffset(finalFrameForVC, 0, bounds.size.height)
+```
+toViewController.view.frame = CGRectOffset(finalFrameForVC, 0, bounds.size.height)
 ```
 
 to the statement below, which changes the original position of the to view controller to be above the screen.
 
 改变后如下所示，其中我们将to view controller的原始位置放到了屏幕上方。
 
-```toViewController.view.frame = CGRectOffset(finalFrameForVC, 0, -bounds.size.height)
+```
+toViewController.view.frame = CGRectOffset(finalFrameForVC, 0, -bounds.size.height)
 ```
 
 Run the app and the Action view should fall from above.
@@ -165,13 +176,11 @@ Run the app and the Action view should fall from above.
 
 ![pic-5](http://www.appcoda.com/wp-content/uploads/2015/03/vid03.gif)
 
-##Custom Dismiss Transition
-
-##Custom Dismiss Transition
+##自定义消隐(Dismiss)转场效果
 
 We’ve set a custom transition for presenting our view, but when it is dismissed, it uses the default transition set by Apple.
 
-我们之前为了呈现view设置了一个自定义切换，但当自定义切换解散之后，view会使用Apple设定的默认切换。
+我们之前为了呈现view设置了一个自定义切换效果，但当View消隐时，view会使用Apple设定的默认切换。
 
 ![pic-6](http://www.appcoda.com/wp-content/uploads/2015/03/vid04.gif)
 
@@ -183,14 +192,16 @@ Create a class named `CustomDismissAnimationController` that is a subclass of `N
 
 创建一个名为 `CustomDismissAnimationController` 的类，作为`NSObject`的子类。按照以下代码更改其定义。
 
-```class CustomDismissAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
+```
+class CustomDismissAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
 ```
 
 Add the following to the class.
 
 将以下代码添加到类中。
 
-```func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -&gt; NSTimeInterval {
+```
+func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -&gt; NSTimeInterval {
     return 2
 }
 
@@ -211,11 +222,12 @@ func animateTransition(transitionContext: UIViewControllerContextTransitioning) 
         finished in
         transitionContext.completeTransition(true)
     })
-}```
+}
+```
 
 This is similar to the implementation of the presentation transition. In the `animateTransition()` function, we get the to and from view controllers. The `to view controller` here is the table view controller. We change its view’s alpha value so that it will start off as being faded when we start animating. We then add the view to the container and place it behind the from view controller’s view so that it won’t be visible just yet.
 
-这与执行presentation transition非常相似。在`animateTransition()`功能中，我们得到to view controller和from view controller。这里的 `to view controller`作为table view controller。我们改变其view的alpha值，以便我们开始制作动画效果时它会在淡出时迅速消失。之后我们把view添加到container并把它放置在from view controller的view后面以保证其不可视。
+这与实现presentation transition非常相似。在`animateTransition()`功能中，我们得到to view controller和from view controller。这里的 `to view controller`作为table view controller。我们改变其view的alpha值，以便我们开始制作动画效果时它会在淡出时迅速消失。之后我们把view添加到container并把它放置在from view controller的view后面以保证其不可视。
 
 In the animation block, we animate the `from view`‘s size to have a width and height of 0, maintaining its center. This will have an effect of shrinking the `from view` to nothingness. We also animate the `to view`‘s alpha to being completely visible.
 
@@ -225,16 +237,19 @@ In ItemsTableViewController add the following property.
 
 添加以下属性至ItemsTableViewController中。
 
-```let customDismissAnimationController = CustomDismissAnimationController()
+```
+let customDismissAnimationController = CustomDismissAnimationController()
 ```
 
 Add the following function to the class.
 
 添加以下功能至类中。
 
-```func animationControllerForDismissedController(dismissed: UIViewController) -&gt; UIViewControllerAnimatedTransitioning? {
+```
+func animationControllerForDismissedController(dismissed: UIViewController) -&gt; UIViewControllerAnimatedTransitioning? {
     return customDismissAnimationController
-}```
+}
+```
 
 The `UIViewControllerTransitioningDelegate` protocol provides the above function which retrieves the animation controller of a dismissed view controller.
 
@@ -258,7 +273,8 @@ Replace the `animateTransition()` function with the following.
 
 用以下代码替换`animateTransition()`功能。
 
-```func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+```
+func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
     let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!
     let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
     let finalFrameForVC = transitionContext.finalFrameForViewController(toViewController)
@@ -282,7 +298,8 @@ Replace the `animateTransition()` function with the following.
         snapshotView.removeFromSuperview()
         transitionContext.completeTransition(true)
     })  
-}```
+}
+```
 
 Here, we create a snapshot of the `from view controller`‘s view, add it to the container and remove the `from view` from the container. We then shrink this snapshot in our animation and when the animation completes, we remove the snapshot view from the container.
 
@@ -314,14 +331,16 @@ To start off, we create an animation controller. Create a class called `CustomNa
 
 首先，创建一个animation controller。创建一个名为`CustomNavigationAnimationController`的类，将其作为`NSObject`的子类并按下列方式更改其定义。
 
-```class CustomNavigationAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
+```
+class CustomNavigationAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
 ```
 
 Add the following to the class. I use a simplified version of [this cube animation](https://github.com/andresbrun/ABCustomUINavigationController#cube) for this animation controller. The animation controller is set up as usual just like we’ve seen with the previous two animation controllers. Notice the reverse class variable. We use this to determine the direction of the animation, depending on whether we are moving from master to detail view or vice versa.
 
 将以下代码添加到类中。对于这个animation controller，我本人使用的是一个简版的[this cube animation](https://github.com/andresbrun/ABCustomUINavigationController#cube)。我们只需要像前面提到的两个animation controller一样建立这个animation controller。需要注意逆类变量。我们要用它来决定动画的方向，取决于我们是否从主视图过渡到详细视图或从详细视图过渡到主视图。
 
-```var reverse: Bool = false
+```
+var reverse: Bool = false
     
 func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -&gt; NSTimeInterval {
     return 1.5
@@ -374,7 +393,8 @@ Open ItemsTableViewController.swift and modify the class declaration as follows.
 
 打开ItemsTableViewController并按照以下内容修改类定义。
 
-```class ItemsTableViewController: UITableViewController, UIViewControllerTransitioningDelegate, UINavigationControllerDelegate {
+```
+class ItemsTableViewController: UITableViewController, UIViewControllerTransitioningDelegate, UINavigationControllerDelegate {
 ```
 
 `UINavigationControllerDelegate` supplies the animation controller.
@@ -392,7 +412,8 @@ Add the following at the end of `viewDidLoad()`.
 
 在`viewDidLoad()`末尾添加以下代码。
 
-```navigationController?.delegate = self
+```
+navigationController?.delegate = self
 ```
 
 The above sets the host navigation controller’s delegate so that the new transition delegate methods can be received.
@@ -403,7 +424,8 @@ Then add the following to the class.
 
 然后将以下代码添加到类中。
 
-```func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -&gt; UIViewControllerAnimatedTransitioning? {
+```
+func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -&gt; UIViewControllerAnimatedTransitioning? {
     customNavigationAnimationController.reverse = operation == .Pop
     return customNavigationAnimationController
 }```
@@ -442,7 +464,7 @@ Let’s create the interaction controller. Create a new class and name it `Custo
 
 `UIPercentDrivenInteractiveTransition` implements the `UIViewControllerInteractiveTransitioning` protocol so we wont have to add that to our class.
 
-由于`UIPercentDrivenInteractiveTransition` 执行 `UIViewControllerInteractiveTransitioning`协议，所以我们不需要添加到类中。
+由于`UIPercentDrivenInteractiveTransition` 实现 `UIViewControllerInteractiveTransitioning`协议，所以我们不需要添加到类中。
 
 To use `UIPercentDrivenInteractiveTransition`, your animation controller must use a single UIView animation, so that the animation will be able to be stopped, reversed and played.
 
@@ -452,7 +474,8 @@ Add the following to the class.
 
 把以下代码添加到类中。
 
-```var navigationController: UINavigationController!
+```
+var navigationController: UINavigationController!
 var shouldCompleteTransition = false
 var transitionInProgress = false
 var completionSeed: CGFloat {
@@ -515,7 +538,8 @@ To use our interaction controller, open ItemsTableViewController.swift and add t
 
 打开ItemsTableViewController.swift 并把下列代码添加到类中之后，大家就可以使用我们的interaction controller了。
 
-```let customInteractionController = CustomInteractionController()
+```
+let customInteractionController = CustomInteractionController()
 ```
 
 Add the following at the beginning of the `navigationController(_:animationControllerForOperation:
@@ -524,9 +548,11 @@ fromViewController:toViewController:)` function.
 在`navigationController(_:animationControllerForOperation:
 fromViewController:toViewController:)`功能起始处添加以下代码。
 
-```if operation == .Push {
+```
+if operation == .Push {
     customInteractionController.attachToViewController(toVC)
-}```
+}
+```
 
 This calls the CustomInteractionController’s `attachToViewController()` method and passes it a reference of the to view controller when it detects a push navigation operation.
 
@@ -536,9 +562,11 @@ Then add the following to the class.
 
 然后添加以下代码到类中。
 
-```func navigationController(navigationController: UINavigationController, interactionControllerForAnimationController animationController: UIViewControllerAnimatedTransitioning) -&gt; UIViewControllerInteractiveTransitioning? {
+```
+func navigationController(navigationController: UINavigationController, interactionControllerForAnimationController animationController: UIViewControllerAnimatedTransitioning) -&gt; UIViewControllerInteractiveTransitioning? {
     return customInteractionController.transitionInProgress ? customInteractionController : nil
-}```
+}
+```
 
 After the framework asks for and gets an animation controller, it asks for an interaction controller using the method above. The above returns an instance of our interaction controller if a transition is in progress.
 
