@@ -1,12 +1,10 @@
-`这里写中文标题`
+GCD概述、语法以及好的示例
 ---
 
 >* 原文链接 : [Grand Central Dispatch (GCD): Summary, Syntax & Best Practices](http://amattn.com/p/grand_central_dispatch_gcd_summary_syntax_best_practices.html)
 * 原文作者 : [amattn](http://amattn.com/p/grand_central_dispatch_gcd_summary_syntax_best_practices.html)
 * [译文出自 :  开发技术前线 www.devtf.cn](www.devtf.cn)
 * 译者 : [starmier](https://github.com/starmier/) 
-* 校对者: [这里校对者的github用户名](github链接)  
-* 状态 :  校对中
 
 ##Queue and A
 
@@ -27,7 +25,7 @@ Both statements are correct; here are some additional points:
 
 苹果官方最初对GCD(Grand Center Dispatch)的描述是这样的：
 
-1. 一个复杂的线程
+1. 线程是复杂的
 1. 通过GCD可以使得线程变得简单有趣
 
 这两种看法都是正确的，当然还有一些其他的观点：
@@ -56,7 +54,7 @@ This post focuses on “submitting blocks to queues” but the buyer should be a
 
 ##提交block到队列
 
-  使用GCD的主要机制是通过提交block块到队列，或者响应被弹出队列的事件。有不同的方式可以创建block，也有不同类型的队列，他们中的一些非常有趣。最终，调度执行任务或者执行任务来响应事件。
+  GCD的主要机制是通过提交block块到队列，或者响应被弹出队列的事件。有不同的方式可以创建block，也有不同类型的队列，他们中的一些非常有趣。最终，调度执行任务或者执行任务来响应事件。
   
   并发方面需要开发者手动处理。线程管理会自动调谐系统负载。通常的并发的危险是：所有UI更新必须在主线程中完成，可以搜索文件/谷歌来确认NS或UI是否是线程安全的。
  
@@ -105,10 +103,9 @@ A quick note on dispatch_get_current_queue: It is deprecated and it also didn’
   
   这是值得重复强调的问题:使用GCD的主要机制是提交任务到队列。
 
-  概念化队列的最好方法是潜意识,队列只有两种类型:串行和并行。
+  理解队列的最好方法是要认识到在底层实现中，队列只有两种类型：串行队列和并行队列
   
-
-  串行队列是一夫一妻制的，但是没有承诺。如果你添加一堆任务到每个串行队列,通过一个线程就可以同时启动这些任务。没有承诺的意思是,串行队列会切换到不同任务的线程。串行队列总是等待一个任务完成再执行下一个。即任务按照FIFO的形式执行。你可以通过dispatch_queue_create创建你需要的串行队列。
+  串行队列是单行线的，但是不受约束。如果你添加一堆任务到每个串行队列,通过一个线程就可以同时启动这些任务。没有承诺的意思是,串行队列会切换到不同任务的线程。串行队列总是等待一个任务完成再执行下一个。即任务按照FIFO的形式执行。你可以通过dispatch_queue_create创建你需要的串行队列。
   
 
   主队列是一种特殊的串行队列。不像其他串行队列,没有承诺的,在某一个时间他们只“约会”许多线程中的一个,主队列“嫁给”了主线程，用来执行所有任务。主队列中的任务要在runloop中优雅的运行，这样小的行动不要阻塞UI和其他重要的部分。像所有的串行队列、任务以先进先出的顺序完成。你通过dispatch_get_main_queue可以得到它。
@@ -256,7 +253,7 @@ Furthermore, under ARC the following caveats apply:
 
 ##队列内存管理
 
-  GCD首次使用环境是Mac OS X 10.6和iOS 4。当时,GCD对象(队列、信号量、队列屏障等)和CFObjects一样，在使用过程中，需要开发者调用dispatch_release和dispatch_retain进行管理。
+  GCD第一次出现在Mac OS X10.6和iOS 4系统中。当时,GCD对象(队列、信号量、队列屏障等)和CFObjects一样，在使用过程中，需要开发者调用dispatch_release和dispatch_retain进行管理。
 
   在Mac OS X 10.8和iOS 6中,GCD对象是由自动引用计数进行管理,而手动引用计数则被明确禁止。
 
@@ -336,7 +333,7 @@ Here we launch a long-running task on the background queue. When the task is com
 
 Also be aware of excessively nested dispatching. It hampers readability & maintainability and should be considered a somewhat pungent code smell.
 ##队列实例
-  队列,和其他强大的工具一样,如果使用不当会导致人身伤害。现实世界中使用需要一些纪律。
+  队列,和其他强大的工具一样,如果使用不当会导致严重的问题。现实世界中使用需要一些纪律。
   这里有一些常规准则:
 
 　　
@@ -348,8 +345,7 @@ Also be aware of excessively nested dispatching. It hampers readability & mainta
 
   上面的描述的第二条应该得到进一步研究。因为队列是轻量级的,你可以创建很多很多。最好是有许多专门的串行队列，而不是填充许多不连续的任务到一个或两个“超级”串行/并行队列。
  
-　　
-  典型的“有目的”队列像下面这样:
+dispatch 实践的典型用法：
 
         //used for importing into Core Data so we don't block the UI
         dispatch_queue_create("com.yourcompany.CoreDataBackgroundQueue", NULL);
@@ -374,9 +370,9 @@ Also be aware of excessively nested dispatching. It hampers readability & mainta
             });
         });
 
-　　我们首先在后台开启一个线程执行耗时操作。当任务完成后,我们在主线程中触发UI更新操作。
+这时，我们开启了一个在后台执行的任务队列。当任务完成后，我们在主线程中触发UI更新操作。
 	  
-　　同时也要避免过度嵌套调度。它会影响代码的可读性和可维护性，使得代码读起来很痛苦。
+另外，需要强调的是，这个dispatch方法（dispatch_get_global_queue），不可过度使用。它会影响代码的可读性和可维护性，被认为是比较尖锐的代码。（何为尖锐？就是小心、谨慎地使用，否则出了问题，你根本找不着原因。我的一个项目里就是因为使用了至少3个global_queue，出现了crash，后来，我全改为了自定义dispatch_queue_t。当然，使用环境不一样，也不一定会出现我这样的问题。）
 　　
 
 ##Advanced Studies
@@ -386,9 +382,9 @@ If you have particular interest on any of the more quiet corners of GCD (dispatc
 In the mean time, the usual sources of knowledge apply, documentation available on the web and via Xcode as well as WWDC talks on GCD and blocks.
 
 ##深入学习
-　　如果你对GCD每个方面(调度组、信号量、队列屏障等)都特别感兴趣，请邮件我，我会分享出来更多内容。
-　　
-　　同时,知识应用的正常来源、网络上可见的文档或者通过Xcode以及WWDC探讨GCD和块。
+如果你对GCD每个方面(调度组、信号量、队列屏障等)都特别感兴趣，请邮件我，我会分享出来更多内容。
+
+同时，应用通常的知识点、查阅网络文档与通过Xcode或是在WWDC中讨论GCD和块都是一样的
 
 
 

@@ -14,10 +14,14 @@
 3. 将模板[template.md](template.md)中的内容拷贝到markdown文件中，按照模板填写、翻译完内容(文章所需图片请存放到图床上，不要放在仓库中,图片宽度尽量控制在400 px左右),完成翻译后将状态修改为"校对中",提交pull request到本项目;
 4. 管理员校对完成之后便会发布.   
 
+[git流程简介](git简单使用教程.md)     
+[markdown语法简单教程](markdown简单教程.md)
+
 ## 注意事项
 1. 在翻译文章时，保留专有名词；
 2. 在忠于原文的基础上，进行适当的意译，以适应国人阅读习惯；
 3. 当翻译完成后，通读一遍，检查语句是否通顺，有无错别字等问题；
+4. 保持文章的整洁性。
 
 [参与翻译、校对的流程](https://github.com/bboyfeiyu/android-tech-frontier/blob/master/%E7%BF%BB%E8%AF%91%E9%A1%B9%E7%9B%AE%E5%8D%8F%E4%BD%9C%E6%B5%81%E7%A8%8B.md)
 
