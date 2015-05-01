@@ -1,6 +1,4 @@
-##Introduction to Custom View Controller Transitions and Animations
-
-##自定义 View Controller切换动画入门
+#自定义ViewController切换效果与动画
 
 march 23, 2015 by joyce echessa
 
