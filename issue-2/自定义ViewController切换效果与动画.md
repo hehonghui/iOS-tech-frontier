@@ -1,4 +1,5 @@
-#使用Swift自定义ViewController切换效果与动画
+
+# 使用Swift自定义ViewController切换效果与动画
 >* 原文链接 : [custom-view-controller-transitions-tutorial](http://www.appcoda.com/custom-view-controller-transitions-tutorial/)
 * 原文作者 : [joyce echessa](http://www.appcoda.com/custom-view-controller-transitions-tutorial/)
 * [译文出自 :  开发技术前线 www.devtf.cn](www.devtf.cn)
@@ -14,9 +15,9 @@ iOS 7引入了自定义view controller切换，使得开发人员能够在他们
 
 ![pic-1](http://www.appcoda.com/wp-content/uploads/2015/03/custom-view-transition.jpg)
 
-##Getting Started
+## Getting Started
 
-##开始着手
+## 开始着手
 
 To create custom transitions you have to follow three steps:
 
@@ -40,9 +41,9 @@ Run the starter project and you will be presented with a table view of a list of
 
 ![pic-2](http://www.appcoda.com/wp-content/uploads/2015/03/vid01.gif)
 
-##Custom Present Transition
+## Custom Present Transition
 
-##自定义Present Transition
+## 自定义Present Transition
 
 The first thing to do as stated previously, is to create the animation controller. Create a new class called `CustomPresentAnimationController` and make it a subclass of NSObject. Change its declaration as shown.
 
@@ -405,7 +406,8 @@ Add the following property to the class.
 
 将以下属性添加到类中。
 
-```let customNavigationAnimationController = CustomNavigationAnimationController()
+```
+let customNavigationAnimationController = CustomNavigationAnimationController()
 ```
 
 Add the following at the end of `viewDidLoad()`.
@@ -428,7 +430,8 @@ Then add the following to the class.
 func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -&gt; UIViewControllerAnimatedTransitioning? {
     customNavigationAnimationController.reverse = operation == .Pop
     return customNavigationAnimationController
-}```
+}
+```
 
 The above function is called to request for an animation controller to navigate between the from and to view controllers and it returns an instance of our animation controller. The direction of the transition is based on whether this is a push or pop navigation operation.
 
@@ -578,17 +581,12 @@ Run the app and you should see the transition shown.
 
 ![pic-11](http://www.appcoda.com/wp-content/uploads/2015/03/vid09.gif)
 
-##Conclusion
+## Conclusion
 
-##总结
+## 总结
 
 We’ve looked at how to create custom view controller transitions and how to make a transition interactive. With these features, developers now have full control over the animations used in their application as it transitions from one view controller to the next and thus can build unique experiences to delight their users. You can [download the completed project here](https://github.com/appcoda/CustomViewTransitionDemo).
 
 大家已经知道如何创建自定义view controller切换以及如何使切换具有交互性。有了这些特性之后，开发者可以完全掌控app中从一个view切换到另一个view时使用的动画，由此带给用户更好的体验。大家可以在[此处下载项目](https://github.com/appcoda/CustomViewTransitionDemo)。
-
-
-
-
-
 
 
