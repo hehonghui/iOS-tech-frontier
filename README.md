@@ -67,7 +67,7 @@
 ### 第一期 (2015.5.1)
 |       文章标题        |         译者           | 
 |----------------------|------------------------|
-|  [使用Swift自定义ViewController切换效果与动画(待校对)](issue-2/自定义ViewController切换效果与动画.md) |  [Shopie](https:www.devtd.cn)  |  
+|  [使用Swift自定义ViewController切换效果与动画](issue-2/自定义ViewController切换效果与动画.md) |  [Shopie](https:www.devtd.cn)  |  
 |  [Swift样式指南2015年4月更新](issue-2/Swift样式指南2015年4月更新.md) |  [liulinxu](https://github.com/liulinxu) | 
 |  [GCD概述、语法以及好的示例](issue-2/GCD概述、语法以及好的示例.md) |  [starmier](https://github.com/starmier/) |  
 
