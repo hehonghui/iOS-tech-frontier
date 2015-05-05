@@ -399,6 +399,25 @@ Step 3: Updating the Details Label
 
 In the detail label, we show values for free, used, and total space available with the help of NSByteCountFormatter. Add the following implementation to the view controller.
 
+在详情label中，我们使用NSByteCountFormatter来展示可用、已使用和总的值。添加以下代码的视图控制器。
+
+```
+-(void)updateDetailsLabel
+{
+    NSByteCountFormatter *formatter =
+                           [[NSByteCountFormatter alloc] init];
+    [formatter setCountStyle:NSByteCountFormatterCountStyleFile];
+ 
+    self.detailsLabel.text =
+      [NSString stringWithFormat:
+          @"Used:\t%@\nFree:\t%@\nTotal:\t%@",
+           [formatter stringFromByteCount:self.usedSize],
+           [formatter stringFromByteCount:self.freeSize],
+           [formatter stringFromByteCount:self.fileSystemSize]];
+}
+
+```
+
 Step 4: Capturing Touches
 ##步骤4：检测点击事件
 
