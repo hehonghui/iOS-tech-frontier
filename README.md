@@ -64,7 +64,7 @@
 <b id="articles" />
 ## 已完成列表
 
-### 第一期 (2015.5.1)
+### 第二期 (2015.5.1)
 |       文章标题        |         译者           | 
 |----------------------|------------------------|
 |  [使用Swift自定义ViewController切换效果与动画](issue-2/自定义ViewController切换效果与动画.md) |  [Shopie](https:www.devtd.cn)  |  
