@@ -67,7 +67,9 @@
 ### 第三期 (2015.5.8)
 |       文章标题        |         译者           | 
 |----------------------|------------------------|
-
+|  [Swift的响应式编程](issue-3/Swift的响应式编程.md) |  [Mr.Simple](https://github.com/bboyfeiyu/) |  
+|  [iOS后台模式开发指南](issue-3/iOS后台模式开发指南.md) |  [MollyMmm](https://github.com/MollyMmm/) |  
+|  [iOS今日扩展](issue-3/iOS今日扩展.md) |  [Harries Chen](https://github.com/mrchenhao/) |  
 
 
 

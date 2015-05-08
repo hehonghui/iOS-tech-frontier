@@ -1,9 +1,9 @@
-`iOS8 今日扩展`
+# iOS8 今日扩展
 ---
 
 >* 原文链接 : [iOS 8: Creating a Today Widget](http://code.tutsplus.com/tutorials/ios-8-creating-a-today-widget--cms-22379)
 * 译者 : [Harries Chen](https://github.com/mrchenhao) 
-* 校对者: [这里校对者的github用户名](github链接)  
+* 校对者: [Mr.Simple](https://github.com/bboyfeiyu)  
 * 状态 :  校对中
 
 创建扩展是iOS8升级后的一个重要的特性，在本次介绍中，我将通过创建一个自定义的今日组件在通知中心来讲解。首先我们短暂的来了解一下有关扩展来明白组件这个重要的概念。
