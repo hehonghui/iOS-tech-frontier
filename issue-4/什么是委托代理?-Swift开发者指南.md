@@ -1,4 +1,4 @@
-`什么是委托代理？-Swift开发者指南`
+什么是委托代理？- Swift开发者指南
 ---
 
 >* 原文链接 : [What is Delegation? – A Swift Developer’s Guide](http://www.andrewcbancroft.com/2015/03/26/what-is-delegation-a-swift-developers-guide/)
