@@ -23,7 +23,7 @@ Siri还没有开启地狱之门，Prezi还没有支持订阅，那时的朝鲜�
 
 ![](https://d262ilb51hltx0.cloudfront.net/max/1600/0*SUaY1aSgIcvDys9j.)
 
-当然，这些都依赖于你想如何实现这个模式，不管如何，最终MVVM模式都会给你带来更低的复杂性、更好的可测试性。同时能达到这些效果吗？怎么可能？反正我相信了！它把所有的逻辑移到ViewModel角色中，以此来减少View Controller的职责。( 译者注: 这个模式相当于其他平台的MVP模式，MVVM的ViewModel角色对应这个MVP中的P，也就是Presenter。)
+当然，这些都依赖于你想如何实现这个模式，不管如何，最终MVVM模式都会给你带来更低的复杂性、更好的可测试性。同时能达到这些效果吗？怎么可能？反正我相信了！它把所有的逻辑移到ViewModel角色中，以此来减少View Controller的职责。( 译者注: 关于MVC、MVP、MVVM的区别请参考[这篇文章](http://www.ruanyifeng.com/blog/2015/02/mvcmvp_mvvm.html)。)
 
 ![](http://img.blog.csdn.net/20150507120115027)       
 
