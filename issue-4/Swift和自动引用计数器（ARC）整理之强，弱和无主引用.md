@@ -110,7 +110,7 @@ class Exhibit {
 
 这一切都和ARC有关，只有当指向某个类实例的引用计数为**零**时，ARC才会释放内存。
 
-在我们的`Animal` - `Exhibit`例子中，两个实例互相拥有指向对方的引用。当我们把`Animal`设为nil时，`Exhibit`实例仍然会通过自己的animal属性持有对`Animal`的引用。
+在我们的`Animal` - `Exhibit`例子中，两个实例互相拥有指向对方的引用。当我们把`Animal`设为nil时，`Exhibit`实例仍然会通过自己的`animal`属性持有对`Animal`的引用。
 
 反过来说，既然`Animal`实例仍然存在，那么它也通过自己的`exhibit`属性持有一个指向`Exhibit`的引用。所以当我们把`Exhibit`设为nil时，`Animal`还是会指向它不放手。
 
@@ -125,7 +125,7 @@ class Exhibit {
 
 在互相依赖的关系中，就像上文提到的`Animal`和`Exhibit`这种，只要将其中的一个引用从`strong`强引用转为`weak`弱引用就能破除强引用循环。
 
-至于哪个类持有`weak`弱引用不是重点，只要有其中一个是持有即可。
+至于哪个类持有`weak`弱引用不是重点，只要有其中一个类持有。
 
 ```
 class Animal {
