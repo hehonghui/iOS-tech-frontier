@@ -6,14 +6,14 @@ Swift和自动引用计数(ARC)整理之强，弱和无主引用
 * 原文作者 : [Andrew Bancroft](http://www.andrewcbancroft.com/)
 * 译文出自 : [开发技术前线 www.devtf.cn](www.devtf.cn)
 * 译者 : [samw00](https://github.com/samw00/) 
-* 校对者:  
-* 状态 :  校对中 
+* 校对者:  [MrSimple](https://github.com/bboyfeiyu/) 
+* 状态 :  完成
 
 我敢打赌有相当一部分的Swfit开发者纠结于`strong`（强引用），`weak`（弱引用)和`unowned`（无主引用）这几种不同类型的引用方式对他们的代码在运行时所造成的影响。如果我的日子依赖于自动引用计数（ARC）,我想我是不会费神来尝试解释其中的奥妙的。
 
 在我每次声明变量或是常量时，我都不是特别确定到底应该用哪种类型的引用，为了让自己不再纠结，我最终决定把[苹果官方关于ARC的文档](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/AutomaticReferenceCounting.html)拿出来拜读，试着去理解和消化里面的每一句话。这篇文章尝试着把我脑里关于Swift和自动引用计数（ARC）的整理分享给大家。
 
-这篇文章稍微有点长所以我想：“为何不先把总结直接抛出来让小伙伴们先睹为快呢？然后如果实好奇再继续看我是如何得出这总结的”。所以下面先上总结！
+这篇文章稍微有点长所以我想：“为何不先把总结直接抛出来让小伙伴们先睹为快呢？然后如果实好奇再继续看我是如何得出这总结的”。所以下面献上我的总结！
 
 ##总结
 
