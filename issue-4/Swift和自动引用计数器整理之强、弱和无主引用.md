@@ -1,8 +1,7 @@
 Swift和自动引用计数(ARC)整理之强，弱和无主引用
 ---
 
->
-* 原文链接 : [Strong, Weak, and Unowned - Sorting out ARC and Swift](http://www.andrewcbancroft.com/2015/05/08/strong-weak-and-unowned-sorting-out-arc-and-swift/)
+> * 原文链接 : [Strong, Weak, and Unowned - Sorting out ARC and Swift](http://www.andrewcbancroft.com/2015/05/08/strong-weak-and-unowned-sorting-out-arc-and-swift/)
 * 原文作者 : [Andrew Bancroft](http://www.andrewcbancroft.com/)
 * 译文出自 : [开发技术前线 www.devtf.cn](www.devtf.cn)
 * 译者 : [samw00](https://github.com/samw00/) 

@@ -1,8 +1,7 @@
-`关于AFNetworking 安全bug的回复`
+关于AFNetworking 安全bug的回复
 ---
 
->
-* 原文链接 : [A response to recent concerns about security vulnerabilities in AFNetworking](https://gist.github.com/AlamofireSoftwareFoundation/f784f18f949b95ab733a?utm_campaign=iOS_Dev_Weekly_Issue_196&utm_medium=email&utm_source=iOS%2BDev%2BWeekly)
+> * 原文链接 : [A response to recent concerns about security vulnerabilities in AFNetworking](https://gist.github.com/AlamofireSoftwareFoundation/f784f18f949b95ab733a?utm_campaign=iOS_Dev_Weekly_Issue_196&utm_medium=email&utm_source=iOS%2BDev%2BWeekly)
 * 原文作者: [AlamofireSoftwareFoundation](https://github.com/AlamofireSoftwareFoundation)
 * 译文出自: [开发技术前线http://www.devtf.cn/](http://www.devtf.cn/)
 * 译者 : [Lollypo](https://github.com/Lollypo) 

@@ -1,8 +1,7 @@
 Swift扩展的三个微妙细节
 ---
 
->
-* 原文链接 : [3 Nuances of Swift Extensions](http://www.andrewcbancroft.com/2015/04/22/3-nuances-of-swift-extensions/)
+> * 原文链接 : [3 Nuances of Swift Extensions](http://www.andrewcbancroft.com/2015/04/22/3-nuances-of-swift-extensions/)
 * 原文作者 : [Andrew Bancroft](http://www.andrewcbancroft.com/)
 * 译文出自 : [开发技术前线 www.devtf.cn](www.devtf.cn)
 * 译者 : [samw00](https://github.com/samw00/) 

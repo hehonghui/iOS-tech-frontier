@@ -67,6 +67,11 @@
 ### 第四期 (2015.5.15)
 |       文章标题        |         译者           | 
 |----------------------|------------------------|
+|  [关于AFNetworking安全bug的回复](issue-4/关于AFNetworking安全bug的回复.md) |  [Lollypo](https://github.com/Lollypo/) |  
+|  [Swift和自动引用计数器整理之强、弱和无主引用](issue-4/Swift和自动引用计数器整理之强、弱和无主引用.md) |  [samw00](https://github.com/samw00/) |  
+|  [Swift扩展的三个微妙细节](issue-4/Swift扩展的三个微妙细节.md) |  [samw00](https://github.com/samw00/) |  
+|  [什么是委托代理?-Swift开发者指南](issue-4/什么是委托代理-Swift开发者指南.md) |  [sdq](https://github.com/sdq/) |  
+
 
 ### 第三期 (2015.5.8)
 |       文章标题        |         译者           | 
