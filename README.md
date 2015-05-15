@@ -1,7 +1,7 @@
 # iOS开发技术前线 ( ios-tech-frontier )
 一个定期翻译、发布国内外iOS优质的技术、开源库、软件架构设计、测试等文章的开源项目,让我们的技术跟上国际步伐。
 
-**翻译QQ群 ( 需审核 ) : 131021281**
+**翻译QQ群 ( 需审核 ) : 131021281**，项目管理员[Lollypo](https://github.com/Lollypo/)、[Harries Chen](https://github.com/mrchenhao/)、[StormXX](https://github.com/StormXX/)，有问题可以通过github或者QQ群联系他们。
 
 ## 目录
 * [文章分类](#category)
