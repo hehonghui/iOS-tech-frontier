@@ -6,7 +6,7 @@ iOS项目的持续集成与管理
 * [译文出自 :  开发技术前线 www.devtf.cn](http://www.devtf.cn)
 * 译者 : [Sam Lau](https://github.com/samlaudev) 
 * 校对者: [这里校对者的github用户名](github链接)  
-* 状态 :  未完成 
+* 状态 :  完成翻译 
 
 Ignoring maintainability introduces technical debt, which will either need to be addressed later or will lead to increasing costs when implementing new features.
 
