@@ -38,3 +38,52 @@ We have Jenkins installed through Homebrew and Ruby installed with rbenv, which 
 
 我们已经通过[Homebrew](https://brew.sh/)和[rbenv](https://github.com/sstephenson/rbenv)来分别安装Jenkins和Ruby，而rbenv能够为我们提供一个最新和稳定的[Ruby Gems](https://rubygems.org/)环境。有个Homebrew和Ruby Gems两个包管理工具之后，我们就几乎能够安装所有我们需要的工具，但很少会破坏与原有OS X系统更新提供的Ruby。
 
+#Unit Testing
+We test our iOS projects using Specta and Expecta.
+
+Specta gives us a Behaviour-Driven Development (BDD) style syntax for writing tests which (we think) is more readable than XCTest syntax. It also has a very powerful system of grouping tests together and running blocks of code before or after those tests, which can greatly reduce the amount of duplicated code.
+
+Expecta is a matcher framework which we use to create assertions in our tests. The syntax is very powerful, yet at the same time more readable than the built in XCAssert suite. For example:
+
+```
+expect(@"foo").to.equal(@"foo");
+expect(foo).notTo.equal(1);
+expect([bar isBar]).to.equal(YES);
+expect(baz).to.equal(3.14159);
+```
+
+We run our tests from XCode while developing and using XCTool on Jenkins, installed via Homebrew. XCTool is an alternative to xcodebuild which allows you to very easily run a test suite from the command line and generate JUnit-style reports.
+
+```
+$ xctool -workspace Project.xcworkspace -scheme Project -reporter junit:junit-report.xml test
+
+```
+
+These reports are then published in Jenkins using the JUnit Plugin which provides graphs of the unit test results over time, giving us an insight into how stable our tests are.
+
+#单元测试
+我们使用[Specta](https://github.com/specta/specta)和[Expecta](https://github.com/specta/expecta)来测试我们的iOS项目。
+
+Specta让我们采用行为驱动开发(BDD)风格的语法来编写测试，相比于*XCTest*的语法，它更加易读。它还有一个强大的分组测试功能，在测试之前或之后运行一些代码块，这样的话，能够极大地减少重复代码。
+
+Expecta是一个匹配器框架，我们可以在测试中使用它来创建断言。它的语法非常强大，与此同时，它比内建的*XCAssert*套件更加易读。例如：
+
+```
+expect(@"foo").to.equal(@"foo");
+expect(foo).notTo.equal(1);
+expect([bar isBar]).to.equal(YES);
+expect(baz).to.equal(3.14159);
+```
+我们在开发时，通过XCode来运行测试；而使用通过Homebrew来安装的Jenkins时，会借助[XCTool](https://github.com/facebook/xctool)。XCTool是一个可代替的选择来*xcodebuild*，它能让你通过命令行的方式来非常轻松地运行测试套件和生成JUnit风格的测试报告。
+
+```
+$ xctool -workspace Project.xcworkspace -scheme Project -reporter junit:junit-report.xml test
+
+```
+
+这些测试报告会发布在Jenkins上，而Jenkins会使用[JUnit Plugin](https://wiki.jenkins-ci.org/display/JENKINS/JUnit+Plugin)来根据时间的推移提供单元测试结果的图表，同时会向我们显示我们的测试是否稳定。
+
+<div align="center">
+
+<img src="https://d262ilb51hltx0.cloudfront.net/max/1600/1*YXbjsC43-eVvMPPw2CXn6A.png"/>
+</div>
