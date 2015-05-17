@@ -130,3 +130,40 @@ Gcovr输出的代码覆盖率报告也会被插件[Cobertura Jenkins plugin](htt
 
 现在我们不仅可以看到测试是否通过，还可以看到代码的测试覆盖范围。
 
+#Static Analysis
+One of the most powerful set of tools to keep code quality high is static analysis. These tools will scan your code and generate a report of where your code breaks one of the code style rules. Some examples of these rules are:
+
+* Unused variables or parameters
+* Long variable names, method names or lines
+* Overriding a method and not calling super on a method that requires it
+* Overly long or complex methods
+* And so on…
+
+We use OCLint which is a static analysis tool which works with C, C++ and Objective-C. OCLint provides great integration with XCTool using a special json-compilation-database reporter. We first need to add a second reporter to our XCTool command and then pass that report to OCLint to perform the static analysis.
+
+```
+$ xctool -workspace Project.xcworkspace -scheme Project -reporter junit:junit-report.xml -reporter json-compilation-database:compile_commands.json test
+$ oclint-json-compilation-database -e Pods -report-type pmd -o oclint-pmd.xml
+
+```
+
+The report generated is in the PMD format and can then be published in Jenkins by the PMD Plugin. With this plugin you can also set limits to how many of each priority of warning (low, medium and high) there can be before the tests fail. We initially set these limits low so we are alerted as soon as we introduce code that could be improved.
+
+#静态分析
+在工具集中，其中一个强大并能够保持高质量的代码的工具就是静态分析工具。这些工具会扫描你的代码，然后生成一个报告，这个报告会告诉你破坏代码风格规则的代码位置。举几个规则的例子：
+
+* 未使用的变量或参数
+* 长变量名，方法名或代码行
+* 覆盖一个方法，但没有在这个方法调用*super*
+* 方法太长或方法过于复杂
+* 还更多的规格...
+
+我们使用[OCLint](http://oclint.org/)静态分析工具，这个工具能够支持C，C++和Objective-C语言。OCLint通过结合XCTool使用来生成**json-compilation-database** reporter
+，从而提供[great integration](http://docs.oclint.org/en/dev/guide/xctool.html)特性。我们首先添加另一个reporter到我们的XCTool命令行，然后将那个report传递到OCLint来执行静态分析。
+
+```
+$ xctool -workspace Project.xcworkspace -scheme Project -reporter junit:junit-report.xml -reporter json-compilation-database:compile_commands.json test
+$ oclint-json-compilation-database -e Pods -report-type pmd -o oclint-pmd.xml
+
+```
+这个report以[PMD](http://pmd.sourceforge.net/)的方式来生成，然后使用[PMD Plugin](https://wiki.jenkins-ci.org/display/JENKINS/PMD+Plugin)被发布到Jenkins。有了这些插件之后，你也可以在测试失败之前，设置每个警告的优先级(底，中，高)中一些限制。最初，我们设置这些限制为低，那么只要我们引入代码，就会被提醒，从而提高代码质量。
