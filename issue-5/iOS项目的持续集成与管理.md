@@ -98,3 +98,35 @@ To manage this, we set up the Github Pull Request plugin which sends a message f
 
 当新的pull requst是开放状态时，为了管理这些，我们安装[Github Pull Request plugin](https://wiki.jenkins-ci.org/display/JENKINS/GitHub+pull+request+builder+plugin)来将信息从Github发送到Jenkins。如果有任何测试失败，它将会显示在Github，然后我们就不将代码合并，直到代码被修复为止。
 
+#Code Coverage
+We also generate code coverage reports using the Gcovr tool, also installed with Homebrew. To set up a project you need to change two build settings for the debug configuration of the main target. Set both Generate Test Coverage Files and Instrument Program Flow to Yes.
+
+We then need to add OBJROOT=./build to the end of the XCTool command when we run the unit tests and then generate our code coverage reports.
+
+```
+$ gcovr -r . — object-directory build/Project.build/Debug-iphonesimulator/Project.build/Objects-normal/x86_64 — exclude ‘.*Tests.*’ — xml > coverage.xml
+
+```
+
+The coverage report that Gcovr outputs can then be published by the Cobertura Jenkins plugin which provides a visual way of seeing how code coverage is changing over time.
+
+We now have a way of seeing not only if the tests are passing, but also how thoroughly we are testing our code.
+
+#代码覆盖率
+我们也会用[Gcovr](http://gcovr.com/)工具来生成代码覆盖率报告，Gcovr的安装方式也是Homebrew。你需要针对main target的debug congfiguration改变两个构建设置来配置项目。将*Generate Test Coverage Files*和*Instrument Program Flow*都设置为*YES*。
+
+<div align="center">
+
+<img src="https://d262ilb51hltx0.cloudfront.net/max/1200/1*Aq8ClxmME0tcpf747uPguQ.png"/>
+</div>
+
+当我们运行单元测试来生成代码覆盖率报告时，我们需要将*OBJROOT=./build*添加到XCTool命令行的尾部。
+
+```
+$ gcovr -r . — object-directory build/Project.build/Debug-iphonesimulator/Project.build/Objects-normal/x86_64 — exclude ‘.*Tests.*’ — xml > coverage.xml
+
+```
+Gcovr输出的代码覆盖率报告也会被插件[Cobertura Jenkins plugin](https://wiki.jenkins-ci.org/display/JENKINS/Cobertura+Plugin)发布，这个插件会提供一种可视化的方式来根据时间的推移来显示代码覆盖率。
+
+现在我们不仅可以看到测试是否通过，还可以看到代码的测试覆盖范围。
+
