@@ -173,4 +173,105 @@ $ oclint-json-compilation-database -e Pods -report-type pmd -o oclint-pmd.xml
 <img src="https://d262ilb51hltx0.cloudfront.net/max/1600/1*fkHdHqA_WGoWATdAs6or0A.png"/>
 </div>
 
+#Automated Deployment
+The last piece of the puzzle is less about code quality and more about time saving. Developers will regularly need to send out builds through Crashlytics to designers for design reviews, or to clients at the end-of-sprint demos. Sending out a build of the app usually only takes around ten minutes of a developer’s time, but it requires them to switch tasks and break their flow.
 
+We have recently set up a nightly build system which will automatically send a new version of the app each morning to everyone on the project at ribot.
+
+To do this we are using fastlane, which is an amazing collection of tools to define lanes of actions to perform. We currently have three lanes defined, one for releasing just to ribot developers, one for releasing to everyone at ribot and another for releasing to the client.
+
+```
+before_all do |lane|
+ cert
+ sigh
+end
+desc “Deploy a new build to ribot iOS developers over crashlytics”
+lane :dev do
+ ipa
+ crashlytics({ groups: ‘ribot-developers’ })
+end
+desc “Deploy a new build to people at ribot over crashlytics”
+lane :internal do
+ ensure_git_status_clean
+ append_build_time
+ ipa
+ crashlytics({ groups: ‘ribot’ })
+ reset_git_repo
+end
+desc “Deploy a new build to everyone over crashlytics”
+lane :external do
+ ensure_git_status_clean
+ increment_build_number
+ ipa
+ crashlytics({ groups: [‘ribot’, ‘client’] })
+ commit_version_bump
+ add_git_tag
+ push_to_git_remote
+end
+after_all do |lane|
+ clean_build_artifacts
+end
+
+```
+A lane is run using the fastlane tool (installed through Ruby Gems).
+
+```
+fastlane internal
+
+```
+
+At the start of all the lanes we automatically make sure we have a valid signing certificate and an up-to-date provisioning profile. All of our configuration lives in a .env file, which allows us to have default settings but override them when we run the fastlane command if needed.
+
+In the future we will also look into automating the app store submission process using the deliver action.
+
+#自动部署
+最后一个问题不是如何提高代码质量，而是如何节省时间。开发者通常都会将编译好的代码通过[Crashlytics](https://www.crashlytics.com/)发送到设计师来设计审查，或在sprint结束演示时发给用户。发送一个已经编译好的app通常花一个开发者的10分钟左右时间，但它需要他们来切换任务和干扰他们的心流。
+
+最近我们已经配置一个在夜晚构建系统，它会在早上自动发送一个新版本的app给每个人。
+
+为了做到这样，我们使用[fastlane](http://fastlane.tools/)。fastlane是一个定义**lanes**的一些操作来执行的强大工具集。现在我们有三个已经定义好的lanes，一个是用来发布给ribot开发者，一个是用来发布给在ribot的每个人，最后一个是发布给用户。
+
+
+```
+before_all do |lane|
+ cert
+ sigh
+end
+desc “Deploy a new build to ribot iOS developers over crashlytics”
+lane :dev do
+ ipa
+ crashlytics({ groups: ‘ribot-developers’ })
+end
+desc “Deploy a new build to people at ribot over crashlytics”
+lane :internal do
+ ensure_git_status_clean
+ append_build_time
+ ipa
+ crashlytics({ groups: ‘ribot’ })
+ reset_git_repo
+end
+desc “Deploy a new build to everyone over crashlytics”
+lane :external do
+ ensure_git_status_clean
+ increment_build_number
+ ipa
+ crashlytics({ groups: [‘ribot’, ‘client’] })
+ commit_version_bump
+ add_git_tag
+ push_to_git_remote
+end
+after_all do |lane|
+ clean_build_artifacts
+end
+
+```
+
+通过使用**fastlane**工具(通过Ruby Gems来安装)来运行一个lane。
+
+```
+fastlane internal
+
+```
+在开始使用所有的*lanes*之前，我们应该自动确保我们有一个有效的signing certificate和最新的provisioning profile。所有我们的配置都放在一个*.env*文件，它让我们有些默认配置，但当我们运行*fastlane*根据需要来覆盖它们。
+
+在将来，我们会通过使用*deliver*操作来自动化app store提交过程。
