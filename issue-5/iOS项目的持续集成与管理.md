@@ -275,3 +275,13 @@ fastlane internal
 在开始使用所有的*lanes*之前，我们应该自动确保我们有一个有效的signing certificate和最新的provisioning profile。所有我们的配置都放在一个*.env*文件，它让我们有些默认配置，但当我们运行*fastlane*根据需要来覆盖它们。
 
 在将来，我们会通过使用*deliver*操作来自动化app store提交过程。
+
+#Going Forward
+So far we have seen good results on the projects where we have trialled this process. We expect to see our code quality increase now we have these tools in place. The reports will enable us to quantify how our code quality has changed over time. We are looking forward to seeing what happens on our next project with these tools in place.
+
+*Thanks to Renzo Crisóstomo for the guide I used to get my head around how these tools fit together.*
+
+*Cover image: Cogs by SomeDriftwood. At ribot we call tools that help us automate something a “cog”.*
+
+#最后总结
+到目前为止，我们已经尝试这些过程，并在工程中呈现出好的结果。我们期望看到只要适当地使用这些工具，就能提高代码的质量，这些报告将会让我们随着时间推移来量化代码质量。我们期待在下一个工程中适当地使用这些工具会发生什么。
