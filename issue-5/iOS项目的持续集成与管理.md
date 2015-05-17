@@ -167,3 +167,10 @@ $ oclint-json-compilation-database -e Pods -report-type pmd -o oclint-pmd.xml
 
 ```
 这个report以[PMD](http://pmd.sourceforge.net/)的方式来生成，然后使用[PMD Plugin](https://wiki.jenkins-ci.org/display/JENKINS/PMD+Plugin)被发布到Jenkins。有了这些插件之后，你也可以在测试失败之前，设置每个警告的优先级(底，中，高)中一些限制。最初，我们设置这些限制为低，那么只要我们引入代码，就会被提醒，从而提高代码质量。
+
+<div align="center">
+
+<img src="https://d262ilb51hltx0.cloudfront.net/max/1600/1*fkHdHqA_WGoWATdAs6or0A.png"/>
+</div>
+
+
