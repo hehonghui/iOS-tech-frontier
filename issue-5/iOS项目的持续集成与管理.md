@@ -49,11 +49,6 @@ $ xctool -workspace Project.xcworkspace -scheme Project -reporter junit:junit-re
 <img src="https://d262ilb51hltx0.cloudfront.net/max/1600/1*YXbjsC43-eVvMPPw2CXn6A.png"/>
 </div>
 
-#Pull Request Testing
-We want our tests to run as soon as possible so we know right away if we have broken something. At ribot we make changes on feature branches and then submit a pull request on Github so the code can be reviewed by another developer. As soon as one is opened, we run all the tests to ensure that nothing has been broken.
-
-To manage this, we set up the Github Pull Request plugin which sends a message from Github to Jenkins when a new pull request is opened. If any tests fail it will be shown in Github and we will not merge it in until it has been fixed.
-
 #Pull Request测试
 我们想我们的测试尽可能运行以至于如果我们破坏什么东西，我们就会马上知道。我们在[feature branches](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow/)做些修改，然后提交一个pull request到Github，那么代码就会被另一个开发者审查。只要被打开，我们就能运行所有的测试来确保没有任何东西被破坏。
 
