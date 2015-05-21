@@ -73,25 +73,6 @@ Gcovr输出的代码覆盖率报告也会被插件[Cobertura Jenkins plugin](htt
 
 现在我们不仅可以看到测试是否通过，还可以看到代码的测试覆盖范围。
 
-#Static Analysis
-One of the most powerful set of tools to keep code quality high is static analysis. These tools will scan your code and generate a report of where your code breaks one of the code style rules. Some examples of these rules are:
-
-* Unused variables or parameters
-* Long variable names, method names or lines
-* Overriding a method and not calling super on a method that requires it
-* Overly long or complex methods
-* And so on…
-
-We use OCLint which is a static analysis tool which works with C, C++ and Objective-C. OCLint provides great integration with XCTool using a special json-compilation-database reporter. We first need to add a second reporter to our XCTool command and then pass that report to OCLint to perform the static analysis.
-
-```
-$ xctool -workspace Project.xcworkspace -scheme Project -reporter junit:junit-report.xml -reporter json-compilation-database:compile_commands.json test
-$ oclint-json-compilation-database -e Pods -report-type pmd -o oclint-pmd.xml
-
-```
-
-The report generated is in the PMD format and can then be published in Jenkins by the PMD Plugin. With this plugin you can also set limits to how many of each priority of warning (low, medium and high) there can be before the tests fail. We initially set these limits low so we are alerted as soon as we introduce code that could be improved.
-
 #静态分析
 在工具集中，其中一个强大并能够保持高质量的代码的工具就是静态分析工具。这些工具会扫描你的代码，然后生成一个报告，这个报告会告诉你破坏代码风格规则的代码位置。举几个规则的例子：
 
