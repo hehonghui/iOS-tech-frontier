@@ -17,11 +17,6 @@ iOS项目的持续集成与管理
 
 **我将会简单地概括我们需要设置什么才能自动监控代码质量.**
 
-#Groundwork
-We have opted to base our continuous integration setup on Jenkins, running on a Mac Mini that lives in our studio. As much as I dislike how Jenkins looks and works, it is by far the most stable and suitable tool for this job.
-
-We have Jenkins installed through Homebrew and Ruby installed with rbenv, which provides us an up-to-date and stable Ruby Gems environment. With these two package managers we are able to install almost any tool we need, in a way that is much less likely to break with system updates compared with using the OS X provided Ruby.
-
 #基础
 我们选择一个持续集成工具[Jenkins](https://jenkins-ci.org/)，让它运行在一台放在我们工作室的Mac Mini。其实我不怎么喜欢Jenkins，但到目前为止，它是最稳定和最适合的工具来完成这些工作。
 
