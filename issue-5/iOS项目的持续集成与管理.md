@@ -22,29 +22,6 @@ iOS项目的持续集成与管理
 
 我们已经通过[Homebrew](https://brew.sh/)和[rbenv](https://github.com/sstephenson/rbenv)来分别安装Jenkins和Ruby，而rbenv能够为我们提供一个最新和稳定的[Ruby Gems](https://rubygems.org/)环境。有个Homebrew和Ruby Gems两个包管理工具之后，我们就几乎能够安装所有我们需要的工具，但很少会破坏与原有OS X系统更新提供的Ruby。
 
-#Unit Testing
-We test our iOS projects using Specta and Expecta.
-
-Specta gives us a Behaviour-Driven Development (BDD) style syntax for writing tests which (we think) is more readable than XCTest syntax. It also has a very powerful system of grouping tests together and running blocks of code before or after those tests, which can greatly reduce the amount of duplicated code.
-
-Expecta is a matcher framework which we use to create assertions in our tests. The syntax is very powerful, yet at the same time more readable than the built in XCAssert suite. For example:
-
-```
-expect(@"foo").to.equal(@"foo");
-expect(foo).notTo.equal(1);
-expect([bar isBar]).to.equal(YES);
-expect(baz).to.equal(3.14159);
-```
-
-We run our tests from XCode while developing and using XCTool on Jenkins, installed via Homebrew. XCTool is an alternative to xcodebuild which allows you to very easily run a test suite from the command line and generate JUnit-style reports.
-
-```
-$ xctool -workspace Project.xcworkspace -scheme Project -reporter junit:junit-report.xml test
-
-```
-
-These reports are then published in Jenkins using the JUnit Plugin which provides graphs of the unit test results over time, giving us an insight into how stable our tests are.
-
 #单元测试
 我们使用[Specta](https://github.com/specta/specta)和[Expecta](https://github.com/specta/expecta)来测试我们的iOS项目。
 
