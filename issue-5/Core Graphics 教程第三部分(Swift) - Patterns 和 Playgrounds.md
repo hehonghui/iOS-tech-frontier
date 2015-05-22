@@ -1,11 +1,11 @@
-* 原文链接：[Core Graphics Tutorial Part 3: Patterns and Playgrounds](http://www.raywenderlich.com/90695/modern-core-graphics-with-swift-part-3)
+Core Graphics 教程第三部分(Swift) - Patterns 和 Playgrounds
+---
+>* 原文链接：[Core Graphics Tutorial Part 3: Patterns and Playgrounds](http://www.raywenderlich.com/90695/modern-core-graphics-with-swift-part-3)
 * 原文作者：[ Caroline Begbie ](http://www.raywenderlich.com/u/caroline)
-* 译文出自：[开发者前线 www.devtf.cn](www.devtf.cn)
+* 译文出自：[开发者前线](www.devtf.cn)
 * 译者：[MrLoong](https://github.com/MrLoong)
-* 校对者：
-* 状态：
+* 校对者：[samw00](https://github.com/samw00)
 
-#Core Graphics Tutorial Part 3: Patterns 和 Playgrounds
 欢迎回到Core Graphics 教学系列的第三也是最后一部分！Flo，你的water drinking tracking app将使用Core Graphics 进行最终的改进。
 
 在[第一部分](http://www.raywenderlich.com/90690/modern-core-graphics-with-swift-part-1)，你通过UIKit画了三个自定义形状的控件,[在第二部分](http://www.raywenderlich.com/90693/modern-core-graphics-with-swift-part-2)你创建了一个视图用来显示用户在过去一周的喝水量，并且研究了transforming the context transformation matrix (CTM)

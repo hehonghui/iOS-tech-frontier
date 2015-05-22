@@ -1,4 +1,4 @@
-Core Graphics教程：起步
+Core Graphics教程第一部分(Swift) - 起步
 ---
 
 >* 原文链接 : [Core Graphics Tutorial Part 1: Getting Started](http://www.raywenderlich.com/90690/modern-core-graphics-with-swift-part-1)
