@@ -12,7 +12,7 @@ Core Image is a powerful framework that lets you easily apply filters to images.
 Core Image filters can also be chained together to apply multiple effects to an image or video frame at once. The multiple filters are combined into a single filter that is applied to the image. This makes it very efficient compared to processing the image through each filter, one at a time.
 In this tutorial, you will get hands-on experience playing around with Core Image. You’ll apply a few different filters, and you’ll see how easy it is to apply cool effects to images in real time!
 
-#Getting Started
+#Getting Started（星期二）
 Before you get started, let’s discuss some of the most important classes in the Core Image framework:
 
 * **CIContext**. All of the processing of a core image is done in a CIContext. This is somewhat similar to a Core Graphics or OpenGL context.
@@ -42,7 +42,7 @@ Next, open the Assistant Editor and make sure it’s displaying ViewController.s
 
 Build and run the project just to make sure everything is good so far – you should just see an empty screen. The initial setup is complete – now onto Core Image!
 
-#Basic Image Filtering
+#Basic Image Filtering（星期二）
 You’re going to get started by simply running your image through a CIFilter and displaying it on the screen. Every time you want to apply a CIFilter to an image you need to do four things:
 
 1. Create a CIImage object. CIImage has several initialization methods, including: CIImage(contentsOfURL:), CIImage(data:), CIImage(CGImage:), CIImage(bitmapData:bytesPerRow:size:format:colorSpace:), and several others. You’ll most likely be working with CIImage(contentsOfURL:) most of the time.
@@ -83,7 +83,7 @@ Build and run the project, and you’ll see your image filtered by the sepia ton
 <img src="http://cdn5.raywenderlich.com/wp-content/uploads/2014/07/CI-Sepia-Crop.jpg"/>
 </div>
 
-#Putting It Into Context
+#Putting It Into Context（星期三）
 Before you move forward, there’s an optimization that you should know about.
 
 I mentioned earlier that you need a CIContext in order to apply a CIFilter, yet there’s no mention of this object in the above example. It turns out that the the UIImage(CIImage:) constructor does all the work for you. It creates a CIContext and uses it to perform the work of filtering the image. This makes using the Core Image API very easy.
@@ -113,7 +113,7 @@ Build and run, and make sure it works just as before.
 
 In this example, handling the CIContext creation yourself doesn’t make much difference. But in the next section, you’ll see why this is important for performance, as you implement the ability to modify the filter dynamically!
 
-#Changing Filter Values
+#Changing Filter Values（星期三）
 This is great, but it’s just the beginning of what you can do with Core Image filters. Lets add a slider and set it up so you can adjust the filter settings in real time.
 
 Open Main.storyboard, and drag in a slider, and drop it in below the image view, centered horizontally. With the view selected, navigate to Editor \ Resolve Auto Layout Issues \ Selected Views \ Reset to Suggested Constraints, increasing the width constraint if desired.
@@ -189,7 +189,7 @@ The rest of the code should look familiar, as it follows the same logic as viewD
 
 Build and run, and you should have a functioning live slider that will alter the sepia value for your image in real time!
 
-#Getting Photos from the Photo Album
+#Getting Photos from the Photo Album（星期四）
 Now that you can change the values of the filter on the fly, things are starting to get real interesting! But what if you don’t care for this image of flowers? Next you’ll set up a UIImagePickerController so you can get pictures from out of the photo album and into your app so you can play with them.
 
 You need to create a button that will bring up the photo album view, so open up Main.storyboard, drag in a button to the bottom right of the scene, and label it “Photo Album”. As before, use Auto Layout to Reset to Suggested Constraints. The button should be underneath the slider on the right side.
@@ -273,7 +273,7 @@ Build and run, and now you’ll be able to update any image from your photo albu
 
 What if you create the perfect sepia image, how do you hold on to it? You could take a screenshot, but the proper way is to save the filtered photo back into the photo album.
 
-#Saving to Photo Album
+#Saving to Photo Album（星期四）
 To save to the photo album, you need to use the AssetsLibrary framework. Add the following import statement to the top of ViewController.swift:
 
 ```
@@ -317,7 +317,7 @@ In this code block you:
 
 Build and run the app (remember to run on an actual device, since you’re using software rendering), and now you can save that “perfect image” to your photo library so it’s preserved forever!
 
-#What About Image Metadata?
+#What About Image Metadata?（星期五）
 Let’s talk about image metadata for a moment. Image files taken on mobile phones have a variety of data associated with them, such as GPS coordinates, image format, and orientation.
 
 Orientation in particular is something that you’ll need to preserve. The process of loading a UIImage into a CIImage, rendering to a CGImage, and converting back to a UIImage strips the metadata from the image. In order to preserve orientation, you’ll need to record it and then pass it back into the UIImage constructor.
@@ -345,7 +345,7 @@ let newImage = UIImage(CGImage: cgimg, scale:1, orientation:orientation)
 ```
 Now, if you take a picture taken in something other than the default orientation, it will be preserved.
 
-#What Other Filters are Available?
+#What Other Filters are Available?（星期五）
 The CIFilter API has more than 160 filters on Mac OS, 126 of which are available on iOS 8. As of iOS 8, it is now possible to create you own custom filters as well.
 
 In order to find out what filters are available on a given device, you can use the CIFilter method filterNamesInCategory(kCICategoryBuiltIn). This method will return an array of filter names.
@@ -403,7 +403,7 @@ You will see the many filters listed in the console like the following:
 
 Wow, that’s a lot of filters! That should give you some ideas for other filters to try out in your own app!
 
-#More Intricate Filter Chains
+#More Intricate Filter Chains（星期六）
 Now that we’ve looked at all the filters that are available on the iOS platform, it’s time to create a more intricate filter chain. In order to do this, you’ll create a dedicated method to process the CIImage. It will take a CIImage, filter it to look like an old aged photo, and return a modified CIImage.
 
 Add the following method to ViewController:
@@ -475,7 +475,7 @@ This just replaces the previous sepia effect with your new, more complex filter 
 
 That noise could probably be more subtle, but I’ll leave that experiment to you, dear reader. Now you have the full power of Core Image at your disposal. Go crazy!
 
-#Where To Go From Here?
+#Where To Go From Here?（星期六）
 Here is the example project with all of the code from the above tutorial.
 
 That about covers the basics of using Core Image filters. It’s a pretty handy technique, and you should be able to use it to apply some neat filters to images quite quickly!
