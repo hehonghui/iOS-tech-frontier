@@ -64,6 +64,14 @@
 <b id="articles" />
 ## 已完成列表
 
+### 第五期 (2015.5.25)
+|       文章标题        |         译者           | 
+|----------------------|------------------------|
+|  [Core Graphics教程第一部分(Swift) - 起步](issue-5/Swift-Core-Graphics教程第一部分.md) |  [sdq](https://github.com/sdq/) 、 [StormXX](https://github.com/StormXX/) |  
+|  [Graphics教程第二部分-Gradients与Context](issue-5/Swift-Core-Graphics教程第二部分-Gradients与Context.md) |  [HarriesChen](https://github.com/mrchenhao) |  
+|  [Core Graphics 教程第三部分(Swift) - Patterns 和 Playgrounds](issue-5/Core Graphics 教程第三部分(Swift) - Patterns 和 Playgrounds.md) |  [MrLoong](https://github.com/MrLoong) |  
+
+
 ### 第四期 (2015.5.15)
 |       文章标题        |         译者           | 
 |----------------------|------------------------|
