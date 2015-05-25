@@ -1,12 +1,12 @@
-这里写中文标题
+Core Image入门教程
 ---
 
-> * 原文链接 : [原文标题](原文url)
-* 原文作者 : [作者](作者的博客或者其他社交页面)
-* [译文出自 :  开发技术前线 www.devtf.cn](http://www.devtf.cn)
-* 译者 : [这里写你的github用户名](github链接) 
+> * 原文链接 : [Core Image Tutorial: Getting Started](http://www.raywenderlich.com/76285/beginning-core-image-swift)
+* 原文作者 : [Nick Lockwood](http://www.raywenderlich.com/u/nicklockwood)
+* 译文出自 :[开发技术前线 www.devtf.cn](http://www.devtf.cn)
+* 译者 : [Sam Lau](https://github.com/samlaudev) 
 * 校对者: [这里校对者的github用户名](github链接)  
-* 状态 :  未完成 / 校对中 / 完成 
+* 状态 :  未完成
 
 **注意 : 翻译完之后请认真的审核一遍有没有错字、语句通不通顺，谢谢~**
 
