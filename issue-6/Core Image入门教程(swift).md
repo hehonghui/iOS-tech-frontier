@@ -36,7 +36,7 @@ You’ll be using each of these classes in this project.
 * **CIFilter**. CIFilter类有一个字典(dictionary)来定义特定属性的过滤器，比如常用过滤器有饱和度，颜色翻转，裁剪等属性，还有很多没列出来。
 
 ###CoreImageFun
-Open up Xcode and create a new project with the iOS \ Application \ Single View Application template. Enter CoreImageFun for the Product Name, select iPhone for the Devices option, and make sure that Language is set to Swift.
+Open up Xcode and create a new project with the iOS \ Application \ Single View Application template. Enter oreImageFun for the Product Name, select iPhone for the Devices option, and make sure that Language is set to Swift.
 
 Download the resources for this tutorial, and add the included image.png to your project.
 
@@ -63,7 +63,7 @@ Build and run the project just to make sure everything is good so far – you sh
 
 下一步，打开**Main.storyboard**你文件，拖拽一个image view到已存在的view，image view作为view的子视图。在Attributes Inspector中，设置image view的content mode属性为Aspect Fit，这样它就不会扭曲图片。
 
-下一步，确定Document Outline(在Interface Builder里canvas左边)是可见的 - 你可以从menu中Editor \ Show Document Outline来启用。
+下一步，确定Document Outline(在Interface Builder里canvas左边)是可见的 - 你可以从menu中**Editor \ Show Document Outline**来启用。
 
 按着control键从image view拖动到它的superview三次来添加三个约束(constraint)：
 
@@ -71,9 +71,9 @@ Build and run the project just to make sure everything is good so far – you sh
 2. 添加一个Center Horizontally in Container的约束(同样也需要设置constant为0)
 3. 添加一个Equal Width约束
 
-最后，为了约束image view的高度，按着control键从image view拖动到本身，然后添加一个Aspect Ratio约束，使用Size Inspector来设置它的multiplier的值为8:5对应宽高比和constant factor为0。最后，选择Editor \ Resolve Auto Layout Issues \ All Views in View Controller \ Update Frames，那么Interface Builder会根据这些约束来更新布局
+最后，为了约束image view的高度，按着control键从image view拖动到本身，然后添加一个Aspect Ratio约束，使用Size Inspector来设置它的multiplier的值为8:5对应宽高比和constant factor为0。最后，选择**Editor \ Resolve Auto Layout Issues \ All Views in View Controller \ Update Frames**，那么Interface Builder会根据这些约束来更新布局
 
-下一步，打开Assistant Editor，然后确保它显示ViewController.swift。按着control键从UIImageView拖动到刚刚打开的ViewController类的大括号。命名outlet为imageView，然后点击connect。
+下一步，打开Assistant Editor，然后确保它显示**ViewController.swift**。按着control键从UIImageView拖动到刚刚打开的**ViewController**类的大括号。命名outlet为**imageView**，然后点击connect。
 
 编译和运行这个项目来确保目前进展顺利 - 你应该看到一个空屏。初始化设置完成，现在进入Core Image的世界。
 
@@ -86,16 +86,16 @@ You’re going to get started by simply running your image through a CIFilter an
 3. Create a CIFilter. When you create the filter, you configure a number of properties on it that depend on the filter you’re using.
 4. Get the filter output. The filter gives you an output image as a CIImage – you can convert this to a UIImage using the CIContext, as you’ll see below.
 
-你将会通过使用CIFilter应用到图像和显示到屏幕来入门。每次你想将CIFilter应用到一个图像，都需要做四件事：
+你将会通过使用**CIFilter**应用到图像和显示到屏幕来入门。每次你想将CIFilter应用到一个图像，都需要做四件事：
 
-1. 创建一个CIImage对象。CIImage有几个初始化方法，其中包括：CIImage(contentsOfURL:), CIImage(data:), CIImage(CGImage:), CIImage(bitmapData:bytesPerRow:size:format:colorSpace:)等，大多数你都会使用CIImage(contentsOfURL:)方法。
-2. 创建一个CIContext对象。一个CIContext是基于CPU或CPU，在初始化它时比较耗资源，所以需要复用它而不是多次创建。当你输出CIImage对象时，你会经常需要CIContext对象。
-3. 创建CIFilter对象。当你创建一个filter时，你需要配置多个属性来决定你使用的filter。
-4. 获取filter的输出。filter会输出一个CIImage类型的image给你 - 你可以使用CIContext将它转换为UIImage类型image。
+1. **创建一个CIImage对象**。CIImage有几个初始化方法，其中包括：CIImage(contentsOfURL:), CIImage(data:), CIImage(CGImage:), CIImage(bitmapData:bytesPerRow:size:format:colorSpace:)等，大多数你都会使用CIImage(contentsOfURL:)方法。
+2. **创建一个CIContext对象**。一个CIContext是基于CPU或CPU，在初始化它时比较耗资源，所以需要复用它而不是多次创建。当你输出CIImage对象时，你会经常需要CIContext对象。
+3. **创建CIFilter对象**。当你创建一个filter时，你需要配置多个属性来决定你使用的filter。
+4. **获取filter的输出**。filter会输出一个CIImage类型的image给你 - 你可以使用CIContext将它转换为UIImage类型image。
 
 Let’s see how this works. Add the following code to ViewController.swift inside viewDidLoad():
 
-让我们看看它是如何工作。添加以下代码到ViewController.swift的viewDidLoad():方法
+让我们看看它是如何工作。添加以下代码到**ViewController.swift**的viewDidLoad():方法
 
 ```
 // 1
@@ -127,8 +127,8 @@ Build and run the project, and you’ll see your image filtered by the sepia ton
 
 1. 这行代码创建一个NSURL对象，它保存image文件的路径
 2. 通过CIImage(contentsOfURL:)构造器来创建CIImage对象
-3. 创建CIFilter对象。CIFilter构造器将name作为参数，然后用dictionary来指定filter的键值对。每个filter都拥有唯一的键和多个有效值。CISepiaTone filter只接收两个值kCIInputImageKey(CIImage)和kCIInputIntensityKey(在0到1之间的一个浮点数)。这里你设置它的值为0.5。如果没有值提供的话，大多数filters都有默认值。但CIImage没有默认值，它必须要提供。
-4. 通过使用filter的outputImage属性能够轻松地获取CIImage。一旦你有个输出的CIImage，你需要将它转换为UIImage。使用UIImage(CIImage:)构造器来创建UIImage。如果你已经将CIImage转换为UIImage，你就能将image显示到image view
+3. 创建CIFilter对象。CIFilter构造器将name作为参数，然后用dictionary来指定filter的键值对。每个filter都拥有唯一的键和多个有效值。**CISepiaTone** filter只接收两个值**kCIInputImageKey**(CIImage)和**kCIInputIntensityKey**(在0到1之间的一个浮点数)。这里你设置它的值为0.5。如果没有值提供的话，大多数filters都有默认值。但CIImage没有默认值，它必须要提供。
+4. 通过使用filter的**outputImage**属性能够轻松地获取CIImage。一旦你有个输出的CIImage，你需要将它转换为UIImage。使用**UIImage(CIImage:)**构造器来创建UIImage。如果你已经将CIImage转换为UIImage，你就能将image显示到image view
 
 <div align="center">
 
