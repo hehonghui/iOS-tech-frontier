@@ -9,8 +9,16 @@ Core Image入门教程(swift)
 * 状态 :  未完成
 
 Core Image is a powerful framework that lets you easily apply filters to images. You can get all kinds of effects, such as modifying the vibrance, hue, or exposure. It can use either the CPU or GPU to process the image data and is very fast — fast enough to do real-time processing of video frames!
-Core Image filters can also be chained together to apply multiple effects to an image or video frame at once. The multiple filters are combined into a single filter that is applied to the image. This makes it very efficient compared to processing the image through each filter, one at a time.
+
+Core Image filters can also be chained together to apply multiple effects to an image or video frame at once. The multiple filters are combined into a single filter that is applied to the image. 
+
 In this tutorial, you will get hands-on experience playing around with Core Image. You’ll apply a few different filters, and you’ll see how easy it is to apply cool effects to images in real time!
+
+Core Image是一个强大的框架，它能够让你轻松地对图像进行过滤。你能够通过修改图像的饱和度、色调或曝光率来获取各种特效。你也可以使用CPU或GPU更快地来处理图像数据，快到能够实时处理视频帧数据。
+
+Core Image过滤器能够以链式的方式结合将多个特效应用到一个图像或视频帧数据。多个过滤器能够组合成单个过滤器应用在一个图像。通过每次与每个过滤器比较，这使它非常有效地处理图像。
+
+在这个教程中，你将会亲手实践如何使用Core Image.通过使用几个不同的过滤器，你会看到实时使用各种炫酷的特效是多么容易。
 
 #Getting Started（星期二）
 Before you get started, let’s discuss some of the most important classes in the Core Image framework:
