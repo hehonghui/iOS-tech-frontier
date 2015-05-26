@@ -1,7 +1,7 @@
 # iOS开发技术前线 ( ios-tech-frontier )
 一个定期翻译、发布国内外iOS优质的技术、开源库、软件架构设计、测试等文章的开源项目,让我们的技术跟上国际步伐。
 
-**翻译QQ群 ( 需审核 ) : 131021281**
+**翻译QQ群 ( 需审核 ) : 131021281**，项目管理员[Lollypo](https://github.com/Lollypo/)、[Harries Chen](https://github.com/mrchenhao/)、[StormXX](https://github.com/StormXX/)，有问题可以通过github或者QQ群联系他们。
 
 ## 目录
 * [文章分类](#category)
@@ -49,7 +49,7 @@
 
 ## 翻译任务跟踪和管理
 
-有想要翻译文章的朋友情从issue列表中选择一个翻译任务，然后在issue中添加一个评论，将自己的github账户添加到评论中( 比如 : @Mr.Simple认领该翻译任务 )，管理员会将该issue的标签设置为翻译中。翻译者及时更新翻译状态，状态通过标签跟踪:
+有想要翻译文章的朋友请从issue列表中选择一个翻译任务，然后在issue中添加一个评论，将自己的github账户添加到评论中( 比如 : @Mr.Simple认领该翻译任务 )，管理员会将该issue的标签设置为翻译中。翻译者及时更新翻译状态，状态通过标签跟踪:
 
 * 待认领
 * 翻译中
@@ -64,10 +64,36 @@
 <b id="articles" />
 ## 已完成列表
 
-### 第一期 (2015.5.1)
+### 第五期 (2015.5.25)
 |       文章标题        |         译者           | 
 |----------------------|------------------------|
-|  [使用Swift自定义ViewController切换效果与动画(待校对)](issue-2/自定义ViewController切换效果与动画.md) |  [Shopie](https:www.devtd.cn)  |  
+|  [Core Graphics教程第一部分(Swift) - 起步](issue-5/Swift-Core-Graphics教程第一部分.md) |  [sdq](https://github.com/sdq/) 、 [StormXX](https://github.com/StormXX/) |  
+|  [Graphics教程第二部分-Gradients与Context](issue-5/Swift-Core-Graphics教程第二部分-Gradients与Context.md) |  [HarriesChen](https://github.com/mrchenhao) |  
+|  [Core Graphics 教程第三部分(Swift) - Patterns 和 Playgrounds](issue-5/Core Graphics 教程第三部分(Swift) - Patterns 和 Playgrounds.md) |  [MrLoong](https://github.com/MrLoong) |  
+
+
+### 第四期 (2015.5.15)
+|       文章标题        |         译者           | 
+|----------------------|------------------------|
+|  [关于AFNetworking安全bug的回复](issue-4/关于AFNetworking安全bug的回复.md) |  [Lollypo](https://github.com/Lollypo/) |  
+|  [Swift和自动引用计数器整理之强、弱和无主引用](issue-4/Swift和自动引用计数器整理之强、弱和无主引用.md) |  [samw00](https://github.com/samw00/) |  
+|  [Swift扩展的三个微妙细节](issue-4/Swift扩展的三个微妙细节.md) |  [samw00](https://github.com/samw00/) |  
+|  [什么是委托代理?-Swift开发者指南](issue-4/什么是委托代理-Swift开发者指南.md) |  [sdq](https://github.com/sdq/) |  
+
+
+### 第三期 (2015.5.8)
+|       文章标题        |         译者           | 
+|----------------------|------------------------|
+|  [Swift的响应式编程](issue-3/Swift的响应式编程.md) |  [Mr.Simple](https://github.com/bboyfeiyu/) |  
+|  [iOS后台模式开发指南](issue-3/iOS后台模式开发指南.md) |  [MollyMmm](https://github.com/MollyMmm/) |  
+|  [iOS今日扩展](issue-3/iOS今日扩展.md) |  [Harries Chen](https://github.com/mrchenhao/) |  
+
+
+
+### 第二期 (2015.5.1)
+|       文章标题        |         译者           | 
+|----------------------|------------------------|
+|  [使用Swift自定义ViewController切换效果与动画](issue-2/自定义ViewController切换效果与动画.md) |  [Shopie](https:www.devtd.cn)  |  
 |  [Swift样式指南2015年4月更新](issue-2/Swift样式指南2015年4月更新.md) |  [liulinxu](https://github.com/liulinxu) | 
 |  [GCD概述、语法以及好的示例](issue-2/GCD概述、语法以及好的示例.md) |  [starmier](https://github.com/starmier/) |  
 

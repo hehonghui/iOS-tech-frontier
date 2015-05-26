@@ -1,4 +1,4 @@
-`后台模式教程:开始`
+# iOS后台模式开发指南
 ---
 
 >* 原文链接 : [Background Modes Tutorial: Getting Started](http://www.raywenderlich.com/92428/background-modes-ios-swift-tutorial)
