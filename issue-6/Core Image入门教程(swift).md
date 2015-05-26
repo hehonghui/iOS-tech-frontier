@@ -20,7 +20,7 @@ Core Image过滤器能够以链式的方式结合将多个特效应用到一个�
 
 在这个教程中，你将会亲手实践如何使用Core Image.通过使用几个不同的过滤器，你会看到实时使用各种炫酷的特效是多么容易。
 
-#Getting Started（星期二）
+#Getting Started
 Before you get started, let’s discuss some of the most important classes in the Core Image framework:
 
 * **CIContext**. All of the processing of a core image is done in a CIContext. This is somewhat similar to a Core Graphics or OpenGL context.
@@ -78,7 +78,7 @@ Build and run the project just to make sure everything is good so far – you sh
 编译和运行这个项目来确保目前进展顺利 - 你应该看到一个空屏。初始化设置完成，现在进入Core Image的世界。
 
 
-#Basic Image Filtering（星期二）
+#Basic Image Filtering
 You’re going to get started by simply running your image through a CIFilter and displaying it on the screen. Every time you want to apply a CIFilter to an image you need to do four things:
 
 1. Create a CIImage object. CIImage has several initialization methods, including: CIImage(contentsOfURL:), CIImage(data:), CIImage(CGImage:), CIImage(bitmapData:bytesPerRow:size:format:colorSpace:), and several others. You’ll most likely be working with CIImage(contentsOfURL:) most of the time.
@@ -86,7 +86,16 @@ You’re going to get started by simply running your image through a CIFilter an
 3. Create a CIFilter. When you create the filter, you configure a number of properties on it that depend on the filter you’re using.
 4. Get the filter output. The filter gives you an output image as a CIImage – you can convert this to a UIImage using the CIContext, as you’ll see below.
 
+你将会通过使用CIFilter应用到图像和显示到屏幕来入门。每次你想将CIFilter应用到一个图像，都需要做四件事：
+
+1. 创建一个CIImage对象。CIImage有几个初始化方法，其中包括：CIImage(contentsOfURL:), CIImage(data:), CIImage(CGImage:), CIImage(bitmapData:bytesPerRow:size:format:colorSpace:)等，大多数你都会使用CIImage(contentsOfURL:)方法。
+2. 创建一个CIContext对象。一个CIContext是基于CPU或CPU，在初始化它时比较耗资源，所以需要复用它而不是多次创建。当你输出CIImage对象时，你会经常需要CIContext对象。
+3. 创建CIFilter对象。当你创建一个filter时，你需要配置多个属性来决定你使用的filter。
+4. 获取filter的输出。filter会输出一个CIImage类型的image给你 - 你可以使用CIContext将它转换为UIImage类型image。
+
 Let’s see how this works. Add the following code to ViewController.swift inside viewDidLoad():
+
+让我们看看它是如何工作。添加以下代码到ViewController.swift的viewDidLoad():方法
 
 ```
 // 1
@@ -113,6 +122,13 @@ Let’s go over this section by section:
 4. Getting a CIImage back out of a filter is as easy as using the outputImage property. Once you have an output CIImage, you will need to convert it into a UIImage. The UIImage(CIImage:) constructor creates a UIImage from a CIImage. Once you’ve converted it to a UIImage, you just display it in the image view you added earlier.
 
 Build and run the project, and you’ll see your image filtered by the sepia tone filter.
+
+让我们逐段分析以上代码：
+
+1. 这行代码创建一个NSURL对象，它保存image文件的路径
+2. 通过CIImage(contentsOfURL:)构造器来创建CIImage对象
+3. 创建CIFilter对象。CIFilter构造器将name作为参数，然后用dictionary来指定filter的键值对。每个filter都拥有唯一的键和多个有效值。CISepiaTone filter只接收两个值kCIInputImageKey(CIImage)和kCIInputIntensityKey(在0到1之间的一个浮点数)。这里你设置它的值为0.5。如果没有值提供的话，大多数filters都有默认值。但CIImage没有默认值，它必须要提供。
+4. 通过使用filter的outputImage属性能够轻松地获取CIImage。一旦你有个输出的CIImage，你需要将它转换为UIImage。使用UIImage(CIImage:)构造器来创建UIImage。如果你已经将CIImage转换为UIImage，你就能将image显示到image view
 
 <div align="center">
 
