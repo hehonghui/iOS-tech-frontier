@@ -14,7 +14,7 @@ Core Image filters can also be chained together to apply multiple effects to an 
 
 In this tutorial, you will get hands-on experience playing around with Core Image. You’ll apply a few different filters, and you’ll see how easy it is to apply cool effects to images in real time!
 
-Core Image是一个强大的框架，它能够让你轻松地对图像进行过滤。你能够通过修改图像的饱和度、色调或曝光率来获取各种特效。你也可以使用CPU或GPU更快地来处理图像数据，快到能够实时处理视频帧数据。
+Core Image是一个强大的框架，它能够让你轻松地对图像进行过滤。你能够通过修改图像的饱和度、色调或曝光率来获取各种特效。你也可以使用CPU或GPU更快地来处理图像数据，快到能够实时处理视频帧数据(video frame)。
 
 Core Image过滤器能够以链式的方式结合将多个特效应用到一个图像或视频帧数据。多个过滤器能够组合成单个过滤器应用在一个图像。通过每次与每个过滤器比较，这使它非常有效地处理图像。
 
@@ -28,6 +28,12 @@ Before you get started, let’s discuss some of the most important classes in th
 * **CIFilter**. The CIFilter class has a dictionary that defines the attributes of the particular filter that it represents. Examples of filters are vibrance, color inversion, cropping, and many more.
 
 You’ll be using each of these classes in this project.
+
+在你开始之前，让我们先讨论在Core Image框架中几个很重要的类：
+
+* **CIContext**. 所有处理core image的工作都在CIContext完成。这个有几分与Core Graphics或OpenGL context相似
+* **CIImage**. 这个类保存图像数据，它能够从UIImage，图像文件或像素数据等方式来创建。
+* **CIFilter**. CIFilter类有一个字典(dictionary)来定义特定属性的过滤器，比如常用过滤器有饱和度，颜色翻转，裁剪等属性，还有很多没列出来。
 
 ###CoreImageFun
 Open up Xcode and create a new project with the iOS \ Application \ Single View Application template. Enter CoreImageFun for the Product Name, select iPhone for the Devices option, and make sure that Language is set to Swift.
@@ -49,6 +55,28 @@ Finally, to constrain the image view’s height, control drag from the image vie
 Next, open the Assistant Editor and make sure it’s displaying ViewController.swift. Control-drag from the UIImageView to just after the opening brace of the ViewController class. Name the outlet imageView, and click Connect.
 
 Build and run the project just to make sure everything is good so far – you should just see an empty screen. The initial setup is complete – now onto Core Image!
+
+###CoreImageFun
+打开Xcode并使用**iOS \ Application \ Single View Application**模板来创建一个新工程。输入**CoreImageFun**作为Product Name，选择iPhone为Devices option和确定使用**swift**作为编程语言。
+
+下载[教程的资源](http://cdn5.raywenderlich.com/downloads/CIResources.zip)，并添加图片**image.png**到工程
+
+下一步，打开**Main.storyboard**你文件，拖拽一个image view到已存在的view，image view作为view的子视图。在Attributes Inspector中，设置image view的content mode属性为Aspect Fit，这样它就不会扭曲图片。
+
+下一步，确定Document Outline(在Interface Builder里canvas左边)是可见的 - 你可以从menu中Editor \ Show Document Outline来启用。
+
+按着control键从image view拖动到它的superview三次来添加三个约束(constraint)：
+
+1. 添加一个Top Space to Layout Guide的约束，如果有必要的话，使用Size Inspector来设置约束的constant为0 
+2. 添加一个Center Horizontally in Container的约束(同样也需要设置constant为0)
+3. 添加一个Equal Width约束
+
+最后，为了约束image view的高度，按着control键从image view拖动到本身，然后添加一个Aspect Ratio约束，使用Size Inspector来设置它的multiplier的值为8:5对应宽高比和constant factor为0。最后，选择Editor \ Resolve Auto Layout Issues \ All Views in View Controller \ Update Frames，那么Interface Builder会根据这些约束来更新布局
+
+下一步，打开Assistant Editor，然后确保它显示ViewController.swift。按着control键从UIImageView拖动到刚刚打开的ViewController类的大括号。命名outlet为imageView，然后点击connect。
+
+编译和运行这个项目来确保目前进展顺利 - 你应该看到一个空屏。初始化设置完成，现在进入Core Image的世界。
+
 
 #Basic Image Filtering（星期二）
 You’re going to get started by simply running your image through a CIFilter and displaying it on the screen. Every time you want to apply a CIFilter to an image you need to do four things:
