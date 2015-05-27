@@ -142,15 +142,15 @@ Before you move forward, there’s an optimization that you should know about.
 
 I mentioned earlier that you need a CIContext in order to apply a CIFilter, yet there’s no mention of this object in the above example. It turns out that the the UIImage(CIImage:) constructor does all the work for you. It creates a CIContext and uses it to perform the work of filtering the image. This makes using the Core Image API very easy.
 
-之前我曾提及过，你需要有个CIContext来使用CIFilter，但以上例子都没有提及过这个对象。结果变成了由UIImage(CIImage:) 构造器来为你处理所有的工作。UIImage它创建一个CIContext，然后用它来执行所有过滤图像的操作，这让你更加容易地使用Core Image的API。
+之前我曾提及过，你需要有个**CIContext**来使用CIFilter，但以上例子都没有提及过这个对象。结果变成了由**UIImage(CIImage:)** 构造器来为你处理所有的工作。UIImage它创建一个**CIContext**，然后用它来执行所有过滤图像的操作，这让你更加容易地使用Core Image的API。
 
 There is one major drawback – it creates a new CIContext every time it’s used. CIContext instances are meant to be reusable to increase performance. If you want to use a slider to update the filter value, as you’ll be doing in this tutorial, creating a new CIContext each time you change the filter would be way too slow.
 
-但这种方式有一个主要缺点就是每次使用时都创建一个新的CIContext对象。CIContext对象是为了复用来提高性能。如果你想用一个slider来更新filter的值，是以每次创建一个新的CIContext来实现更新filter的方式，那么运行速度将会很慢。
+但这种方式有一个主要缺点就是每次使用时都创建一个新的**CIContext**对象。**CIContext**对象是为了复用来提高性能。如果你想用一个slider来更新filter的值，是以每次创建一个新的CIContext来实现更新filter的方式，那么运行速度将会很慢。
 
 Let’s do this properly. Delete step 4 from the code you added to viewDidLoad(), and replace it with the following:
 
-让我们以恰当的方式来实现。在viewDidLoad()里删除步骤4的代码，然后用一下代码来代替：
+让我们以恰当的方式来实现。在**viewDidLoad()**里删除步骤4的代码，然后用一下代码来代替：
 
 ```
 // 1
@@ -171,9 +171,9 @@ Again, let’s go over this section by section.
 
 我们再一次逐段分析代码：
 
-1. 你设置CIContext对象，然后用它来画一个CGImage。CIContext(options:)构造器以NSDictionary为参数，它指定一些选项，比如：颜色格式，或者context是否运行在CPU或GPU。对于这个app来说，默认值是可以的，所以你可以传递nil这个值进去。
-2. context调用createCGImage(outputImage:fromRect:)方法在给定CIImage参数并返回一个新的CGImage示例。
-3. 你根据刚刚获取的CIImage，使用UIImage(CGImage:)构造器来创建一个UIImage对象。注意，当我们使用CIImage对象之后，没有必要显式地释放它，虽然在Objective-C需要这样做。但在Swift中，ARC会自动释放Core Foundation的对象。
+1. 你设置CIContext对象，然后用它来画一个CGImage。**CIContext(options:)**构造器以NSDictionary为参数，它指定一些选项，比如：颜色格式，或者context是否运行在CPU或GPU。对于这个app来说，默认值是可以的，所以你可以传递nil这个值进去。
+2. context调用**createCGImage(outputImage:fromRect:)**方法在给定CIImage参数并返回一个新的CGImage示例。
+3. 你根据刚刚获取的CIImage，使用**UIImage(CGImage:)**构造器来创建一个UIImage对象。注意，当我们使用CIImage对象之后，没有必要显式地释放它，虽然在Objective-C需要这样做。但在Swift中，ARC会自动释放Core Foundation的对象。
 
 
 Build and run, and make sure it works just as before.
@@ -191,15 +191,15 @@ This is great, but it’s just the beginning of what you can do with Core Image 
 
 Open Main.storyboard, and drag in a slider, and drop it in below the image view, centered horizontally. With the view selected, navigate to Editor \ Resolve Auto Layout Issues \ Selected Views \ Reset to Suggested Constraints, increasing the width constraint if desired.
 
-打开Main.storyboard，选取一个slider，将它拖放到image view的上面，并水平对齐。选中view，然后点击**Editor \ Resolve Auto Layout Issues \ Selected Views \ Reset to Suggested Constraints**，添加需要的宽约束。
+打开**Main.storyboard**，选取一个slider，将它拖放到image view的上面，并水平对齐。选中view，然后点击**Editor \ Resolve Auto Layout Issues \ Selected Views \ Reset to Suggested Constraints**，添加需要的宽约束。
 
 Make sure the Assistant Editor is visible and displaying ViewController.swift, then control-drag from the slider down below the previously added @IBOutlet, set the name to amountSlider, and click Connect.
 
-确保Assistant Editor可见和显示ViewController.swift，然后按着control键从slider拖动到之前添加的@IBOutlet下面，设置name为amountSlider，然后点击Connect。
+确保Assistant Editor可见和显示**ViewController.swift**，然后按着control键从slider拖动到之前添加的@IBOutlet下面，设置name为**amountSlider**，然后点击**Connect**。
 
 While you’re at it let’s connect the slider to an action method as well. Again control-drag from the slider, this time to just above the closing } of the ViewController class. Set the Connection to Action, the name to amountSliderValueChanged, make sure that the Event is set to Value Changed, and click Connect.
 
-当你还选中slider时，也让我们连接slider到一个action method。再一次按着control键从slider拖动到ViewController类的}上面。设置Connection为Action，name为amountSliderValueChanged，确保Event设置为Value Changed，然后点击Connect。
+当你还选中slider时，也让我们连接slider到一个action method。再一次按着control键从slider拖动到ViewController类的}上面。设置Connection为**Action**，name为**amountSliderValueChanged**，确保Event设置为**Value Changed**，然后点击**Connect**。
 
 Every time the slider changes, you need to redo the image filter with a different value. However, you don’t want to redo the whole process, that would be very inefficient and would take too long. You’ll need to change a few things in your class so that you hold on to some of the objects you create in your viewDidLoad method.
 
@@ -222,11 +222,11 @@ var beginImage: CIImage!
 
 Note that you have declared these values as implicitly-unwrapped optionals using the ! syntax, because you aren’t going to initialize them until viewDidLoad. You could have used ? instead, but you know that the way the code is designed will prevent the optionals from being nil by the time you use them. The implicitly-unwrapped syntax makes it much easier to read, without all the exclamation marks everywhere.
 
-请注意，你已经用!语法来声明那些值为implicitly-unwrapped optionals，因为直到viewDidLoad才初始化它们。你也可以用？，但采用那种方式是为了当你使用那几个实例变量时，防止optionals为nil。implicitly-unwrapped语法由于不用到处使用!标识来访问变量，它让代码更加易读。
+请注意，你已经用!语法来声明那些值为implicitly-unwrapped optionals，因为直到**viewDidLoad**才初始化它们。你也可以用？，但采用那种方式是为了当你使用那几个实例变量时，防止optionals为nil。implicitly-unwrapped语法由于不用到处使用!标识来访问变量，它让代码更加易读。
 
 Change the code in viewDidLoad so it uses these properties instead of declaring new local variables, as follows:
 
-在viewDidLoad改变代码，那么它使用这些属性而不是使用新的局部变量，代码如下：
+在**viewDidLoad**改变代码，那么它使用这些属性而不是使用新的局部变量，代码如下：
 
 ```
 beginImage = CIImage(contentsOfURL: fileURL)
@@ -242,7 +242,7 @@ let cgimg = context.createCGImage(outputImage, fromRect: outputImage.extent())
 
 ```
 
-Now you’ll implement the changeValue method. What you’ll be doing in this method is altering the value of the inputIntensity key in your CIFilter dictionary.
+Now you’ll implement the changeValue method. What you’ll be doing in this method is altering the value of the **inputIntensity** key in your CIFilter dictionary.
 
 现在你将会实现changeValue方法。你在这个方法需要做的是修改CIFilter dictionary的inputIntentsity键对应的值。
 
@@ -280,19 +280,19 @@ Replace amountSliderValueChanged(sender:) with the following:
 
 You’ll notice that you’ve changed the argument type from AnyObject to UISlider in the method definition. You know you’ll only be using this method to retrieve values from your UISlider, so you can go ahead and make this change. If you’d left it as AnyObject, you’d need to cast it to a UISlider or the next line would throw an error.
 
-你会注意到，你已经将方法定义中参数类型从AnyObject转换为UISlider。你只用这个方法来从UISlider获取值，以便你改变值。如果你不管它，默认是AnyObject，你需要将它转换为UISlider，否则下一行代码就会抛出错误。
+你会注意到，你已经将方法定义中参数类型从**AnyObject**转换为**UISlider**。你只用这个方法来从**UISlider**获取值，以便你改变值。如果你不管它，默认是**AnyObject**，你需要将它转换为**UISlider**，否则下一行代码就会抛出错误。
 
 You retrieve the value from the slider (which returns a Float). Your slider is set to the default values – min 0, max 1, default 0.5. How convenient, these happen to be the right values for this CIFilter!
 
-你可以从slider获取浮点数的值。你的slider默认设置为0.5，最小值为0，最大值为1。通过slider设置CIFilter是多么方便。
+你可以从slider获取**浮点数**的值。你的slider默认设置为0.5，最小值为0，最大值为1。通过slider设置CIFilter是多么方便。
 
 The CIFilter has methods that will allow you to set the values for the different keys in its dictionary. Here, you’re just setting the inputIntensity to whatever you get from your slider. Swift automatically converts the primitive CFloat value into an NSNumber object suitable for use with setValue(value:forKey:).
 
-CIFilter有多个方法允许你在dictionary根据不同键来设置多个值。而这里，你刚设置inputIntensity键对应的值，而这个值是从slider获取。Swift自动将CGFloat值转换为NSNumber对象，来符合setValue(value:forKey:)方法的使用。
+CIFilter有多个方法允许你在dictionary根据不同键来设置多个值。而这里，你刚设置**inputIntensity**键对应的值，而这个值是从slider获取。Swift自动将CGFloat值转换为NSNumber对象，来符合**setValue(value:forKey:)**方法的使用。
 
 The rest of the code should look familiar, as it follows the same logic as viewDidLoad. You’re going to be using this code over and over again. From now on, you’ll use amountSliderValueChanged(sender:) to render the output of a CIFilter to your UIImageView.
 
-剩下的代码看起来很熟悉，因为它与viewDidLoad方法的逻辑一样。你将会多次使用这段代码。从现在起，你会用amountSliderValueChanged(sender:)方法来将CIFilter输出的图像渲染到ImageView。
+剩下的代码看起来很熟悉，因为它与**viewDidLoad**方法的逻辑一样。你将会多次使用这段代码。从现在起，你会用**amountSliderValueChanged(sender:)**方法来将CIFilter输出的图像渲染到ImageView。
 
 Build and run, and you should have a functioning live slider that will alter the sepia value for your image in real time!
 
