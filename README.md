@@ -14,8 +14,9 @@
 3. 将模板[template.md](template.md)中的内容拷贝到markdown文件中，按照模板填写、翻译完内容(文章所需图片请存放到图床上，不要放在仓库中,图片宽度尽量控制在400 px左右),完成翻译后将状态修改为"校对中",提交pull request到本项目;
 4. 管理员校对完成之后便会发布.   
 
-[git流程简介](git简单使用教程.md)     
-[markdown语法简单教程](markdown简单教程.md)
+* [git流程简介](git简单使用教程.md)     
+* [markdown语法简单教程](markdown简单教程.md)
+* [git操作流程](git操作流程.md)
 
 ## 注意事项
 1. 在翻译文章时，保留专有名词；
