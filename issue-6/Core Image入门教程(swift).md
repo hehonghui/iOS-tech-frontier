@@ -499,17 +499,23 @@ Build and run the app (remember to run on an actual device, since you’re using
 #Image元数据是什么？
 Let’s talk about image metadata for a moment. Image files taken on mobile phones have a variety of data associated with them, such as GPS coordinates, image format, and orientation.
 
-让我们讨论一下关于image元数据。
+让我们讨论一下关于image元数据。用手机拍照出来的图片有很多关联它的数据，例如GPS坐标，图片格式，和方向。
 
 Orientation in particular is something that you’ll need to preserve. The process of loading a UIImage into a CIImage, rendering to a CGImage, and converting back to a UIImage strips the metadata from the image. In order to preserve orientation, you’ll need to record it and then pass it back into the UIImage constructor.
 
+方向是一样特殊的东西你需要保存。加载UIImage变成CIImage，渲染成CGImage，然后转换回一个UIImage这个过程是为了从image抓取元数据。为了保存方向，你需要保存它然后传递它作为UIImage构造器参数。
+
 Start by adding a new property inside the ViewController class definition:
+
+添加一个新属性到ViewController类定义：
 
 ```
 var orientation: UIImageOrientation = .Up
 ```
 
 Next, add the following line to imagePickerController(picker:didFinishPickingMediaWithInfo:) just before setting beginImage:
+
+下一步，添加下面代码到imagePickerController(picker:didFinishPickingMediaWithInfo:)方法里，设置beginImage代码行的上面：
 
 ```
 orientation = gotImage.imageOrientation
@@ -518,13 +524,19 @@ orientation = gotImage.imageOrientation
 
 This will save the original image orientation to the property.
 
+这样就会保存原始image方向的属性。
+
 Finally, alter the line in amountSliderValueChanged that creates the UIImage that you set to the imageView object:
+
+最后，修改在amountSliderValueChanged方法里，那段创建UIImage来设置imageView对象的代码：
 
 ```
 let newImage = UIImage(CGImage: cgimg, scale:1, orientation:orientation)
 
 ```
 Now, if you take a picture taken in something other than the default orientation, it will be preserved.
+
+现在，如果你拍一张照片而不是默认方向，它将会默认保存。
 
 #What Other Filters are Available?（星期五）
 The CIFilter API has more than 160 filters on Mac OS, 126 of which are available on iOS 8. As of iOS 8, it is now possible to create you own custom filters as well.
