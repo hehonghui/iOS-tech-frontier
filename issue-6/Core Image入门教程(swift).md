@@ -20,7 +20,8 @@ Core Image过滤器能够以链式的方式结合将多个特效应用到一个�
 
 在这个教程中，你将会亲手实践如何使用Core Image.通过使用几个不同的过滤器，你会看到实时使用各种炫酷的特效是多么容易。
 
-#Getting Started（基础）
+#Getting Started
+#基础
 Before you get started, let’s discuss some of the most important classes in the Core Image framework:
 
 * **CIContext**. All of the processing of a core image is done in a CIContext. This is somewhat similar to a Core Graphics or OpenGL context.
@@ -136,6 +137,7 @@ Build and run the project, and you’ll see your image filtered by the sepia ton
 </div>
 
 #Putting It Into Context
+#把它放进Context
 Before you move forward, there’s an optimization that you should know about.
 
 在你向前看之前，有个优化建议你应该需要知道。
@@ -185,6 +187,7 @@ In this example, handling the CIContext creation yourself doesn’t make much di
 在这个例子中，自己创建CIContext与不创建没什么不同。但下个部分中，你会看到当你动态地修改filter时，为什么CIContext对性能影响很大。
 
 #Changing Filter Values
+#修改Filter值
 This is great, but it’s just the beginning of what you can do with Core Image filters. Lets add a slider and set it up so you can adjust the filter settings in real time.
 
 目前还不错，但这只是使用Core Image filters的入门方式。让我们添加一个slider，然后设置它以便你能够实时调整filter的设置
@@ -299,6 +302,7 @@ Build and run, and you should have a functioning live slider that will alter the
 编译和运行，你可以修改slider值来实时地改变图像。
 
 #Getting Photos from the Photo Album
+#从相册获取图片
 Now that you can change the values of the filter on the fly, things are starting to get real interesting! But what if you don’t care for this image of flowers? Next you’ll set up a UIImagePickerController so you can get pictures from out of the photo album and into your app so you can play with them.
 
 现在你可以改变filter的值，事情也开始变得有趣。但是，如果你不喜欢这张花朵的图片。你可以设置UIImagePickerController来从相册选取图片放进你的app来使用。
@@ -426,6 +430,7 @@ What if you create the perfect sepia image, how do you hold on to it? You could 
 如果你创建完美的深褐色图片，你怎样才能保存它。你可以截图，但最恰当的方式就是保存已过滤的图片到相册。
 
 #Saving to Photo Album
+#保存到相册
 To save to the photo album, you need to use the AssetsLibrary framework. Add the following import statement to the top of ViewController.swift:
 
 为了保存到相册，你需要使用AssetsLibrary framework。在ViewController.swift文件顶部添加以下导入语句：
@@ -490,8 +495,11 @@ Build and run the app (remember to run on an actual device, since you’re using
 
 编译和运行app(记住要运行在实际设备，因为你已经使用软件渲染)，现在你可以永久地保存完美的图像到你的photo library。
 
-#What About Image Metadata?（星期五）
+#What About Image Metadata?
+#Image元数据是什么？
 Let’s talk about image metadata for a moment. Image files taken on mobile phones have a variety of data associated with them, such as GPS coordinates, image format, and orientation.
+
+让我们讨论一下关于image元数据。
 
 Orientation in particular is something that you’ll need to preserve. The process of loading a UIImage into a CIImage, rendering to a CGImage, and converting back to a UIImage strips the metadata from the image. In order to preserve orientation, you’ll need to record it and then pass it back into the UIImage constructor.
 
