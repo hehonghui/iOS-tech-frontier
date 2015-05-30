@@ -6,7 +6,7 @@ Core Image入门教程(swift)
 * 译文出自 :[开发技术前线 www.devtf.cn](http://www.devtf.cn)
 * 译者 : [Sam Lau](https://github.com/samlaudev) 
 * 校对者: [这里校对者的github用户名](github链接)  
-* 状态 :  未完成
+* 状态 :  翻译完
 
 Core Image is a powerful framework that lets you easily apply filters to images. You can get all kinds of effects, such as modifying the vibrance, hue, or exposure. It can use either the CPU or GPU to process the image data and is very fast — fast enough to do real-time processing of video frames!
 
@@ -305,15 +305,15 @@ Build and run, and you should have a functioning live slider that will alter the
 #从相册获取图片
 Now that you can change the values of the filter on the fly, things are starting to get real interesting! But what if you don’t care for this image of flowers? Next you’ll set up a UIImagePickerController so you can get pictures from out of the photo album and into your app so you can play with them.
 
-现在你可以改变filter的值，事情也开始变得有趣。但是，如果你不喜欢这张花朵的图片。你可以设置UIImagePickerController来从相册选取图片放进你的app来使用。
+现在你可以改变filter的值，事情也开始变得有趣。但是，如果你不喜欢这张花朵的图片。你可以设置**UIImagePickerController**来从相册选取图片放进你的app来使用。
 
 You need to create a button that will bring up the photo album view, so open up Main.storyboard, drag in a button to the bottom right of the scene, and label it “Photo Album”. As before, use Auto Layout to Reset to Suggested Constraints. The button should be underneath the slider on the right side.
 
-你需要创建一个button来跳转到相册视图，所以打开Main.storyboard，拖动一个button到scene的右底部，并改变按钮文字为"Photo Album"。像之前一样，使用Auto Layout来Reset to Suggested Constraints。button应该在slider的右下边。
+你需要创建一个button来跳转到相册视图，所以打开**Main.storyboard**，拖动一个button到scene的右底部，并改变按钮文字为"Photo Album"。像之前一样，使用Auto Layout来Reset to Suggested Constraints。button应该在slider的右下边。
 
 Make sure the Assistant Editor is visible and displaying ViewController.swift, then control-drag from the button down to just above the closing } for the ViewController class. Set the Connection to Action, the name to loadPhoto, make sure that the Event is set to Touch Up Inside, and click Connect.
 
-确保Assistant Editor是可见和显示ViewController.swift，然后按着control键从button拖动到}的上面。设置Connection为Action，name为loadPhoto，确保Event设置为Touch Up Inside，最后点击Connect。
+确保Assistant Editor是可见和显示**ViewController.swift**，然后按着control键从button拖动到}的上面。设置Connection为**Action**，name为**loadPhoto**，确保Event设置为**Touch Up Inside**，最后点击**Connect**。
 
 Implement the loadPhoto method as follows:
 
@@ -330,11 +330,11 @@ loadPhoto方法实现如下：
 
 The first line of code instantiates a new UIImagePickerController. You then set the delegate of the image picker to self (the ViewController).
 
-第一行代码主要是创建一个UIImagePickerController对象。然后设置image picker的delegate为self(ViewController)
+第一行代码主要是创建一个**UIImagePickerController**对象。然后设置image picker的delegate为self(ViewController)
 
 You get a warning here. You need to declare that ViewController conforms to the UIImagePickerControllerDelegate and UINavigationControllerDelegate protocols.
 
-你会这里得到一个警告。你需要声明ViewController遵循UIImagePickerControllerDelegate和UINavigationControllerDelegate协议。
+你会这里得到一个警告。你需要声明**ViewController**遵循**UIImagePickerControllerDelegate**和**UINavigationControllerDelegate**协议。
 
 Still in ViewController.swift, change the class definition at the top of the file as follows:
 
@@ -357,7 +357,7 @@ func imagePickerController(picker: UIImagePickerController!, didFinishPickingMed
 
 This UIImagePickerControllerDelegate method isn’t completed yet – it’s just a placeholder to log some information about the chosen image. Note that whenever you implement any of the UIImagePickerControllerDelegate methods, you have to dismiss the UIImagePickerController explicitly in your implementation. If you don’t, then you’ll just stare at the image picker forever!
 
-UIImagePickerControllerDelegate方法还没完成 - 它只是一个占位符来打印被选择图片的信息。注意，不管你怎样实现UIImagePickerControllerDelegate这个方法，你必须在实现中显式地dimiss UIImagePickerController。如果你不这样做的话，你就会永远地盯着image picker。
+**UIImagePickerControllerDelegate**方法还没完成 - 它只是一个占位符来打印被选择图片的信息。注意，不管你怎样实现UIImagePickerControllerDelegate这个方法，你必须在实现中显式地dimiss UIImagePickerController。如果你不这样做的话，你就会永远地盯着image picker。
 
 
 Build and run the app, and tap the button. It will bring up the image picker with the photos in your photo album.
@@ -387,7 +387,7 @@ Note that it has an entry in the dictionary for the “original image” selecte
 
 Now that you’ve got a way to select an image, how do you use that as your beginImage?
 
-现在你已经有方法选取图片了，你怎样使用它作为你的beginImage呢？
+现在你已经有方法选取图片了，你怎样使用它作为你的**beginImage**呢？
 
 Simple, just update the delegate method to look like this:
 
@@ -407,19 +407,19 @@ func imagePickerController(picker: UIImagePickerController!, didFinishPickingMed
 ```
 You need to create a new CIImage from your selected photo. You can get the UIImage representation of the photo by finding it in the dictionary of values, under the UIImagePickerControllerOriginalImage key constant. Note that it’s better to use a constant for this, rather than a hardcoded string, because Apple could change the name of the key in the future.
 
-你需要从你选择的图片来创建一个新的CIImage。你可以通过在dictionary的UIImagePickerControllerOriginalImage键获取值，从而获取UIImage的表示。注意，最好就是用UIImagePickerControllerOriginalImage这个常量，而不是硬编码的字符串，因为Apple可能在将来会改变这个键的名字。
+你需要从你选择的图片来创建一个新的**CIImage**。你可以通过在dictionary的**UIImagePickerControllerOriginalImage**键获取值，从而获取**UIImage**的表示。注意，最好就是用UIImagePickerControllerOriginalImage这个常量，而不是硬编码的字符串，因为Apple可能在将来会改变这个键的名字。
 
 You need to convert the image into a CIImage object with the CIImage(image:) constructor. You then set the key in the filter dictionary so that the input image is the new CIImage you just created.
 
-你需要通过CIImage(image:)构造器将image转换为CIImage对象。然后在filter dictionary设置键，那么就可以创建新的CIImage。
+你需要通过**CIImage(image:)**构造器将image转换为**CIImage**对象。然后在filter dictionary设置键，那么就可以创建新的CIImage。
 
 The last line may seem odd. Remember how I pointed out that the code in changeValue ran the filter with the latest value and updated the image view with the result?
 
-最后一行代码看起来有点奇怪。还记得我说过，怎样运行changeValue方法，最新的值被设置在filter，然后更新image view。
+最后一行代码看起来有点奇怪。还记得我说过，怎样运行**changeValue**方法，最新的值被设置在filter，然后更新image view。
 
 Well you need to do that again, so you can just call changeValue. Even though the slider value hasn’t changed, you can still use that method’s code to get the job done. You could break that code into its own method (and if you were going to be working with more complexity, you would, to avoid confusion), but in this case your purpose is served by re-using the amountSliderValueChanged method. Pass in the amountSlider as the sender so that it has the correct value to use.
 
-好，你需要再做一次，所以你只是调用changeValue方法。即使slider的值还没改变，你仍然可以使用那个方法的代码来完成工作。你可以分解那段代码到自己的方法(如果你想做得更加复杂，但避免混淆)，但这种情况下，你的目的是为了复用amountSliderValueChanged方法。传递amountSlider作为sender以致它有正确的值使用。
+好，你需要再做一次，所以你只是调用**changeValue**方法。即使slider的值还没改变，你仍然可以使用那个方法的代码来完成工作。你可以分解那段代码到自己的方法(如果你想做得更加复杂，但避免混淆)，但这种情况下，你的目的是为了复用amountSliderValueChanged方法。传递**amountSlider**作为sender以致它有正确的值使用。
 
 Build and run, and now you’ll be able to update any image from your photo album!
 
@@ -433,7 +433,7 @@ What if you create the perfect sepia image, how do you hold on to it? You could 
 #保存到相册
 To save to the photo album, you need to use the AssetsLibrary framework. Add the following import statement to the top of ViewController.swift:
 
-为了保存到相册，你需要使用AssetsLibrary framework。在ViewController.swift文件顶部添加以下导入语句：
+为了保存到相册，你需要使用**AssetsLibrary** framework。在**ViewController.swift**文件顶部添加以下导入语句：
 
 ```
 import AssetsLibrary
@@ -448,15 +448,15 @@ This could be a problem, as the GPU stops whatever it’s doing when you switch 
 
 The solution to this is to use a CPU-based CIContext for rendering. The default behavior is to use the GPU because it’s much faster, and you don’t want to slow down the filtering performance for the sake of adding save functionality. Instead, you will create a second CIContext to use for saving the image. Note that the software renderer won’t work properly in the simulator.
 
-有一个解决方案就是使用基于CPU的CIContext来渲染。默认选择就是使用GPU，因为它处理速度更快，但你不想为了添加保存功能而降低过滤性能。而现在，你会创建另一个CIContext来保存image。注意，软件渲染将不会在模拟器正常工作。
+有一个解决方案就是使用基于CPU的**CIContext**来渲染。默认选择就是使用GPU，因为它处理速度更快，但你不想为了添加保存功能而降低过滤性能。而现在，你会创建另一个**CIContext**来保存image。注意，软件渲染将不会在模拟器正常工作。
 
 Add a new button to your app that will let you save the photo you are currently modifying with all the changes you’ve made. Open Main.storyboard, add a new button labeled “Save to Album”. Place the button under the slider on the left side, and add the suggested constraints.
 
-添加一个新button到你的app，这个button会让你保存修改后的图片。打开Main.storyboard，添加一个新的button，修改button标题为“Save to Album”。将button放在slider的左边，然后添加相应的约束。
+添加一个新button到你的app，这个button会让你保存修改后的图片。打开**Main.storyboard**，添加一个新的button，修改button标题为“Save to Album”。将button放在slider的左边，然后添加相应的约束。
 
 Then connect it to a new savePhoto(sender:) method, like you did last time, and implement the method as follows:
 
-然后像上一次一样，连接button到一个新方法savePhoto(sender:)，方法实现如下：
+然后像上一次一样，连接button到一个新方法**savePhoto(sender:)**，方法实现如下：
 
 ```
 @IBAction func savePhoto(sender: AnyObject) {
@@ -507,7 +507,7 @@ Orientation in particular is something that you’ll need to preserve. The proce
 
 Start by adding a new property inside the ViewController class definition:
 
-添加一个新属性到ViewController类定义：
+添加一个新属性到**ViewController**类定义：
 
 ```
 var orientation: UIImageOrientation = .Up
@@ -515,7 +515,7 @@ var orientation: UIImageOrientation = .Up
 
 Next, add the following line to imagePickerController(picker:didFinishPickingMediaWithInfo:) just before setting beginImage:
 
-下一步，添加下面代码到imagePickerController(picker:didFinishPickingMediaWithInfo:)方法里，设置beginImage代码行的上面：
+下一步，添加下面代码到**imagePickerController(picker:didFinishPickingMediaWithInfo:)**方法里，设置**beginImage**代码行的上面：
 
 ```
 orientation = gotImage.imageOrientation
@@ -528,7 +528,7 @@ This will save the original image orientation to the property.
 
 Finally, alter the line in amountSliderValueChanged that creates the UIImage that you set to the imageView object:
 
-最后，修改在amountSliderValueChanged方法里，那段创建UIImage来设置imageView对象的代码：
+最后，修改在**amountSliderValueChanged**方法里，那段创建UIImage来设置imageView对象的代码：
 
 ```
 let newImage = UIImage(CGImage: cgimg, scale:1, orientation:orientation)
@@ -547,11 +547,11 @@ CIFilter API在Mac OS有超过160个，在iOS 8有126个关于filters的API。
 
 In order to find out what filters are available on a given device, you can use the CIFilter method filterNamesInCategory(kCICategoryBuiltIn). This method will return an array of filter names.
 
-为了查找有哪些filters在给定的设备是可用的，你可以使用CIFilter的filterNamesInCategory(kCICategoryBuiltIn)方法。这个方法会返回一个关于filter名字的数组。
+为了查找有哪些filters在给定的设备是可用的，你可以使用CIFilter的**filterNamesInCategory(kCICategoryBuiltIn)**方法。这个方法会返回一个关于filter名字的数组。
 
 In addition, each filter has an attributes() method that will return a dictionary containing information about that filter. This information includes the filter’s name and category, the kinds of inputs the filter takes, and the default and acceptable values for those inputs.
 
-除此之外，每个filter有一个attributes()方法返回一个dictionary，dictionary包含关于filter的信息。这些信息包括filter的名字，分类，filter接受哪些输入，默认输入，和这些输入接受哪些值。
+除此之外，每个filter有一个**attributes()**方法返回一个dictionary，dictionary包含关于filter的信息。这些信息包括filter的名字，分类，filter接受哪些输入，默认输入，和这些输入接受哪些值。
 
 Let’s put together a method for your class that logs the information for all the currently available filters. Add this method inside the ViewController class definition:
 
@@ -571,11 +571,11 @@ func logAllFilters() {
 ```
 This method simply gets the array of filters from filterNamesInCategory(). It prints the list of names first. Then, for each name in the list, it instantiates the filter and logs its attributes dictionary.
 
-这个方法仅仅通过filterNamesInCategory()方法来获取filters的数组。首先，它打印名字的列表。然后，遍历列表获取每个名字，根据名字实例化filter和打印它的属性dictionary。
+这个方法仅仅通过**filterNamesInCategory()**方法来获取filters的数组。首先，它打印名字的列表。然后，遍历列表获取每个名字，根据名字实例化filter和打印它的属性dictionary。
 
 Call this method at the end of viewDidLoad():
 
-在viewDidLoad()方法最后调用这个方法：
+在**viewDidLoad()**方法最后调用这个方法：
 
 ```
 self.logAllFilters()
@@ -685,7 +685,7 @@ Here’s what’s going on, section by section:
 
 4. imageByCroppingToRect() takes an output CIImage and crops it to the provided rect. In this case, you need to crop the output of the CIRandomGenerator filter because it tiles infinitely. If you don’t crop it at some point, you’ll get an error saying that the filters have ‘an infinite extent’. CIImages don’t actually contain image data, they describe a ‘recipe’ for creating it. It’s not until you call a method on the CIContext that the data is actually processed.
 
-4. imageByCroppingToRect()接受被裁剪的rect作为参数，然后返回CIImage。在这种情况下，你需要裁剪CIRandomGenerator filter的输出，因为它无限地碎片化。在某种情况下，如果你不裁剪它，你会得到一个错误信息，说filters有‘an infinite extent’。CIImages实际上是不包含image数据，它们创建它时将它描述成一个'recipe'。直到你在CIContext调用一个方法时数据才实际被处理。
+4. **imageByCroppingToRect()**接受被裁剪的rect作为参数，然后返回CIImage。在这种情况下，你需要裁剪CIRandomGenerator filter的输出，因为它无限地碎片化。在某种情况下，如果你不裁剪它，你会得到一个错误信息，说filters有‘an infinite extent’。CIImages实际上是不包含image数据，它们创建它时将它描述成一个'recipe'。直到你在CIContext调用一个方法时数据才实际被处理。
  
 5. Combine the output of the sepia filter with the output of the CIRandomGenerator filter. This filter performs the exact same operation as the ‘Hard Light’ setting does in a photoshop layer. Most (if not all) of the filter options in photoshop are achievable using Core Image.
 
@@ -705,7 +705,7 @@ That’s all for this filter chain. You should now have an idea of how complex t
 
 The next thing to do is implement this method in amountSliderValueChanged(). Change these two lines:
 
-下一件事就是在amountSliderValueChanged()方法实现。改变这两行代码：
+下一件事就是在**amountSliderValueChanged()**方法实现。改变这两行代码：
 
 ```
 filter.setValue(sliderValue, forKey: "inputIntensity")
@@ -733,7 +733,7 @@ That noise could probably be more subtle, but I’ll leave that experiment to yo
 
 Here is the example project with all of the code from the above tutorial.
 
-这个是示例工程包含这个教程所有的代码。
+这个是[示例工程](http://cdn4.raywenderlich.com/wp-content/uploads/2014/07/CoreImageFun.zip)包含这个教程所有的代码。
 
 That about covers the basics of using Core Image filters. It’s a pretty handy technique, and you should be able to use it to apply some neat filters to images quite quickly!
 
@@ -741,7 +741,7 @@ That about covers the basics of using Core Image filters. It’s a pretty handy 
 
 Remember, the sample app prints out a list of all the available filters to the console when it starts up. Why not try playing around with some of those? You can check out the Core Image filter reference documentation for notes on all the filters.
 
-记住，这个示例app在一开始的时候打印出所有可用的filters列表到控制台。为什么不尝试使用这些filters呢？你可以在参考文档中查看Core Image filter的使用。
+记住，这个示例app在一开始的时候打印出所有可用的filters列表到控制台。为什么不尝试使用这些filters呢？你可以在[Core Image filter reference documentation](https://developer.apple.com/library/mac/documentation/GraphicsImaging/Reference/CoreImageFilterReference/Reference/reference.html)查看更多关于filters的详细信息。
 
 If you have any questions or comments on this tutorial or Core Image in general, please join the forum discussion below!
 
