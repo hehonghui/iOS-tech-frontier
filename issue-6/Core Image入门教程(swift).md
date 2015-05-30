@@ -729,10 +729,20 @@ That noise could probably be more subtle, but I’ll leave that experiment to yo
 这种噪音效果会是更加微妙，但我会留给你自行试验。现在你完全有能力随意操纵Core Image，尽管去尝试吧！
 
 #Where To Go From Here?（星期六）
+#下一步
+
 Here is the example project with all of the code from the above tutorial.
+
+这个是示例工程包含这个教程所有的代码。
 
 That about covers the basics of using Core Image filters. It’s a pretty handy technique, and you should be able to use it to apply some neat filters to images quite quickly!
 
+它包含了如何使用Core Image filters的基本方法。这是一个很容易上手的技术，所以你应该很快就能使用它来应用到一些优雅的filters。
+
 Remember, the sample app prints out a list of all the available filters to the console when it starts up. Why not try playing around with some of those? You can check out the Core Image filter reference documentation for notes on all the filters.
 
+记住，这个示例app在一开始的时候打印出所有可用的filters列表到控制台。为什么不尝试使用这些filters呢？你可以在参考文档中查看Core Image filter的使用。
+
 If you have any questions or comments on this tutorial or Core Image in general, please join the forum discussion below!
+
+如果你在这个教程中有任何问题或评论，请加入这个论坛来讨论。
