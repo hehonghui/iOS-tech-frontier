@@ -14,8 +14,9 @@
 3. 将模板[template.md](template.md)中的内容拷贝到markdown文件中，按照模板填写、翻译完内容(文章所需图片请存放到图床上，不要放在仓库中,图片宽度尽量控制在400 px左右),完成翻译后将状态修改为"校对中",提交pull request到本项目;
 4. 管理员校对完成之后便会发布.   
 
-[git流程简介](git简单使用教程.md)     
-[markdown语法简单教程](markdown简单教程.md)
+* [git流程简介](git简单使用教程.md)     
+* [markdown语法简单教程](markdown简单教程.md)
+* [git操作流程](git操作流程.md)
 
 ## 注意事项
 1. 在翻译文章时，保留专有名词；
@@ -27,7 +28,7 @@
 
 
 
-<b id="category" />
+<b id="category" ></b>
 ## 文章分类
 |   来源    |   介绍     |
 |----------|-------------|
@@ -36,7 +37,7 @@
 | [Medium] | 类似于Reddit的社区，这是其中的iOS板块[Medium](https://medium.com/ios-os-x-development/) |
 | [Others] | 其他来源的优秀文章 |
 
-<b id="recommend" />
+<b id="recommend" ></b>
 ## 推荐文章
 如果您有好的文章推荐我们翻译，请在 在[bboyfeiyu/iOS-tech-frontier](https://github.com/bboyfeiyu/iOS-tech-frontier/issues/) 下提一个issue，[Issue 模板](https://github.com/bboyfeiyu/iOS-tech-frontier/issues/1
 ): 
@@ -61,7 +62,7 @@
 译者翻译完成之后想本项目发布pull request，校对完成之后会合并您的提交，并且将对应的issue关闭。
 
 
-<b id="articles" />
+<b id="articles" ></b>
 ## 已完成列表
 
 ### 第五期 (2015.5.25)
