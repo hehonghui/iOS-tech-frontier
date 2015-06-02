@@ -18,7 +18,7 @@ This tutorial will show you how to recreate this exact effect in Swift and Core 
 <img src="http://cdn3.raywenderlich.com/wp-content/uploads/2015/02/Circle.gif"/>
 </div>
 
-#Getting Started
+#Getting Started(星期三)
 
 First [download the starter project](http://cdn1.raywenderlich.com/wp-content/uploads/2015/02/ImageLoaderIndicator-Starter.zip) for this tutorial, and build and run. After a moment, you should see a simple image displayed as follows:
 
@@ -35,7 +35,7 @@ You will create this animation in two distinct phases:
 
 Follow along closely to prevent yourself from going in “circles”!
 
-#Creating the Circular Indicator
+#Creating the Circular Indicator（星期三）
 
 Think for a moment about the basic design of the progress indicator. The indicator is initially empty to show a progress of 0%, then gradually fills in as the image is downloaded. This is fairly simple to achieve with a **CAShapeLayer** whose **path** is a circle.
 
@@ -83,7 +83,7 @@ func configure() {
 
 Both of the initializers call **configure**. **configure** sets up a shape layer to have a line width of 2 points, a clear fill color, and a red stroke color. It then adds the shape layer you configured as a sublayer of the view’s main layer, and then set the view’s **backgroundColor** to white so the rest of the screen is blanked out while the image loads.
 
-#Adding the Path
+##Adding the Path（星期四）
 
 You’ll notice that you haven’t yet assigned a path to the layer. To do that, add the following method (still in **CircularLoaderView.swift**):
 
@@ -145,7 +145,7 @@ Build and run your project; you’ll see a red, hollow circle appear like so:
 
 Okay — you have your progress indicator drawing on the screen. Your next task is to vary the stroke as the download progresses.
 
-#Modifying the Stroke Length
+##Modifying the Stroke Length（星期四）
 Head back to **CircularLoaderView.swift** and add the following lines directly below the other properties in the file:
 
 ```
@@ -198,7 +198,7 @@ Even though you didn’t add any animation code yourself, **CALayer** handily de
 
 That takes care of the first phase. Now on to the second and final phase — the big reveal! 
 
-#Creating the Reveal Animation
+#Creating the Reveal Animation（星期五）
 The reveal phase gradually displays the image in a window in the shape of an expanding circular ring. If you’ve read my [previous tutorial](http://www.raywenderlich.com/86521/how-to-make-a-view-controller-transition-animation-like-in-the-ping-app) on creating a Ping-style view controller animation, you’ll know that this is a perfect use-case of the **mask** property of a **CALayer**.
 
 Add the following method to **CircularLoaderView.swift**:
@@ -235,7 +235,7 @@ Build and run your app; once the image downloads you’ll see it partially revea
 
 You can see your image in the background — but just barely! 
 
-#Expanding Rings
+##Expanding Rings（星期五）
 Your next step is to expand this ring both inwards and outwards. You could do this with two separate, concentric **UIBezierPath**, but you can do it in a more efficient manner with just a single Bezier path.
 
 How? You simply increase the circle’s radius (the **path** property) to expand outward, while simultaneously increasing the line’s width (the **lineWidth** property) to make the ring thicker and expand inward. Eventually, both values grow enough to reveal the entire image underneath.
@@ -306,7 +306,7 @@ Build and run your project again, and now you’ll see the full effect of your a
 
 Congratulations, you have finished creating the circular image loading animation!
 
-#Where to Go From Here?
+#Where to Go From Here?（星期五）
 
 You can [download the completed project here](http://cdn2.raywenderlich.com/wp-content/uploads/2015/02/ImageLoaderIndicator-Final.zip).
 
