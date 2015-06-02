@@ -2,6 +2,7 @@
 ---
 
 >* 原文链接 : [Working with CloudKit in iOS 8](http://www.appcoda.com/cloudkit-introduction-tutorial/)
+* 译文出自 [开发技术前线](http://www.dectf.cn)
 * 译者 : [Harries Chen](https://github.com/mrchenhao) 
 
 对于开发者来说，如何用适当的方式来存储应用程序数据是一个比较重要的问题。 毫无疑问，任何应用都或多或少需要存储一些数据。对于一般的应用程序来说，被保存的数据各不相同，大部分时间都被存储在本地以便再次在相同的设备运行该应用程序。尽管这不是是唯一的选择。随着云服务的发展，一个应用程序也可以把数据存储在云端，既可以完全把数据存储在云端，也可以本地和远程都存储。
