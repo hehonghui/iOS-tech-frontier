@@ -65,6 +65,13 @@
 <b id="articles" ></b>
 ## 已完成列表
 
+### 第六期 (2015.6.1)
+|       文章标题        |         译者           | 
+|----------------------|------------------------|
+|  [iOS8使用iCloud](issue-6/iOS8使用iCloud.md) |  [Harries Chen](https://github.com/mrchenhao)  |  
+|  [iOS项目的持续集成与管理](issue-6/iOS项目的持续集成与管理.md) |  [Sam Lau](https://github.com/samlaudev)  |  
+|  [通过减少动态分发来提高Swift的执行效率](issue-6/通过减少动态分发来提高Swift的执行效率.md) |  [samw00](https://github.com/samw00/) |  
+
 ### 第五期 (2015.5.25)
 |       文章标题        |         译者           | 
 |----------------------|------------------------|
