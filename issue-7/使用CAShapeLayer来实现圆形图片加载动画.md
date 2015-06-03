@@ -10,13 +10,20 @@
 
 A few weeks ago, Michael Villar created a really interesting loading animation for his post on Motion Experiments.
 
+几个星期之前，Michael Villar在Motion试验中创建一个非常有趣的加载动画。
+
 The GIF to the right shows the loading animation, which marries a circular progress indicator with a circular reveal animation. The combined effect is fascinating, unique, and more than a little mesmerizing! 
 
-This tutorial will show you how to recreate this exact effect in Swift and Core Animation. Let’s get animating!
+下面的GIF图片展示这个加载动画，它将一个圆形进度指示器和圆形渐现动画结合。这个组合的效果有趣，独一无二和有点迷人。
 
 <div align="center">
 <img src="http://cdn3.raywenderlich.com/wp-content/uploads/2015/02/Circle.gif"/>
 </div>
+
+This tutorial will show you how to recreate this exact effect in Swift and Core Animation. Let’s get animating!
+
+这个教程将会教你如何使用Swift和Core Animatoin来重新创建这个效果。让我们开始吧！
+
 
 #Getting Started(星期三)
 
