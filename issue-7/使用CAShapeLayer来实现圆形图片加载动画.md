@@ -57,21 +57,35 @@ Follow along closely to prevent yourself from going in “circles”!
 
 紧跟着下面步骤来逐步实现！
 
-#Creating the Circular Indicator（星期三）
+#Creating the Circular Indicator
+
+#创建圆形指示器
 
 Think for a moment about the basic design of the progress indicator. The indicator is initially empty to show a progress of 0%, then gradually fills in as the image is downloaded. This is fairly simple to achieve with a **CAShapeLayer** whose **path** is a circle.
 
+想一下关于进度指示器的基本设计。这个指示器一开始是空来展示0%进度，然后逐渐填满直到image完成下载。通过设置**CAShapeLayer**的**path**为circle来实现是相当简单。
+
 > Note: If you’re new to the concept of **CAShapeLayer** (or **CALayers** in general, check out Scott Gardner’s [CALayer in iOS with Swift](http://www.raywenderlich.com/90488/calayer-in-ios-with-swift-10-examples) article.
+
+> 注意：如果你不熟悉**CAShapeLayer**(或**CALayers**)的基本概念，可以查看Scott Gardner的[CALayer in iOS with Swift](http://www.raywenderlich.com/90488/calayer-in-ios-with-swift-10-examples)文章。
 
 You can control the start and end position of the outline, or **stroke**, of your shape with the **CAShapeLayer** properties **strokeStart** and **strokeEnd**. By varying **strokeEnd** between 0 and 1, you can fill in the stroke appropriately to show the progress of the download.
 
+你可以通过**CAShapeLayer**的**strokeStart**和**strokeEnd**属性来控制开始和结束位置的外观。通过改变**strokeEnd**的值在0到1之间，你可以恰当地填充下载进度。
+
 Let’s try this out. Create a new file with the **iOS\Source\Cocoa Touch Class template**. Name it **CircularLoaderView** and set it to be a subclass of **UIView** as shown below:
+
+让我们试一下。通过**iOS\Source\Cocoa Touch Class template**来创建一个新的文件，文件名为**CircularLoaderView**。设置它为**UIView**的子类。
 
 ![](http://cdn2.raywenderlich.com/wp-content/uploads/2015/02/Screenshot-2015-01-25-19.25.43.png)
 
 Click **Next**, and then **Create**. This new subclass of **UIView** will house all of your new animation code.
 
+点击**Next**和**Create**。新的子类**UIView**将用来保存动画的代码。
+
 Open **CircularLoaderView.swift** and add the following property and constant to the class:
+
+打开**CircularLoaderView.swift**和添加以下属性和常量到这个类：
 
 ```
 let circlePathLayer = CAShapeLayer()
@@ -80,7 +94,11 @@ let circleRadius: CGFloat = 20.0
 
 **circlePathLayer** represents the circular path, while **circleRadius**, ostensibly, will be the radius of the circular path.
 
+**circlePathLayer**表示这个圆形路径，而**circleRadius**表示这个圆形路径的半径。
+
 Add the following initialization code to **CircularLoaderView.swift** to configure the shape layer:
+
+添加以下初始化代码到**CircularLoaderView.swift**来配置这个shape layer:
 
 ```
 override init(frame: CGRect) {
@@ -104,6 +122,8 @@ func configure() {
 ```
 
 Both of the initializers call **configure**. **configure** sets up a shape layer to have a line width of 2 points, a clear fill color, and a red stroke color. It then adds the shape layer you configured as a sublayer of the view’s main layer, and then set the view’s **backgroundColor** to white so the rest of the screen is blanked out while the image loads.
+
+两个初始化方法都调用**configure**方法，**configure**方法设置一个shape layer的line width为2，fill color为clear,stroke color为red。将添加circlePathLayer添加到view's main layer。然后设置view的 **backgroundColor** 为white，那么当image加载时，屏幕的其余部分就忽略掉。
 
 ##Adding the Path（星期四）
 
