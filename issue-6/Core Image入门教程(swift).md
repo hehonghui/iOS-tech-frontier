@@ -191,21 +191,14 @@ CIFilter有多个方法允许你在dictionary根据不同键来设置多个值�
 
 编译和运行，你可以修改slider值来实时地改变图像。
 
-#Getting Photos from the Photo Album
+
 #从相册获取图片
-Now that you can change the values of the filter on the fly, things are starting to get real interesting! But what if you don’t care for this image of flowers? Next you’ll set up a UIImagePickerController so you can get pictures from out of the photo album and into your app so you can play with them.
 
 现在你可以改变filter的值，事情也开始变得有趣。但是，如果你不喜欢这张花朵的图片。你可以设置**UIImagePickerController**来从相册选取图片放进你的app来使用。
 
-You need to create a button that will bring up the photo album view, so open up Main.storyboard, drag in a button to the bottom right of the scene, and label it “Photo Album”. As before, use Auto Layout to Reset to Suggested Constraints. The button should be underneath the slider on the right side.
-
 你需要创建一个button来跳转到相册视图，所以打开**Main.storyboard**，拖动一个button到scene的右底部，并改变按钮文字为"Photo Album"。像之前一样，使用Auto Layout来Reset to Suggested Constraints。button应该在slider的右下边。
 
-Make sure the Assistant Editor is visible and displaying ViewController.swift, then control-drag from the button down to just above the closing } for the ViewController class. Set the Connection to Action, the name to loadPhoto, make sure that the Event is set to Touch Up Inside, and click Connect.
-
 确保Assistant Editor是可见和显示**ViewController.swift**，然后按着control键从button拖动到}的上面。设置Connection为**Action**，name为**loadPhoto**，确保Event设置为**Touch Up Inside**，最后点击**Connect**。
-
-Implement the loadPhoto method as follows:
 
 loadPhoto方法实现如下：
 
@@ -218,22 +211,15 @@ loadPhoto方法实现如下：
 
 ```
 
-The first line of code instantiates a new UIImagePickerController. You then set the delegate of the image picker to self (the ViewController).
-
 第一行代码主要是创建一个**UIImagePickerController**对象。然后设置image picker的delegate为self(ViewController)
 
-You get a warning here. You need to declare that ViewController conforms to the UIImagePickerControllerDelegate and UINavigationControllerDelegate protocols.
-
 你会这里得到一个警告。你需要声明**ViewController**遵循**UIImagePickerControllerDelegate**和**UINavigationControllerDelegate**协议。
-
-Still in ViewController.swift, change the class definition at the top of the file as follows:
 
 仍在ViewController.swift文件，在文件顶部改变类的定义，代码如下：
 
 ```
 class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 ```
-Now implement the following method:
 
 而方法实现如下：
 
@@ -245,20 +231,11 @@ func imagePickerController(picker: UIImagePickerController!, didFinishPickingMed
 
 ```
 
-This UIImagePickerControllerDelegate method isn’t completed yet – it’s just a placeholder to log some information about the chosen image. Note that whenever you implement any of the UIImagePickerControllerDelegate methods, you have to dismiss the UIImagePickerController explicitly in your implementation. If you don’t, then you’ll just stare at the image picker forever!
-
 **UIImagePickerControllerDelegate**方法还没完成 - 它只是一个占位符来打印被选择图片的信息。注意，不管你怎样实现UIImagePickerControllerDelegate这个方法，你必须在实现中显式地dimiss UIImagePickerController。如果你不这样做的话，你就会永远地盯着image picker。
-
-
-Build and run the app, and tap the button. It will bring up the image picker with the photos in your photo album.
 
 编译和运行这个app，点击button。它会跳转到相册任你选择图片。
 
-> If you are running this in the simulator, you probably won’t have any photos. On the simulator (or on a device without a camera), you can use Safari to save images to your photo album. Open Safari, find an image, tap and hold, and you’ll get an option to save that image. Next time you run your app, it will appear in your photo library.
-
 > 如果你在模拟器运行app，你可以不会有图片。在模拟器(或在没有摄像头的设备)，你可以使用Safari来保存图片到相册。打开Safari，查找一张图片，点着并长按，你就会有一个选项来保存图片。下一次你运行你app，它将会出现在你图片库。
-
-Here’s what you should see in the console after you’ve selected an image (something like this):
 
 在控制台中，你选择完一张图片之后，就看到类似以下的打印信息：
 
@@ -271,15 +248,9 @@ UIImagePickerControllerReferenceURL = "assets-library://asset/asset.PNG?id=DCFE1
 
 ```
 
-Note that it has an entry in the dictionary for the “original image” selected by the user. This is what you want to pull out and filter!
-
 注意，它有一个dictionary入口，对应就是用户选择的“原始图片”。这个就是你想拽取和过滤的东西。
 
-Now that you’ve got a way to select an image, how do you use that as your beginImage?
-
 现在你已经有方法选取图片了，你怎样使用它作为你的**beginImage**呢？
-
-Simple, just update the delegate method to look like this:
 
 很简答，只需将delegate方法修改成以下代码：
 
@@ -295,27 +266,16 @@ func imagePickerController(picker: UIImagePickerController!, didFinishPickingMed
 }
 
 ```
-You need to create a new CIImage from your selected photo. You can get the UIImage representation of the photo by finding it in the dictionary of values, under the UIImagePickerControllerOriginalImage key constant. Note that it’s better to use a constant for this, rather than a hardcoded string, because Apple could change the name of the key in the future.
 
 你需要从你选择的图片来创建一个新的**CIImage**。你可以通过在dictionary的**UIImagePickerControllerOriginalImage**键获取值，从而获取**UIImage**的表示。注意，最好就是用UIImagePickerControllerOriginalImage这个常量，而不是硬编码的字符串，因为Apple可能在将来会改变这个键的名字。
 
-You need to convert the image into a CIImage object with the CIImage(image:) constructor. You then set the key in the filter dictionary so that the input image is the new CIImage you just created.
-
 你需要通过**CIImage(image:)**构造器将image转换为**CIImage**对象。然后在filter dictionary设置键，那么就可以创建新的CIImage。
-
-The last line may seem odd. Remember how I pointed out that the code in changeValue ran the filter with the latest value and updated the image view with the result?
 
 最后一行代码看起来有点奇怪。还记得我说过，怎样运行**changeValue**方法，最新的值被设置在filter，然后更新image view。
 
-Well you need to do that again, so you can just call changeValue. Even though the slider value hasn’t changed, you can still use that method’s code to get the job done. You could break that code into its own method (and if you were going to be working with more complexity, you would, to avoid confusion), but in this case your purpose is served by re-using the amountSliderValueChanged method. Pass in the amountSlider as the sender so that it has the correct value to use.
-
 好，你需要再做一次，所以你只是调用**changeValue**方法。即使slider的值还没改变，你仍然可以使用那个方法的代码来完成工作。你可以分解那段代码到自己的方法(如果你想做得更加复杂来避免混淆)，但这种情况下，你的目的是为了复用amountSliderValueChanged方法。传递**amountSlider**作为sender以致它有正确的值使用。
 
-Build and run, and now you’ll be able to update any image from your photo album!
-
 编译和运行，你能从相册中更新任何图片。
-
-What if you create the perfect sepia image, how do you hold on to it? You could take a screenshot, but the proper way is to save the filtered photo back into the photo album.
 
 如果你创建完美的深褐色图片，你怎样才能保存它。你可以截图，但最恰当的方式就是保存已过滤的图片到相册。
 
