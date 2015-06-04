@@ -14,42 +14,13 @@ Core Image过滤器能够以链式的方式结合将多个特效应用到一个�
 
 在这个教程中，你将会亲手实践如何使用Core Image.通过使用几个不同的过滤器，你会看到实时使用各种炫酷的特效是多么容易。
 
-#Getting Started
 #基础
-Before you get started, let’s discuss some of the most important classes in the Core Image framework:
-
-* **CIContext**. All of the processing of a core image is done in a CIContext. This is somewhat similar to a Core Graphics or OpenGL context.
-* **CIImage**. This class hold the image data. It can be created from a UIImage, from an image file, or from pixel data.
-* **CIFilter**. The CIFilter class has a dictionary that defines the attributes of the particular filter that it represents. Examples of filters are vibrance, color inversion, cropping, and many more.
-
-You’ll be using each of these classes in this project.
 
 在你开始之前，让我们先讨论在Core Image框架中几个很重要的类：
 
 * **CIContext**. 所有处理core image的工作都在CIContext完成。这个与Core Graphics或OpenGL context有几分相似。
 * **CIImage**. 这个类保存图像数据，它能够从UIImage，图像文件或像素数据等方式来创建。
 * **CIFilter**. CIFilter类有一个字典(dictionary)来定义特定属性的过滤器，比如常用过滤器有饱和度，颜色翻转，裁剪等属性，还有很多没列出来。
-
-###CoreImageFun
-Open up Xcode and create a new project with the iOS \ Application \ Single View Application template. Enter oreImageFun for the Product Name, select iPhone for the Devices option, and make sure that Language is set to Swift.
-
-Download the resources for this tutorial, and add the included image.png to your project.
-
-Next, open Main.storyboard, and drag an image view in as a subview of the existing view. In the Attributes Inspector, set the image view’s content mode to Aspect Fit, so it won’t distort images.
-
-Next, ensure the Document Outline (the hierarchy left of the canvas in Interface Builder) is visible – you can enable it from the menu at Editor \ Show Document Outline.
-
-Control-drag from the image view to its superview three times to add three constraints:
-
-1. Add a constraint Top Space to Layout Guide, using the Size Inspector to set the constraint’s constant to zero if necessary.
-2. Add a constraint to Center Horizontally in Container (also setting its constant to zero).
-3. Add an Equal Width constraint.
-
-Finally, to constrain the image view’s height, control drag from the image view to itself, and add an Aspect Ratio constraint, using the Size Inspector to set its multiplier 8:5 for the ratio of width to height and a constant factor of zero. Finally, navigate to Editor \ Resolve Auto Layout Issues \ All Views in View Controller \ Update Frames, so Interface Builder updates the layout based on these new constraints.
-
-Next, open the Assistant Editor and make sure it’s displaying ViewController.swift. Control-drag from the UIImageView to just after the opening brace of the ViewController class. Name the outlet imageView, and click Connect.
-
-Build and run the project just to make sure everything is good so far – you should just see an empty screen. The initial setup is complete – now onto Core Image!
 
 ###CoreImageFun
 打开Xcode并使用**iOS \ Application \ Single View Application**模板来创建一个新工程。输入**CoreImageFun**作为Product Name，选择iPhone为Devices option和确定使用**swift**作为编程语言。
