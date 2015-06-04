@@ -217,8 +217,13 @@ Okay — you have your progress indicator drawing on the screen. Your next task 
 
 好的 - 你已经有进度指示器画在屏幕上。你的下一个任务就是根据下载进度变化来stroke。
 
-##Modifying the Stroke Length（星期四）
+##Modifying the Stroke Length
+
+#修改Stroke长度
+
 Head back to **CircularLoaderView.swift** and add the following lines directly below the other properties in the file:
+
+回到**CircularLoaderView.swift**文件和在这个文件的其他属性直接添加以下代码：
 
 ```
 var progress: CGFloat {
@@ -239,7 +244,11 @@ var progress: CGFloat {
 
 This creates a **computed property** — that is, a property without any backing variable — that has a custom setter and getter. The getter simply returns **circlePathLayer.strokeEnd**, and the setter validates that the input is between 0 and 1 and sets the layer’s **strokeEnd** property accordingly.
 
+以上代码创建一个**computed property** - 也就是一个属性没有任何后背的变量 - 它有一个自定义的setter和getter。这个getter只是返回**circlePathLayer.strokeEnd**，setter验证输入值要在0到1之间，然后恰当地设置layer的**strokeEnd**属性。
+
 Add the following line to **configure()** to initialize progress on first run:
+
+在第一次运行的时候，添加下面这行代码到**configure()**来初始化进度：
 
 ```
 progress = 0
@@ -247,9 +256,15 @@ progress = 0
 
 Build and run your project; you should see nothing but a blank white screen. Trust me! This is good news!  Setting **progress** to 0 in turn sets the **strokeEnd** to 0, which means no part of the shape layer was drawn.
 
+编译和运行工程；除了一个空白的屏幕，你应该什么也没看到。相信我，这是一个好消息。设置**progress**为0，反过来会设置**strokeEnd**也为0，这就意味着shape layer什么也没画。
+
 The only thing left to do with your indicator is to update **progress** in the image download callback.
 
+唯一剩下要做的就是你的指示器在image下载回调方法中更新**progress**。
+
 Go back to **CustomImageView.swift** and replace the comment **Update progress here** with the following:
+
+回到**CustomImageView.swift**文件和用以下代码来代替注释**Update progress here**：
 
 ```
 self!.progressIndicatorView.progress = CGFloat(receivedSize)/CGFloat(expectedSize)
@@ -257,10 +272,16 @@ self!.progressIndicatorView.progress = CGFloat(receivedSize)/CGFloat(expectedSiz
 
 This calculates the progress by dividing **receivedSize** by **expectedSize**.
 
+这主要通过**receivedSize**除以**expectedSize**来计算进度。
+
 > Note: You’ll notice the block uses a weak reference to self – this is to avoid a retain cycle.
 
+> 注意：你会注意到block使用weak self引用 - 这样能够避免retain cycle。
 
 Build and run your project; you’ll see the progress indicator begin to move like so:
+
+编译和运行你的工程；你会看到进度指示器像这样开始移动：
+
 
 <div align="center">
 <img src="http://cdn2.raywenderlich.com/wp-content/uploads/2015/02/indicator.gif"/>
@@ -268,7 +289,11 @@ Build and run your project; you’ll see the progress indicator begin to move li
 
 Even though you didn’t add any animation code yourself, **CALayer** handily detects any animatable property on the layer and smoothly animates is as it changes. Neat!
 
+即使你自己没有添加任何动画代码，**CALayer**在layer轻松地发现任何animatable属性和当属性改变时平滑地animate。
+
 That takes care of the first phase. Now on to the second and final phase — the big reveal! 
+
+上面已经完成第一个阶段。现在进入第二和最后阶段。
 
 #Creating the Reveal Animation（星期五）
 The reveal phase gradually displays the image in a window in the shape of an expanding circular ring. If you’ve read my [previous tutorial](http://www.raywenderlich.com/86521/how-to-make-a-view-controller-transition-animation-like-in-the-ping-app) on creating a Ping-style view controller animation, you’ll know that this is a perfect use-case of the **mask** property of a **CALayer**.
