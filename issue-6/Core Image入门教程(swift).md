@@ -113,33 +113,20 @@ self.imageView.image = newImage
 
 在这个例子中，自己创建CIContext与不创建没什么不同。但下个部分中，你会看到当你动态地修改filter时，为什么CIContext对性能影响很大。
 
-#Changing Filter Values
+
 #修改Filter值
-This is great, but it’s just the beginning of what you can do with Core Image filters. Lets add a slider and set it up so you can adjust the filter settings in real time.
 
 目前还不错，但这只是使用Core Image filters的入门方式。让我们添加一个slider，然后设置它以便你能够实时调整filter的设置
 
-Open Main.storyboard, and drag in a slider, and drop it in below the image view, centered horizontally. With the view selected, navigate to Editor \ Resolve Auto Layout Issues \ Selected Views \ Reset to Suggested Constraints, increasing the width constraint if desired.
-
 打开**Main.storyboard**，选取一个slider，将它拖放到image view的上面，并水平对齐。选中view，然后点击**Editor \ Resolve Auto Layout Issues \ Selected Views \ Reset to Suggested Constraints**，添加需要的宽约束。
-
-Make sure the Assistant Editor is visible and displaying ViewController.swift, then control-drag from the slider down below the previously added @IBOutlet, set the name to amountSlider, and click Connect.
 
 确保Assistant Editor可见和显示**ViewController.swift**，然后按着control键从slider拖动到之前添加的@IBOutlet下面，设置name为**amountSlider**，然后点击**Connect**。
 
-While you’re at it let’s connect the slider to an action method as well. Again control-drag from the slider, this time to just above the closing } of the ViewController class. Set the Connection to Action, the name to amountSliderValueChanged, make sure that the Event is set to Value Changed, and click Connect.
-
 当你还选中slider时，也让我们连接slider到一个action method。再一次按着control键从slider拖动到ViewController类的}上面。设置Connection为**Action**，name为**amountSliderValueChanged**，确保Event设置为**Value Changed**，然后点击**Connect**。
-
-Every time the slider changes, you need to redo the image filter with a different value. However, you don’t want to redo the whole process, that would be very inefficient and would take too long. You’ll need to change a few things in your class so that you hold on to some of the objects you create in your viewDidLoad method.
 
 每次slider改变时，你需要根据不同的值来重新创建image filter。然而，你不想重复整个耗时且没效率的过程。你需要在你的类改变几样东西，那么你就要在viewDidLoad方法中创建一些对象并保存。
 
-The biggest thing you want to do is reuse the CIContext whenever you need to use it. If you recreate it each time, your program will run very slowly. The other things you can hold onto are the CIFilter and the CIImage that holds your original image. You’ll need a new CIImage for every output, but the image you start with will stay constant.
-
 最重要的一件事就是当你需要使用CIContext时，你只需复用它。如果你每次都重新创建它，你的程序将会变得很慢。另一件事就是保存CIFilter和CIImage，CIImage主要保存原始的图像。每次输出都会产生新的CIImage，但你刚开始使用的图像都会保持不变。
-
-You need to add some instance variables to accomplish this task. Add the following three properties to your ViewController class:
 
 你需要添加几个实例变量来完成这个任务。添加以下三个属性到你的ViewController类：
 
@@ -150,11 +137,7 @@ var beginImage: CIImage!
 
 ```
 
-Note that you have declared these values as implicitly-unwrapped optionals using the ! syntax, because you aren’t going to initialize them until viewDidLoad. You could have used ? instead, but you know that the way the code is designed will prevent the optionals from being nil by the time you use them. The implicitly-unwrapped syntax makes it much easier to read, without all the exclamation marks everywhere.
-
 请注意，你已经用!语法来声明那些值为implicitly-unwrapped optionals，因为直到**viewDidLoad**才初始化它们。你也可以用？，但采用那种方式是为了当你使用那几个实例变量时，防止optionals为nil。implicitly-unwrapped语法由于不用到处使用!标识来访问变量，它让代码更加易读。
-
-Change the code in viewDidLoad so it uses these properties instead of declaring new local variables, as follows:
 
 在**viewDidLoad**改变代码，那么它使用这些属性而不是使用新的局部变量，代码如下：
 
@@ -172,23 +155,13 @@ let cgimg = context.createCGImage(outputImage, fromRect: outputImage.extent())
 
 ```
 
-Now you’ll implement the changeValue method. What you’ll be doing in this method is altering the value of the **inputIntensity** key in your CIFilter dictionary.
-
 现在你将会实现changeValue方法。你在这个方法需要做的是修改CIFilter dictionary的inputIntentsity键对应的值。
-
-Once you’ve altered this value you’ll need to repeat a few steps:
-
-* Get the output CIImage from the CIFilter.
-* Convert the CIImage to a CGImage.
-* Convert the CGImage to a UIImage, and display it in the image view.
 
 一旦你修改这个值，你需要重复这几个步骤：
 
 * 从CIFilter获取输出的CIImage
 * 将CIImage转换为CGImage
 * 将CGImage转换为UIImage，然后将它显示在image view
-
-Replace amountSliderValueChanged(sender:) with the following:
 
 用以下代码代替amountSliderValueChanged(sender:)方法：
 
@@ -208,23 +181,13 @@ Replace amountSliderValueChanged(sender:) with the following:
 
 ```
 
-You’ll notice that you’ve changed the argument type from AnyObject to UISlider in the method definition. You know you’ll only be using this method to retrieve values from your UISlider, so you can go ahead and make this change. If you’d left it as AnyObject, you’d need to cast it to a UISlider or the next line would throw an error.
-
 你会注意到，你已经将方法定义中参数类型从**AnyObject**转换为**UISlider**。你只用这个方法来从**UISlider**获取值，以便你改变值。如果你不管它，默认是**AnyObject**，你需要将它转换为**UISlider**，否则下一行代码就会抛出错误。
-
-You retrieve the value from the slider (which returns a Float). Your slider is set to the default values – min 0, max 1, default 0.5. How convenient, these happen to be the right values for this CIFilter!
 
 你可以从slider获取**浮点数**的值。你的slider默认设置为0.5，最小值为0，最大值为1。通过slider设置CIFilter是多么方便。
 
-The CIFilter has methods that will allow you to set the values for the different keys in its dictionary. Here, you’re just setting the inputIntensity to whatever you get from your slider. Swift automatically converts the primitive CFloat value into an NSNumber object suitable for use with setValue(value:forKey:).
-
 CIFilter有多个方法允许你在dictionary根据不同键来设置多个值。而这里，你刚设置**inputIntensity**键对应的值，而这个值是从slider获取。Swift自动将CGFloat值转换为NSNumber对象，来符合**setValue(value:forKey:)**方法的使用。
 
-The rest of the code should look familiar, as it follows the same logic as viewDidLoad. You’re going to be using this code over and over again. From now on, you’ll use amountSliderValueChanged(sender:) to render the output of a CIFilter to your UIImageView.
-
 剩下的代码看起来很熟悉，因为它与**viewDidLoad**方法的逻辑一样。你将会多次使用这段代码。从现在起，你会用**amountSliderValueChanged(sender:)**方法来将CIFilter输出的图像渲染到ImageView。
-
-Build and run, and you should have a functioning live slider that will alter the sepia value for your image in real time!
 
 编译和运行，你可以修改slider值来实时地改变图像。
 
