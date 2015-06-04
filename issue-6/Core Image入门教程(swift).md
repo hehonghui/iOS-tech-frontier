@@ -32,7 +32,7 @@ You’ll be using each of these classes in this project.
 
 在你开始之前，让我们先讨论在Core Image框架中几个很重要的类：
 
-* **CIContext**. 所有处理core image的工作都在CIContext完成。这个有几分与Core Graphics或OpenGL context相似
+* **CIContext**. 所有处理core image的工作都在CIContext完成。这个与Core Graphics或OpenGL context有几分相似。
 * **CIImage**. 这个类保存图像数据，它能够从UIImage，图像文件或像素数据等方式来创建。
 * **CIFilter**. CIFilter类有一个字典(dictionary)来定义特定属性的过滤器，比如常用过滤器有饱和度，颜色翻转，裁剪等属性，还有很多没列出来。
 
@@ -62,7 +62,7 @@ Build and run the project just to make sure everything is good so far – you sh
 
 下载[教程的资源](http://cdn5.raywenderlich.com/downloads/CIResources.zip)，并添加图片**image.png**到工程
 
-下一步，打开**Main.storyboard**你文件，拖拽一个image view到已存在的view，image view作为view的子视图。在Attributes Inspector中，设置image view的content mode属性为Aspect Fit，这样它就不会扭曲图片。
+下一步，打开**Main.storyboard**你文件，拖拽一个image view到已存在的view，image view作为view的子视图。在Attributes Inspector中，设置image view的content mode属性为Aspect Fit，这样它就不会拉伸图片。
 
 下一步，确定Document Outline(在Interface Builder里canvas左边)是可见的 - 你可以从menu中**Editor \ Show Document Outline**来启用。
 
@@ -131,10 +131,7 @@ Build and run the project, and you’ll see your image filtered by the sepia ton
 3. 创建CIFilter对象。CIFilter构造器将name作为参数，然后用dictionary来指定filter的键值对。每个filter都拥有唯一的键和多个有效值。**CISepiaTone** filter只接收两个值**kCIInputImageKey**(CIImage)和**kCIInputIntensityKey**(在0到1之间的一个浮点数)。这里你设置它的值为0.5。如果没有值提供的话，大多数filters都有默认值。但CIImage没有默认值，它必须要提供。
 4. 通过使用filter的**outputImage**属性能够轻松地获取CIImage。一旦你有个输出的CIImage，你需要将它转换为UIImage。使用**UIImage(CIImage:)**构造器来创建UIImage。如果你已经将CIImage转换为UIImage，你就能将image显示到image view
 
-<div align="center">
-
-<img src="http://cdn5.raywenderlich.com/wp-content/uploads/2014/07/CI-Sepia-Crop.jpg"/>
-</div>
+![](http://cdn5.raywenderlich.com/wp-content/uploads/2014/07/CI-Sepia-Crop.jpg)
 
 #Putting It Into Context
 #把它放进Context
@@ -419,7 +416,7 @@ The last line may seem odd. Remember how I pointed out that the code in changeVa
 
 Well you need to do that again, so you can just call changeValue. Even though the slider value hasn’t changed, you can still use that method’s code to get the job done. You could break that code into its own method (and if you were going to be working with more complexity, you would, to avoid confusion), but in this case your purpose is served by re-using the amountSliderValueChanged method. Pass in the amountSlider as the sender so that it has the correct value to use.
 
-好，你需要再做一次，所以你只是调用**changeValue**方法。即使slider的值还没改变，你仍然可以使用那个方法的代码来完成工作。你可以分解那段代码到自己的方法(如果你想做得更加复杂，但避免混淆)，但这种情况下，你的目的是为了复用amountSliderValueChanged方法。传递**amountSlider**作为sender以致它有正确的值使用。
+好，你需要再做一次，所以你只是调用**changeValue**方法。即使slider的值还没改变，你仍然可以使用那个方法的代码来完成工作。你可以分解那段代码到自己的方法(如果你想做得更加复杂来避免混淆)，但这种情况下，你的目的是为了复用amountSliderValueChanged方法。传递**amountSlider**作为sender以致它有正确的值使用。
 
 Build and run, and now you’ll be able to update any image from your photo album!
 
@@ -440,7 +437,7 @@ import AssetsLibrary
 ```
 One thing you should know is that when you save a photo to the album, it may take a few seconds, and that process could continue even after you close the app.
 
-有一件你需要知道的事就是当你保存图片到相册，它可能花费几秒和在你关闭app之后仍在继续处理。
+有一件你需要知道的事就是当你保存图片到相册,它需要花费几秒时间，即使在你关闭app之后仍在继续处理图片。
 
 This could be a problem, as the GPU stops whatever it’s doing when you switch from one app to another. If the photo hasn’t finished saving, it won’t be there when you go looking for it later!
 
@@ -670,9 +667,9 @@ Here’s what’s going on, section by section:
 2. Set up a filter that creates a random noise pattern that looks like this:
 
 2. 设置一个创建随机噪音模式的filter，filter效果如下：
-<div align="center">
-<img src="http://cdn4.raywenderlich.com/wp-content/uploads/2012/09/CIRandomGenerator.gif"/>
-</div>
+
+![](http://cdn4.raywenderlich.com/wp-content/uploads/2012/09/CIRandomGenerator.gif)
+
 
    It doesn’t take any parameters. You’ll use this noise pattern to add texture to your final “old photo” look.
    
