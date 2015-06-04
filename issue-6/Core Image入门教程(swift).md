@@ -279,32 +279,22 @@ func imagePickerController(picker: UIImagePickerController!, didFinishPickingMed
 
 如果你创建完美的深褐色图片，你怎样才能保存它。你可以截图，但最恰当的方式就是保存已过滤的图片到相册。
 
-#Saving to Photo Album
+
 #保存到相册
-To save to the photo album, you need to use the AssetsLibrary framework. Add the following import statement to the top of ViewController.swift:
 
 为了保存到相册，你需要使用**AssetsLibrary** framework。在**ViewController.swift**文件顶部添加以下导入语句：
 
 ```
 import AssetsLibrary
 ```
-One thing you should know is that when you save a photo to the album, it may take a few seconds, and that process could continue even after you close the app.
 
 有一件你需要知道的事就是当你保存图片到相册,它需要花费几秒时间，即使在你关闭app之后仍在继续处理图片。
 
-This could be a problem, as the GPU stops whatever it’s doing when you switch from one app to another. If the photo hasn’t finished saving, it won’t be there when you go looking for it later!
-
 由于当你切换到另一个app的时候，GPU就停止处理，这将变成一个问题。如果图片还没完成保存，当你迟点找到它的时候，它将不在那里。
-
-The solution to this is to use a CPU-based CIContext for rendering. The default behavior is to use the GPU because it’s much faster, and you don’t want to slow down the filtering performance for the sake of adding save functionality. Instead, you will create a second CIContext to use for saving the image. Note that the software renderer won’t work properly in the simulator.
 
 有一个解决方案就是使用基于CPU的**CIContext**来渲染。默认选择就是使用GPU，因为它处理速度更快，但你不想为了添加保存功能而降低过滤性能。而现在，你会创建另一个**CIContext**来保存image。注意，软件渲染将不会在模拟器正常工作。
 
-Add a new button to your app that will let you save the photo you are currently modifying with all the changes you’ve made. Open Main.storyboard, add a new button labeled “Save to Album”. Place the button under the slider on the left side, and add the suggested constraints.
-
 添加一个新button到你的app，这个button会让你保存修改后的图片。打开**Main.storyboard**，添加一个新的button，修改button标题为“Save to Album”。将button放在slider的左边，然后添加相应的约束。
-
-Then connect it to a new savePhoto(sender:) method, like you did last time, and implement the method as follows:
 
 然后像上一次一样，连接button到一个新方法**savePhoto(sender:)**，方法实现如下：
 
@@ -327,12 +317,6 @@ Then connect it to a new savePhoto(sender:) method, like you did last time, and 
 }
 
 ```
-In this code block you:
-
-1. Get the CIImage output from the filter.
-2. Create a new, software based CIContext that uses the CPU renderer.
-3. Generate the CGImage.
-4. Save the CGImage to the photo library.
 
 在这段代码块中：
 
@@ -340,8 +324,6 @@ In this code block you:
 2. 创建一个新的，基于软件的，使用CPU渲染器的CIContext对象。
 3. 生成CGImage。
 4. 保存CIImage到photo library。
-
-Build and run the app (remember to run on an actual device, since you’re using software rendering), and now you can save that “perfect image” to your photo library so it’s preserved forever!
 
 编译和运行app(记住要运行在实际设备，因为你已经使用软件渲染)，现在你可以永久地保存完美的图像到你的photo library。
 
