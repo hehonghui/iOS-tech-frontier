@@ -295,10 +295,17 @@ That takes care of the first phase. Now on to the second and final phase — the
 
 上面已经完成第一个阶段。现在进入第二和最后阶段。
 
-#Creating the Reveal Animation（星期五）
+#Creating the Reveal Animation
+
+#创建Reveal动画
+
+reveal阶段在window显示image然后逐渐扩展圆形环的形状。如果你已经读过[前面教程](http://www.raywenderlich.com/86521/how-to-make-a-view-controller-transition-animation-like-in-the-ping-app)，那个教程主要讲创建一个Ping风格的view controller动画，你就会知道这是一个很好的关于**CALayer**的**mask**属性的使用案例。
+
 The reveal phase gradually displays the image in a window in the shape of an expanding circular ring. If you’ve read my [previous tutorial](http://www.raywenderlich.com/86521/how-to-make-a-view-controller-transition-animation-like-in-the-ping-app) on creating a Ping-style view controller animation, you’ll know that this is a perfect use-case of the **mask** property of a **CALayer**.
 
 Add the following method to **CircularLoaderView.swift**:
+
+添加以下方法到**CircularLoaderView.swift**文件：
 
 ```
 func reveal() {
