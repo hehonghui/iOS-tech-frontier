@@ -419,13 +419,10 @@ self.logAllFilters()
 
 哇，有很多的filters！它会给你一些灵感在你自己的app中尝试其他filters。
 
-#More Intricate Filter Chains
+
 #更加复杂的Filter链
-Now that we’ve looked at all the filters that are available on the iOS platform, it’s time to create a more intricate filter chain. In order to do this, you’ll create a dedicated method to process the CIImage. It will take a CIImage, filter it to look like an old aged photo, and return a modified CIImage.
 
 现在我们已经知道在iOS平台有哪些可用的filter，是时候创建更加复杂的filter链了。为了做到这样，你会创建一个专门的方法来处理CIImage。它会接受一个CIImage作为参数，过滤它，让它看起来像一张老旧的图片，然后返回一个已经修改的CIImage。
-
-Add the following method to ViewController:
 
 添加以下方法到ViewController：
 
@@ -464,51 +461,27 @@ func oldPhoto(img: CIImage, withAmount intensity: Float) -> CIImage {
 }
 ```
 
-Here’s what’s going on, section by section:
-
 这里会逐段讲解：
 
-1. Set up the sepia filter the same way you did in the simpler scenario. You’re passing in a Float value in the method to set the intensity of the sepia effect. This value will be provided by the slider.
-
 1. 以相同的方式设置深褐色的filter。你在这个方法传递一个浮点数来设置深褐色效果的强度。这个值是由slider提供。
-
-2. Set up a filter that creates a random noise pattern that looks like this:
 
 2. 设置一个创建随机噪音模式的filter，filter效果如下：
 
 ![](http://cdn4.raywenderlich.com/wp-content/uploads/2012/09/CIRandomGenerator.gif)
-
-
-   It doesn’t take any parameters. You’ll use this noise pattern to add texture to your final “old photo” look.
    
    它好像没有接受任何参数。你会使用这个噪音模式来添加纹理到你的最终“老旧相片”的外观。
 
-   
-3. Alter the output of the random noise generator. You want to change it to grayscale, and lighten it up a little bit so the effect is less dramatic. You’ll notice that the input image key is set to the outputImage property of the random filter. This is a convenient way to pass the output of one filter as the input of the next.
-
 3. 修改随机噪音生成器的输出。你想改变的它的灰度和减轻它一点以至于效果没有那么炫酷。你会注意到，输入image的键被设置到随机filter的outputImage属性。这是一种传递一个filter的输出作为下个输入的方便方式。
 
-4. imageByCroppingToRect() takes an output CIImage and crops it to the provided rect. In this case, you need to crop the output of the CIRandomGenerator filter because it tiles infinitely. If you don’t crop it at some point, you’ll get an error saying that the filters have ‘an infinite extent’. CIImages don’t actually contain image data, they describe a ‘recipe’ for creating it. It’s not until you call a method on the CIContext that the data is actually processed.
-
 4. **imageByCroppingToRect()**接受被裁剪的rect作为参数，然后返回CIImage。在这种情况下，你需要裁剪CIRandomGenerator filter的输出，因为它无限地碎片化。在某种情况下，如果你不裁剪它，你会得到一个错误信息，说filters有‘an infinite extent’。CIImages实际上是不包含image数据，它们创建它时将它描述成一个'recipe'。直到你在CIContext调用一个方法时数据才实际被处理。
- 
-5. Combine the output of the sepia filter with the output of the CIRandomGenerator filter. This filter performs the exact same operation as the ‘Hard Light’ setting does in a photoshop layer. Most (if not all) of the filter options in photoshop are achievable using Core Image.
 
 5. 将深褐色filter的输出和CIRandomGenerator filter的输出结合起来。这个filter执行像在photoshop层‘Hard Light’设置完全一样的操作。大多数在photoshop(但不是全部)的filter选项都可以通过使用Core Image来实现。
 
-6. Run a vignette filter on this composited output that darkens the edges of the photo. You’re using the value from the slider to set the radius and intensity of this effect.
-
 6. 在这个合成的输出中，运行一个vignette filter，它会使你的图片边缘变暗。你使用从slider获取的值来设置半径和效果的强度。
-
-7. Finally, return the output of the last filter.
 
 7. 最后，返回最后filter的输出。
 
-That’s all for this filter chain. You should now have an idea of how complex these filter chains may become. By combining Core Image filters into these kinds of chains, you can achieve an endless variety of effects.
-
 关于filter chain讲到这里。你现在应该有一个如何形成复杂filter chain的想法。通过组合多个Core Image filters成各种各样的chains，你就能实现无穷多种的特效。
-
-The next thing to do is implement this method in amountSliderValueChanged(). Change these two lines:
 
 下一件事就是在**amountSliderValueChanged()**方法实现。改变这两行代码：
 
@@ -517,19 +490,13 @@ filter.setValue(sliderValue, forKey: "inputIntensity")
 let outputImage = filter.outputImage
 ```
 
-To this one line:
-
 成这行代码：
 
 ```
 let outputImage = self.oldPhoto(beginImage, withAmount: sliderValue)
 ```
 
-This just replaces the previous sepia effect with your new, more complex filter method. You pass in the slider value for the intensity and you use the beginImage, which you set in the viewDidLoad method as the input CIImage. Build and run now and you should get a more refined old photo effect, complete with sepia, a little noise, and some vignetting.
-
 这只是用新的，更复杂的filter方法来代替之前深褐色效果。你可以传递slder的值给强度，和你使用在viewDidLoad方法中被设置的beginImage作为输入的CIImage。编译和运行，你应该得到一个更加完善的旧图片效果，这种效果会是深褐色，有一点噪音和一点渐晕。
-
-That noise could probably be more subtle, but I’ll leave that experiment to you, dear reader. Now you have the full power of Core Image at your disposal. Go crazy!
 
 这种噪音效果会是更加微妙，但我会留给你自行试验。现在你完全有能力随意操纵Core Image，尽管去尝试吧！
 
