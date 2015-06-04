@@ -358,22 +358,14 @@ let newImage = UIImage(CGImage: cgimg, scale:1, orientation:orientation)
 
 现在，如果你拍一张照片而不是默认方向，它将会默认保存。
 
-#What Other Filters are Available?
-#还有哪些Filters是可用的？
 
-The CIFilter API has more than 160 filters on Mac OS, 126 of which are available on iOS 8. As of iOS 8, it is now possible to create you own custom filters as well.
+#还有哪些Filters是可用的？
 
 CIFilter API在Mac OS有超过160个，在iOS 8有126个关于filters的API。
 
-In order to find out what filters are available on a given device, you can use the CIFilter method filterNamesInCategory(kCICategoryBuiltIn). This method will return an array of filter names.
-
 为了查找有哪些filters在给定的设备是可用的，你可以使用CIFilter的**filterNamesInCategory(kCICategoryBuiltIn)**方法。这个方法会返回一个关于filter名字的数组。
 
-In addition, each filter has an attributes() method that will return a dictionary containing information about that filter. This information includes the filter’s name and category, the kinds of inputs the filter takes, and the default and acceptable values for those inputs.
-
 除此之外，每个filter有一个**attributes()**方法返回一个dictionary，dictionary包含关于filter的信息。这些信息包括filter的名字，分类，filter接受哪些输入，默认输入，和这些输入接受哪些值。
-
-Let’s put together a method for your class that logs the information for all the currently available filters. Add this method inside the ViewController class definition:
 
 让我们将所有东西放在一个类的方法，这个方法记录当前所有可用的filters信息。添加这个方法到ViewController类的定义：
 
@@ -389,19 +381,14 @@ func logAllFilters() {
 }
 
 ```
-This method simply gets the array of filters from filterNamesInCategory(). It prints the list of names first. Then, for each name in the list, it instantiates the filter and logs its attributes dictionary.
 
 这个方法仅仅通过**filterNamesInCategory()**方法来获取filters的数组。首先，它打印名字的列表。然后，遍历列表获取每个名字，根据名字实例化filter和打印它的属性dictionary。
-
-Call this method at the end of viewDidLoad():
 
 在**viewDidLoad()**方法最后调用这个方法：
 
 ```
 self.logAllFilters()
 ```
-
-You will see the many filters listed in the console like the following:
 
 你会看到很多filters在控制台被列出：
 
@@ -429,8 +416,6 @@ You will see the many filters listed in the console like the following:
     CIAttributeType = CIAttributeTypeScalar;
 }, CIAttributeFilterName: CIColorMonochrome]
 ```
-
-Wow, that’s a lot of filters! That should give you some ideas for other filters to try out in your own app!
 
 哇，有很多的filters！它会给你一些灵感在你自己的app中尝试其他filters。
 
