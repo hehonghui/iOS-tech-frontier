@@ -80,21 +80,14 @@ self.imageView.image = newImage
 
 ![](http://cdn5.raywenderlich.com/wp-content/uploads/2014/07/CI-Sepia-Crop.jpg)
 
-#Putting It Into Context
+
 #把它放进Context
-Before you move forward, there’s an optimization that you should know about.
 
 在你向前看之前，有个优化建议你应该需要知道。
 
-I mentioned earlier that you need a CIContext in order to apply a CIFilter, yet there’s no mention of this object in the above example. It turns out that the the UIImage(CIImage:) constructor does all the work for you. It creates a CIContext and uses it to perform the work of filtering the image. This makes using the Core Image API very easy.
-
 之前我曾提及过，你需要有个**CIContext**来使用CIFilter，但以上例子都没有提及过这个对象。结果变成了由**UIImage(CIImage:)** 构造器来为你处理所有的工作。UIImage它创建一个**CIContext**，然后用它来执行所有过滤图像的操作，这让你更加容易地使用Core Image的API。
 
-There is one major drawback – it creates a new CIContext every time it’s used. CIContext instances are meant to be reusable to increase performance. If you want to use a slider to update the filter value, as you’ll be doing in this tutorial, creating a new CIContext each time you change the filter would be way too slow.
-
 但这种方式有一个主要缺点就是每次使用时都创建一个新的**CIContext**对象。**CIContext**对象是为了复用来提高性能。如果你想用一个slider来更新filter的值，是以每次创建一个新的CIContext来实现更新filter的方式，那么运行速度将会很慢。
-
-Let’s do this properly. Delete step 4 from the code you added to viewDidLoad(), and replace it with the following:
 
 让我们以恰当的方式来实现。在**viewDidLoad()**里删除步骤4的代码，然后用一下代码来代替：
 
@@ -109,11 +102,6 @@ let cgimg = context.createCGImage(filter.outputImage, fromRect: filter.outputIma
 let newImage = UIImage(CGImage: cgimg)
 self.imageView.image = newImage
 ```
-Again, let’s go over this section by section.
-
-1. Here you set up the CIContext object and use it to draw a CGImage. The CIContext(options:) constructor takes an NSDictionary that specifies options such as the color format, or whether the context should run on the CPU or GPU. For this app, the default values are fine and so you pass in nil for that argument.
-2. Calling createCGImage(outputImage:fromRect:) on the context with the supplied CIImage will return a new CGImage instance.
-3. Next, you use the UIImage(CGImage:) constructor to create a UIImage from the newly created CGImage instead of directly from the CIImage as before. Note that there is no need to explicitly release the CGImage after we are finished with it, as there would have been in Objective-C. In Swift, ARC can automatically release Core Foundation objects.
 
 我们再一次逐段分析代码：
 
@@ -121,12 +109,7 @@ Again, let’s go over this section by section.
 2. context调用**createCGImage(outputImage:fromRect:)**方法在给定CIImage参数并返回一个新的CGImage示例。
 3. 你根据刚刚获取的CIImage，使用**UIImage(CGImage:)**构造器来创建一个UIImage对象。注意，当我们使用CIImage对象之后，没有必要显式地释放它，虽然在Objective-C需要这样做。但在Swift中，ARC会自动释放Core Foundation的对象。
 
-
-Build and run, and make sure it works just as before.
-
 编译和运行，确保项目进展顺利
-
-In this example, handling the CIContext creation yourself doesn’t make much difference. But in the next section, you’ll see why this is important for performance, as you implement the ability to modify the filter dynamically!
 
 在这个例子中，自己创建CIContext与不创建没什么不同。但下个部分中，你会看到当你动态地修改filter时，为什么CIContext对性能影响很大。
 
