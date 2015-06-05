@@ -6,7 +6,7 @@
 * 译文出自 : [开发技术前线 www.devtf.cn](http://www.devtf.cn)
 * 译者 : [Sam Lau](https://github.com/samlaudev) 
 * 校对者: [这里校对者的github用户名](github链接)  
-* 状态 :  未完成
+* 状态 :  翻译完
 
 A few weeks ago, Michael Villar created a really interesting loading animation for his post on Motion Experiments.
 
