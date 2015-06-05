@@ -16,9 +16,7 @@ The GIF to the right shows the loading animation, which marries a circular progr
 
 下面的GIF图片展示这个加载动画，它将一个圆形进度指示器和圆形渐现动画结合。这个组合的效果有趣，独一无二和有点迷人。
 
-<div align="center">
-<img src="http://cdn3.raywenderlich.com/wp-content/uploads/2015/02/Circle.gif"/>
-</div>
+![](http://cdn3.raywenderlich.com/wp-content/uploads/2015/02/Circle.gif)
 
 This tutorial will show you how to recreate this exact effect in Swift and Core Animation. Let’s get animating!
 
@@ -282,10 +280,7 @@ Build and run your project; you’ll see the progress indicator begin to move li
 
 编译和运行你的工程；你会看到进度指示器像这样开始移动：
 
-
-<div align="center">
-<img src="http://cdn2.raywenderlich.com/wp-content/uploads/2015/02/indicator.gif"/>
-</div>
+![](http://cdn2.raywenderlich.com/wp-content/uploads/2015/02/indicator.gif)
 
 Even though you didn’t add any animation code yourself, **CALayer** handily detects any animatable property on the layer and smoothly animates is as it changes. Neat!
 
