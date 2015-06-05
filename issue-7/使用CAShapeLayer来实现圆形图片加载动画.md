@@ -456,12 +456,22 @@ Congratulations, you have finished creating the circular image loading animation
 
 恭喜你，你已经完成创建圆形图像加载动画！
 
-#Where to Go From Here?（星期五）
+#Where to Go From Here?
+
+#下一步
 
 You can [download the completed project here](http://cdn2.raywenderlich.com/wp-content/uploads/2015/02/ImageLoaderIndicator-Final.zip).
 
+你可以[在这里下载整个工程](http://cdn2.raywenderlich.com/wp-content/uploads/2015/02/ImageLoaderIndicator-Final.zip)。
+
 From here, you can further tweak the timing, curves and colors of the animation to suit your needs and personal design aesthetic. One possible improvement is to use **kCALineCapRound** for the shape layer’s **lineCap** property to round off the ends of the circular progress indicator. See what improvements you can come up with on your own!
+
+基于本教程，你可以进一步来微调动画的时间、曲线和颜色来满足你的需求和个人设计美学。一个可能需要改进就是设置shape layer的**lineCap**属性值为**kCALineCapRound**来四舍五入圆形进度指示器的尾部。你自己思考还有什么可以改进的地方。
 
 If you enjoyed this tutorial and would like to learn how to create more animations like these, check out Marin Todorov’s book [iOS Animations by Tutorials](http://www.raywenderlich.com/store/ios-animations-by-tutorials), which starts with basic view animations and moves all the way to layer animations, animating constraints, view controller transitions, and more.
 
+如果你喜欢这个教程和愿意学习怎样创建更多像这样的动画，请查看Marin Todorov的书[iOS Animations by Tutorials](http://www.raywenderlich.com/store/ios-animations-by-tutorials)。它是从基本的动画开始，然后逐步讲解layer animations, animating constraints, view controller transitions和更多
+
 If you have any questions or comments about the tutorial, please join the discussion below. I’d also love to see ways in which you’ve incorporated this cool animation in your app!
+
+如果你有什么关于这个教程的问题或评论，请在下面参与讨论。我会愿意看到你将这么cool动画加到你的app.
