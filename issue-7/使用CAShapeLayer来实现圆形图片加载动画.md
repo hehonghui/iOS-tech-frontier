@@ -323,11 +323,23 @@ func reveal() {
 
 This is an important method to understand, so let’s go over this section by section:
 
+这是一个很重要的方法需要理解，让我们逐段看一遍：
+
 1. Clears the view’s background color so the image behind the view isn’t hidden anymore, and sets **progress** to 1, or 100%.
+
+1. 设置view的背景色为clear，那么在view后面的image不再隐藏，然后设置**progress**为1或100%。
+
 2. Removes any pending implicit animations for the **strokeEnd** property, which may have otherwise interfered with the reveal animation. For more about implicit animations, check out [iOS Animations by Tutorials](http://www.raywenderlich.com/store/ios-animations-by-tutorials).
+
+2. 使用**strokeEnd**属性来移除任何待定的implicit animations，否则干扰reveal animation。关于implicit animations的更多信息，请查看[iOS Animations by Tutorials](http://www.raywenderlich.com/store/ios-animations-by-tutorials).
+
 3. Removes **circlePathLayer** from its **superLayer** and assigns it instead to the **superView**’s layer mask, so the image is visible through the circular mask “hole”. This lets you reuse the existing layer and avoid duplicating code.
 
+3. 从它的**superLayer**移除**circlePathLayer**，然后赋值给**superView**的layer maks，借助circular mask “hole”，image是可见的。这样让你复用已存在的layer和避免重复代码。
+
 Now you need to call **reveal()** from somewhere. Replace the **Reveal image here** comment in **CustomImageView.swift** with the following:
+
+现在你需要在某个地方调用**reveal()**。在**CustomImageView.swift**文件用以下代码替换**Reveal image here**注释：
 
 ```
 self!.progressIndicatorView.reveal()
@@ -335,9 +347,13 @@ self!.progressIndicatorView.reveal()
 
 Build and run your app; once the image downloads you’ll see it partially revealed through a small ring:
 
+编译和运行你的app；一旦image开始下载，你会看见一部分小的ring在显示。
+
 ![](http://cdn3.raywenderlich.com/wp-content/uploads/2015/02/Screenshot-2015-01-26-02.49.54.png)
 
 You can see your image in the background — but just barely! 
+
+你能在背景看到你的image - 但几乎什么也没有！
 
 ##Expanding Rings（星期五）
 Your next step is to expand this ring both inwards and outwards. You could do this with two separate, concentric **UIBezierPath**, but you can do it in a more efficient manner with just a single Bezier path.
