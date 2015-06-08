@@ -68,7 +68,7 @@
 ### 第七期 (2015.6.8)
 |       文章标题        |         译者           | 
 |----------------------|------------------------|
-|  [Core Image入门教程(swift)](issue-7/Core Image入门教程(swift.md) |  [Sam Lau](https://github.com/samlaudev)   |  
+|  [Core Image入门教程(swift)](issue-7/Core Image入门教程(swift).md) |  [Sam Lau](https://github.com/samlaudev)   |  
 |  [UIKit Dynamics 教程 - 起步](issue-7/UIKit Dynamics 教程 - 起步.md) |  [Lollypo](https://github.com/Lollypo)   | 
 |  [UIKit Dynamics和Swift教程：抛掷Views](issue-7/UIKit Dynamics和Swift教程：抛掷Views.md) |  [samw00](https://github.com/samw00)  | 
 

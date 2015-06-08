@@ -1,8 +1,6 @@
 ## UIKit Dynamics 教程: 起步
 
 > - 原文链接 : [UIKit Dynamics Tutorial: Getting Started](http://www.raywenderlich.com/76147/uikit-dynamics-tutorial-swift)
-> 
-
 - 原文作者: [James Frost](http://www.raywenderlich.com/u/frosty)
 - 译文出自: [开发技术前线http://www.devtf.cn/](http://www.devtf.cn/)
 - 译者 : [Lollypo](https://github.com/Lollypo) 
