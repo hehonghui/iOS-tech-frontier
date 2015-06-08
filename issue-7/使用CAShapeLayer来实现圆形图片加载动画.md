@@ -5,8 +5,8 @@
 * 原文作者 : [Rounak Jain](http://www.raywenderlich.com/u/rounak)
 * 译文出自 : [开发技术前线 www.devtf.cn](http://www.devtf.cn)
 * 译者 : [Sam Lau](https://github.com/samlaudev) 
-* 校对者: [这里校对者的github用户名](github链接)  
-* 状态 :  翻译完
+* 校对者: [Lollypo](https://github.com/Lollypo)  
+* 状态 :  校正完
 
 A few weeks ago, Michael Villar created a really interesting loading animation for his post on Motion Experiments.
 
@@ -35,11 +35,11 @@ First [download the starter project](http://cdn1.raywenderlich.com/wp-content/up
 
 The starter project already has the views and image loading logic in place. Take a minute and browse through the project once you’ve extracted it; there’s a **ViewController** that has a **UIImageView** subclass named **CustomImageView**, along with a **SDWebImage** method call to load the image.
 
-这个启动项目已经有些views和image加载逻辑在适当的地方。花一分钟来浏览来快速了解这个项目；那里有一个**ViewController**，**ViewController**里有一个命名为**CustomImageView**的**UIImageView**子类, 还有一个**SDWebImage**的方法被调用来加载image。
+这个启动项目已经预先在恰当的位置将views和加载逻辑编写好了。花一分钟来浏览来快速了解这个项目；那里有一个**ViewController**，**ViewController**里有一个命名为**CustomImageView**的**UIImageView**子类, 还有一个**SDWebImage**的方法被调用来加载image。
 
 You might notice when you first run the app, the app will seem to pause for a few seconds while the image downloads, and then the image will appear on the screen without fanfare. Of course, there’s no circular progress indicator at the moment – that’s what you’ll create in this tutorial!
 
-你可能注意到当你第一次运行这个app的时候，当image下载时这个app似乎会暂停几秒，然后image会显示在屏幕。
+你可能注意到当你第一次运行这个app的时候，当image下载时这个app似乎会暂停几秒，然后image会显示在屏幕。当然，此刻没有圆形进度指示器 - 你将会在这个教程中创建它！
 
 You will create this animation in two distinct phases:
 
@@ -474,4 +474,4 @@ If you enjoyed this tutorial and would like to learn how to create more animatio
 
 If you have any questions or comments about the tutorial, please join the discussion below. I’d also love to see ways in which you’ve incorporated this cool animation in your app!
 
-如果你有什么关于这个教程的问题或评论，请在下面参与讨论。我会愿意看到你将这么cool动画加到你的app.
+如果你有什么关于这个教程的问题或评论，请在下面参与讨论。我很乐意看到你在你的App中添加这么酷的动画。
