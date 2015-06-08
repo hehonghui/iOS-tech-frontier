@@ -240,19 +240,11 @@ self!.progressIndicatorView.reveal()
 
 你能在背景看到你的image - 但几乎什么也没有！
 
-##Expanding Rings
-
 ##扩展环
-
-Your next step is to expand this ring both inwards and outwards. You could do this with two separate, concentric **UIBezierPath**, but you can do it in a more efficient manner with just a single Bezier path.
 
 你的下一步就是在内外扩展这个环。你可以两个分离的、同轴心的**UIBezierPath**来做到，但你也可以一个更加有效的方法，只是使用一个Bezier path来完成。
 
-How? You simply increase the circle’s radius (the **path** property) to expand outward, while simultaneously increasing the line’s width (the **lineWidth** property) to make the ring thicker and expand inward. Eventually, both values grow enough to reveal the entire image underneath.
-
 怎样做呢？你只是增加圆的半径(**path**属性)来向外扩展，同时增加line的宽度(**lineWidth**属性)来使环更加厚和向内扩展。最终，两个值都增长到足够时就在下面显示整个image。
-
-Go back to **CircularLoaderView.swift** and add the following code to the end of reveal():
 
 回到**CircularLoaderView.swift**文件和添加以下代码到reveal()方法的最后：
 
@@ -292,37 +284,21 @@ groupAnimation.delegate = self
 circlePathLayer.addAnimation(groupAnimation, forKey: "strokeWidth")
 ```
 
-Here’s a comment-by-comment explanation of what’s going on above:
-
 现在逐段解释以上代码是究竟做了什么：
-
-1. Determine the radius of the circle that can fully circumscribe the image view, then calculate the **CGRect** that would fully bound this circle. **toPath**represents the final shape of the **CAShapeLayer** mask like so:
 
 1. 确定圆形的半径之后就能完全限制image view。然后计算**CGRect**来完全限制这个圆形。**toPath**表示**CAShapeLayer** mask的最终形状。
 
-2. Set the initial values of **lineWidth** and **path** to match the current values of the layer.
-
 2. 设置**lineWidth**和**path**初始值来匹配当前layer的值。
-
-3. Set **lineWidth** and **path** to their final values; this prevents them from jumping back to their original values when the animation completes. Wrapping this in a **CATransaction** with **kCATransactionDisableActions** set to **true** disables the layer’s implicit animations.
 
 3. 设置**lineWidth**和**path**的最终值；这样能防止它们当动画完成时跳回它们的原始值。**CATransaction**设置**kCATransactionDisableActions**键对应的值为**true**来禁用layer的implicit animations。
 
-4. Create two instances of **CABasicAnimation**, one for path and the other for **lineWidth**. **lineWidth** has to increase twice as fast as the radius increases in order for the circle to expand inward as well as outward.
-
 4. 创建一个两个**CABasicAnimation**的实例，一个是路径动画，一个是**lineWidth**动画，**lineWidth**必须增加到两倍跟半径增长速度一样快，这样圆形向内扩展与向外扩展一样。
 
-5. Add both animations to a **CAAnimationGroup**, and add the animation group to the layer. You also assign **self** as the delegate, as you’ll use this in just a moment.
-
 5. 将两个animations添加到一个**CAAnimationGroup**，然后添加animation group到layer。将**self**赋值给delegate，等下你会使用到它。
-
-Build and run your project; you’ll see the reveal animation kick-off once the image finishes downloading. But a portion of the circle remains on the screen once the reveal animation is done.
 
 编译和运行你的工程；你会看到一旦image完成下载，reveal animation就会弹出来。但即使reveal animation完成，部分圆形还是会保持在屏幕上。
 
 ![](http://cdn4.raywenderlich.com/wp-content/uploads/2015/02/StillVisible.png)
-
-To fix this, add the following implementation of **animationDidStop(_:finished:)** to **CircularLoaderView.swift**:
 
 为了修复这种情况，添加以下实现**animationDidStop(_:finished:)** 到 **CircularLoaderView.swift**：
 
@@ -332,17 +308,11 @@ override func animationDidStop(anim: CAAnimation!, finished flag: Bool) {
 }
 ```
 
-This code removes the mask on the super layer, which removes the circle entirely.
-
 这些代码从super layer上移除mask，这会完全地移除圆形。
-
-Build and run your project again, and now you’ll see the full effect of your animation:
 
 再次编译和运行你的工程，和你会看到整个动画的效果：
 
 ![](http://cdn4.raywenderlich.com/wp-content/uploads/2015/02/indicator-final-final.gif)
-
-Congratulations, you have finished creating the circular image loading animation!
 
 恭喜你，你已经完成创建圆形图像加载动画！
 
