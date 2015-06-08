@@ -17,35 +17,20 @@
 这个教程将会教你如何使用Swift和Core Animatoin来重新创建这个效果。让我们开始吧！
 
 
-#Getting Started
-
 #基础
-
-First [download the starter project](http://cdn1.raywenderlich.com/wp-content/uploads/2015/02/ImageLoaderIndicator-Starter.zip) for this tutorial, and build and run. After a moment, you should see a simple image displayed as follows:
 
 首先下载这个教程的[启动项目](http://cdn1.raywenderlich.com/wp-content/uploads/2015/02/ImageLoaderIndicator-Starter.zip)，然后编译和运行。过一会之后，你应该看到一个简单的image显示：
 
 ![](http://cdn2.raywenderlich.com/wp-content/uploads/2015/02/StarterProject.png)
 
-The starter project already has the views and image loading logic in place. Take a minute and browse through the project once you’ve extracted it; there’s a **ViewController** that has a **UIImageView** subclass named **CustomImageView**, along with a **SDWebImage** method call to load the image.
-
 这个启动项目已经预先在恰当的位置将views和加载逻辑编写好了。花一分钟来浏览来快速了解这个项目；那里有一个**ViewController**，**ViewController**里有一个命名为**CustomImageView**的**UIImageView**子类, 还有一个**SDWebImage**的方法被调用来加载image。
-
-You might notice when you first run the app, the app will seem to pause for a few seconds while the image downloads, and then the image will appear on the screen without fanfare. Of course, there’s no circular progress indicator at the moment – that’s what you’ll create in this tutorial!
 
 你可能注意到当你第一次运行这个app的时候，当image下载时这个app似乎会暂停几秒，然后image会显示在屏幕。当然，此刻没有圆形进度指示器 - 你将会在这个教程中创建它！
 
-You will create this animation in two distinct phases:
-
 你会在两个步骤中创建这个动画：
-
-1. **Circular progress**. First, you will draw a circular progress indicator and update it based on the progress of the download.
-2. **Expanding circular image**. Second, you will reveal the downloaded image through an expanding circular window.
 
 1. **圆形进度**。首先，你会画一个圆形进度指示器，然后根据下载进度来更新它。
 2. **扩展圆形图片**。第二，你会通过扩展的圆形窗口来揭示下载图片。
-
-Follow along closely to prevent yourself from going in “circles”!
 
 紧跟着下面步骤来逐步实现！
 
