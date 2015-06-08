@@ -199,15 +199,10 @@ self!.progressIndicatorView.progress = CGFloat(receivedSize)/CGFloat(expectedSiz
 
 上面已经完成第一个阶段。现在进入第二和最后阶段。
 
-#Creating the Reveal Animation
 
 #创建Reveal动画
 
 reveal阶段在window显示image然后逐渐扩展圆形环的形状。如果你已经读过[前面教程](http://www.raywenderlich.com/86521/how-to-make-a-view-controller-transition-animation-like-in-the-ping-app)，那个教程主要讲创建一个Ping风格的view controller动画，你就会知道这是一个很好的关于**CALayer**的**mask**属性的使用案例。
-
-The reveal phase gradually displays the image in a window in the shape of an expanding circular ring. If you’ve read my [previous tutorial](http://www.raywenderlich.com/86521/how-to-make-a-view-controller-transition-animation-like-in-the-ping-app) on creating a Ping-style view controller animation, you’ll know that this is a perfect use-case of the **mask** property of a **CALayer**.
-
-Add the following method to **CircularLoaderView.swift**:
 
 添加以下方法到**CircularLoaderView.swift**文件：
 
@@ -225,23 +220,13 @@ func reveal() {
 }
 ```
 
-This is an important method to understand, so let’s go over this section by section:
-
 这是一个很重要的方法需要理解，让我们逐段看一遍：
-
-1. Clears the view’s background color so the image behind the view isn’t hidden anymore, and sets **progress** to 1, or 100%.
 
 1. 设置view的背景色为clear，那么在view后面的image不再隐藏，然后设置**progress**为1或100%。
 
-2. Removes any pending implicit animations for the **strokeEnd** property, which may have otherwise interfered with the reveal animation. For more about implicit animations, check out [iOS Animations by Tutorials](http://www.raywenderlich.com/store/ios-animations-by-tutorials).
-
 2. 使用**strokeEnd**属性来移除任何待定的implicit animations，否则干扰reveal animation。关于implicit animations的更多信息，请查看[iOS Animations by Tutorials](http://www.raywenderlich.com/store/ios-animations-by-tutorials).
 
-3. Removes **circlePathLayer** from its **superLayer** and assigns it instead to the **superView**’s layer mask, so the image is visible through the circular mask “hole”. This lets you reuse the existing layer and avoid duplicating code.
-
 3. 从它的**superLayer**移除**circlePathLayer**，然后赋值给**superView**的layer maks，借助circular mask “hole”，image是可见的。这样让你复用已存在的layer和避免重复代码。
-
-Now you need to call **reveal()** from somewhere. Replace the **Reveal image here** comment in **CustomImageView.swift** with the following:
 
 现在你需要在某个地方调用**reveal()**。在**CustomImageView.swift**文件用以下代码替换**Reveal image here**注释：
 
@@ -249,13 +234,9 @@ Now you need to call **reveal()** from somewhere. Replace the **Reveal image her
 self!.progressIndicatorView.reveal()
 ```
 
-Build and run your app; once the image downloads you’ll see it partially revealed through a small ring:
-
 编译和运行你的app；一旦image开始下载，你会看见一部分小的ring在显示。
 
 ![](http://cdn3.raywenderlich.com/wp-content/uploads/2015/02/Screenshot-2015-01-26-02.49.54.png)
-
-You can see your image in the background — but just barely! 
 
 你能在背景看到你的image - 但几乎什么也没有！
 
