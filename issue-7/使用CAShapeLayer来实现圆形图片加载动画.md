@@ -83,12 +83,7 @@ func configure() {
 
 两个初始化方法都调用**configure**方法，**configure**方法设置一个shape layer的line width为2，fill color为clear,stroke color为red。将添加circlePathLayer添加到view's main layer。然后设置view的 **backgroundColor** 为white，那么当image加载时，屏幕的其余部分就忽略掉。
 
-##Adding the Path
-
 ##添加路径
-
-
-You’ll notice that you haven’t yet assigned a path to the layer. To do that, add the following method (still in **CircularLoaderView.swift**):
 
 你会注意到你还没赋值一个path给layer。为了做到这点，添加以下方法(还是在**CircularLoaderView.swift**文件)：
 
@@ -101,15 +96,9 @@ func circleFrame() -> CGRect {
 }
 ```
 
-The above method returns an instance of **CGRect** that bounds your indicator’s path. The bounding rectangle is **2*circleRadius** wide and **2*circleRadius** tall, and lies at the center of the view.
-
 上面那个方法返回一个**CGRect**的实例来界定指示器的路径。这个边框是**2*circleRadius**宽和**2*circleRadius**高，放在这个view的正中心。
 
-You’ll need to recalculate **circleFrame** each time the view’s size changes, so you may as well put it in a method of its own.
-
 每次这个view的size改变时，你会需要都重新计算**circleFrame**，所以你可能将它放在一个独立的方法。
-
-Now add the following method to create your path:
 
 现在添加以下方法来创建你的路径：
 
@@ -119,15 +108,9 @@ func circlePath() -> UIBezierPath {
 }
 ```
 
-This simply returns the circular **UIBezierPath** as bounded by **circleFrame**. Since **circleFrame()** returns a square, the “oval” in this case will end up as a circle.
-
 这只是根据**circleFrame**限定来返回圆形的**UIBezierPath**。由于**circleFrame()**返回一个正方形，在这种情况下”椭圆“会最终成为一个圆形。
 
-Since layers don’t have an **autoresizingMask** property, you’ll need to update the **circlePathLayer**’s frame in **layoutSubviews** to respond appropriately to changes in the view’s size.
-
 由于layers没有**autoresizingMask**这个属性，你需要在**layoutSubviews**方法更新**circlePathLayer**的frame来恰当地响应view的size变化。
-
-Next override **layoutSubviews()** as follows:
 
 下一步，覆盖**layoutSubviews()**方法：
 
@@ -139,19 +122,13 @@ override func layoutSubviews() {
 }
 ```
 
-You’re calling **circlePath()** here since a change in the frame should also trigger a recalculation of the path.
-
 由于改变了frame，你要在这里调用**circlePath()**方法来触发重新计算路径。
-
-Now open **CustomImageView.swift** and add the following instance of **CircularLoaderView** as a property:
 
 现在打开**CustomImageView.swift**文件和添加以下**CircularLoaderView**实例作为一个属性：
 
 ```
 let progressIndicatorView = CircularLoaderView(frame: CGRectZero)
 ```
-
-Next add these lines in **init(coder:)**, right before the code that downloads the image:
 
 下一步，在之前下载图片的代码添加这几行代码到**init(coder:)**方法：
 
@@ -161,17 +138,11 @@ progressIndicatorView.frame = bounds
 progressIndicatorView.autoresizingMask = .FlexibleWidth | .FlexibleHeight
 ```
 
-This adds the progress indicator view as a subview to the custom image view. **autoresizingMask** ensures that progress indicator view remains the same size as the image view.
-
 上面代码添加进度指示器作为一个subview添加到自定义的image view。**autoresizingMask**确保进度指示器view保持与image view的size一样。
-
-Build and run your project; you’ll see a red, hollow circle appear like so:
 
 编译和运行你的项目；你会看到一个红的、空心的圆形出现，就像这样：
 
 ![](http://cdn1.raywenderlich.com/wp-content/uploads/2015/02/Screenshot-2015-01-25-21.44.17.png)
-
-Okay — you have your progress indicator drawing on the screen. Your next task is to vary the stroke as the download progresses.
 
 好的 - 你已经有进度指示器画在屏幕上。你的下一个任务就是根据下载进度变化来stroke。
 
