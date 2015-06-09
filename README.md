@@ -71,6 +71,7 @@
 |  [Core Image入门教程(swift)](issue-7/Core Image入门教程(swift).md) |  [Sam Lau](https://github.com/samlaudev)   |  
 |  [UIKit Dynamics 教程 - 起步](issue-7/UIKit Dynamics 教程 - 起步.md) |  [Lollypo](https://github.com/Lollypo)   | 
 |  [UIKit Dynamics和Swift教程：抛掷Views](issue-7/UIKit Dynamics和Swift教程：抛掷Views.md) |  [samw00](https://github.com/samw00)  | 
+|  [使用CAShapeLayer来实现圆形图片加载动画](issue-7/使用CAShapeLayer来实现圆形图片加载动画.md) |  [Sam Lau](https://github.com/samlaudev)   | 
 
 ### 第六期 (2015.6.1)
 |       文章标题        |         译者           | 
