@@ -65,13 +65,18 @@
 <b id="articles" ></b>
 ## 已完成列表
 
+### 第八期 (2015.6.12)
+|       文章标题        |         译者           | 
+|----------------------|------------------------| 
+|  [UIKit Dynamics和Swift教程：抛掷Views](issue-8/UIKit Dynamics和Swift教程：抛掷Views.md) |  [samw00](https://github.com/samw00)  | 
+|  [使用CAShapeLayer来实现圆形图片加载动画](issue-8/使用CAShapeLayer来实现圆形图片加载动画.md) |  [Sam Lau](https://github.com/samlaudev)   | 
+|  [WWDC中那些令人感兴趣的事物-iOS9,-Swift2](issue-8/WWDC中那些令人感兴趣的事物-iOS9,-Swift2.md) |  [Lollypo](https://github.com/Lollypo)  | 
+
 ### 第七期 (2015.6.8)
 |       文章标题        |         译者           | 
 |----------------------|------------------------|
 |  [Core Image入门教程(swift)](issue-7/Core Image入门教程(swift).md) |  [Sam Lau](https://github.com/samlaudev)   |  
 |  [UIKit Dynamics 教程 - 起步](issue-7/UIKit Dynamics 教程 - 起步.md) |  [Lollypo](https://github.com/Lollypo)   | 
-|  [UIKit Dynamics和Swift教程：抛掷Views](issue-7/UIKit Dynamics和Swift教程：抛掷Views.md) |  [samw00](https://github.com/samw00)  | 
-|  [使用CAShapeLayer来实现圆形图片加载动画](issue-7/使用CAShapeLayer来实现圆形图片加载动画.md) |  [Sam Lau](https://github.com/samlaudev)   | 
 
 ### 第六期 (2015.6.1)
 |       文章标题        |         译者           | 
