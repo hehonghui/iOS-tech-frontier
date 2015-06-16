@@ -20,9 +20,15 @@ We’ll have plenty of written and video Swift 2 tutorials for you soon, but in 
 
 #Error Handling
 
+#错误处理
+
 As Ray mentioned in his [WWDC 2015 Initial Impressions](http://www.raywenderlich.com/108379/wwdc-2015-initial-impressions) post, error handling has been revamped in Swift 2. Instead of **NSError** objects and double pointers, we’re moving to a new system that looks similar to exception handling.
 
+正如Ray在他的[WWDC 2015 Initial Impressions](http://www.raywenderlich.com/108379/wwdc-2015-initial-impressions)文章，错误处理已经在Swift 2改进了。我们已经迁移到新的系统就像异常处理，而不是**NSError**对象和双指针。
+
 You may be familiar with code like this:
+
+你可能对以下代码比较熟悉：
 
 ```
 if drinkWithError(nil) {
@@ -33,7 +39,11 @@ if drinkWithError(nil) {
 
 Generally in Cocoa, you pass in a reference to an **NSError** object (an **inout** parameter in Swift) and then the method will assign the variable if there was a problem. However, the problem is that you can pass nil here to completely ignore the error; or, you can pass in the **NSError** but then never check it.
 
+一般在Cocoa，你传入一个**NSError**对象的引用(一个**inout**参数在Swift)，然后方法会赋值给错误变量。但问题是你可以传入一个nil到这里来完全忽略这个错误；或者，你可以传入**NSError**但从不检查它。
+
 Swift 2 adds additional safety to your error checking. You use the **throws** keyword to specify which functions and methods could throw an error. Then you have the **do**, **try**, and **catch** keywords for when you call something that could throw:
+
+Swift 2 为错误检查添加额外保护层。你可以使用**throws**关键字来指定那个函数和方法能够抛出一个错误。然后当你调用某样东西时，可以用**do**, **try**和**catch**多个关键字来捕捉和处理错误。
 
 ```
 // 1
@@ -65,12 +75,21 @@ func tryToDrink() {
 
 There are a few things to highlight here:
 
+这里有几样东西需要强调的：
+
 1. To create an error to throw, simply create an **enum** that derives from **ErrorType**.
 2. You need to use the **throws** keyword to mark any function that can throw an error.
 3. This throws an error, which will be caught in section 4.
 4. Instead of **try** blocks, which might be familiar from other languages, you wrap any code that can throw an error in a **do** block. Then, you add the **try** keyword to each function call that could throw an error.
 
+1. 为了创建一个错误可以抛出，只是创建一个继承**ErrorType**的**enum**。
+2. 你需要使用**throws**关键字来标志任何函数可以抛出一个错误。
+3. 这里抛出一个错误，它将会在section 4中被捕捉。
+4. 你在一个**do**块中包含任何可以抛出一个错误的代码，而不是其他语言类似的**try**块中。然后，你添加一个**try**关键字到函数被调用的前面，而且这个函数能够抛出一个错误。
+
 The new syntax is pretty lightweight and readable. Any API that currently uses **NSError** now uses this system, so we’ll be seeing a lot of it!
+
+新语法是非常简洁和易读。任何API当前使用**NSError**以后都会使用这种错误处理方式。
 
 ![](http://cdn4.raywenderlich.com/wp-content/uploads/2015/06/throw-all-the-things-415x320.jpg)
 
