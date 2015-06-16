@@ -10,7 +10,11 @@ Swift 2 有哪些新特性
 
 At WWDC we found out the Swift team hasn’t been messing around sending crude watch drawings to each other like the rest of us — they’ve been hard at work on Swift 2.
 
+在WWDC我们发现Swift团队已经没有浪费时间在无谓的地方，而是致力于改善Swift 2。
+
 We’ll have plenty of written and video Swift 2 tutorials for you soon, but in the meantime I wanted to highlight the most exciting changes so you can be prepared for the great migration to Swift 2 in the fall.
+
+我们将会为你编写和录制很多关于Swift 2的教程，但在此期间我想强调Swift最令人兴奋的改变，那么你可以在秋天为迁移到Swift 2做准备。
 
 ![](http://cdn2.raywenderlich.com/wp-content/uploads/2015/06/swift-new.jpg)
 
