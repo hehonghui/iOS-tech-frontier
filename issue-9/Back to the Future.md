@@ -1,12 +1,14 @@
-# Back to the Future
+# Swift的异步机制-Future
 ---
 
 > * 原文链接 : [Back to the Future](https://realm.io/news/swift-summit-javier-soto-futures/)
 * 原文作者 : [Javier Soto](https://twitter.com/Javi)
 * [译文出自 :  开发技术前线 www.devtf.cn](http://www.devtf.cn)
 *  译者 : [sdq](http://shidanqing.net) 
-* 校对者:  
-* 状态 : 未校对
+
+我们在使用Objective-C写异步代码时常常会出现许多问题。它没有很好的错误处理机制，当你发现你需要在你的异步函数中创建新的异步函数它也没有一个很好的可伸缩实现。在这次演讲中，Javier Soto将演示实现一个能够简化异步API的Swift Future类型。并且创建一个Resule类型,我们可以在这个类型上调用map和andThen等操作。对于Swift来说，Futures的未来可能很会基于信号和eactiveCocoa 3。
+
+你可以在[这里](https://github.com/JaviSoto/Talks#swift-summit-2015-back-to-the-futures)看到这次演讲中的代码。
 
 ## 更优雅地使用Swift
 
