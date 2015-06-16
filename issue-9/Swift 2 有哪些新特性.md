@@ -94,7 +94,12 @@ The new syntax is pretty lightweight and readable. Any API that currently uses *
 ![](http://cdn4.raywenderlich.com/wp-content/uploads/2015/06/throw-all-the-things-415x320.jpg)
 
 #Binding
+
+#绑定
+
 With Swift 1.2, we lost the “pyramid of doom” and gained the ability to test binding multiple optionals in one line:
+
+在Swift 1.2，我们失去了金字塔的厄运和能够在一行代码测试多个绑定的optionals：
 
 ```
 if let pants = pants, frog = frog {
@@ -104,7 +109,11 @@ if let pants = pants, frog = frog {
 
 That works just fine, but the issue for some people is that the “preferred” code path where all the optionals have some value is indented. That means you need to keep looking inside indented code blocks for the mainline part of your code, while the error conditions are outside.
 
+这样勉强能够工作，但对于有些人需要缩进那个嵌套着很多optionals才能访问的值的“首选”的代码路径是一个问题。这意味着你需要深入查看缩进主线部分的代码块，而错误条件却在外面。
+
 If only there were some way to check that some of the optionals don’t have a value, and then exit early! That’s exactly what Swift 2 offers with its guard statement:
+
+如果有些方式来检查一些没有值的optionals，然后早点退出。这正是Swift 2提供的guard语句：
 
 ```
 guard let pants = pants, frog = frog else {
@@ -117,9 +126,15 @@ guard let pants = pants, frog = frog else {
 
 Using **guard** means you can perform the optional binding (or any other operation, really) and provide a code block in the **else** to run if the condition fails. Then, you can continue on – in this case, the optionals **frog** and **pants** are now bound and are no longer optionals in scope.
 
+使用**guard**意味着你可以执行optional binding (或其他操作)和如果条件失败就提供一个代码块在**else**运行。然后，你可以继续执行。在这种情况下，optionals **frog**和**pants**在作用域内被unwrap。
+
 This should make for much clearer code since **guard** lets you specify the state you’re actually expecting rather than checking for the error case.
 
+使用**guard**指定某种你希望得到状态而不是检查错误情况之后，使代码更加简洁。
+
 > **Note:** If your’e still confused about why the **guard** statement is more useful than __if-else__ statements alone, check out Swift team member [Eric Cerney‘s post](http://www.raywenderlich.com/u/ecerney) on the [Swift guard statement](http://ericcerney.com/swift-guard-statement/).
+
+> **注意：** 如果你仍然不明白为什么使用**guard**语句比**if-else**语句更加有用，请查看Swift团队[Eric Cerney‘s post](http://www.raywenderlich.com/u/ecerney)在[Swift guard statement](http://ericcerney.com/swift-guard-statement/)。
 
 #Protocol Extensions
 Object-oriented? Functional? There’s one more to add to the front of the line of what Swift is: a protocol-oriented programming language!
