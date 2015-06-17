@@ -220,8 +220,17 @@ There were a ton of things announced throughout all the sessions, so I want to h
 * __Open source!__ - 对码农有一个重大消息就是在秋天发布Swift 2的时候，Swift将会开源！这意味着不仅可以使用它来iOS开发，更重要的是学习它的源代码。不仅如此，这将是很好的机会来深入源代码，甚至为项目贡献代码，然后在swift编译器提交历史上留下你的名字。
 
 #Where To Go From Here?
+
+#下一步
+
 This is just a sampling of the many things released; for the full details, check out the [WWDC session videos](https://developer.apple.com/videos/wwdc/2015/) and the updated [Swift Programming Language book](https://itunes.apple.com/us/book/swift-programming-language/id1002622538?mt=11).
+
+这只是所有发布特性中的一些简单示例；想了解更多，请查看[WWDC session videos](https://developer.apple.com/videos/wwdc/2015/)和已更新的[Swift Programming Language book](https://itunes.apple.com/us/book/swift-programming-language/id1002622538?mt=11)
 
 There will surely be more to come if anyone remembers the volume of changes between the first beta and the 1.0 release of Swift. We’ll be staying on top of all the updates here on the team, so keep an eye out for tutorials, book announcements, and videos as we dig into all the exciting changes to come.
 
+如果还有一些人记得在Swift第一个beta版和发布的1.0之间有很多改变，那么将来肯定会有更多地特性出现。我们团队将会持续关注所有的更新，深入挖掘令人兴奋的改变，所以请密切留意教程，书籍和视频。
+
 What parts of Swift 2 are you most excited about? What would you like us to cover first? Let us know in the comments below!
+
+Swift 2哪部分最令你兴奋？哪部分你想我们第一时间报道？在下面评论让我们知道！
