@@ -6,7 +6,7 @@ Swift 2 有哪些新特性
 * 译文出自 : [开发技术前线 www.devtf.cn](http://www.devtf.cn)
 * 译者 : [Sam Lau](https://github.com/samlaudev) 
 * 校对者: [这里校对者的github用户名](github链接)  
-* 状态 :  未完成
+* 状态 :  完成翻译
 
 At WWDC we found out the Swift team hasn’t been messing around sending crude watch drawings to each other like the rest of us — they’ve been hard at work on Swift 2.
 
@@ -209,7 +209,7 @@ There were a ton of things announced throughout all the sessions, so I want to h
 
 * __Renamed syntax__ – __println__ has left us after only a year; now it’s plain old __print__ which now has a default second boolean argument set to __true__ on whether to print a newline or not. With the __do__ keyword focused on scope for error handling, do-while loops are now __repeat-while__. Similarly, there are many changes to protocol names such as __Printable__ becoming __CustomStringConvertible__.
 
-* __Renamed 语法__ - __println__已经离开我们一年了；现在它是普通旧的__print__，现在它有第二个参数的默认值设置为__true__来决定是否换行。__do__关键字主要用来错误处理，do-while循环现在是使用__repeat-while__。类似地，有很多协议名都改变了，例如：__Printable__改为__CustomStringConvertible__。
+* __重命名 语法__ - __println__已经离开我们一年了；现在它是普通旧的__print__，现在它有第二个参数的默认值设置为__true__来决定是否换行。__do__关键字主要用来错误处理，do-while循环现在是使用__repeat-while__。类似地，有很多协议名都改变了，例如：__Printable__改为__CustomStringConvertible__。
 
 * __Migrator__ – With all these small syntax changes, how are you going to get your codebase up to date? The Swift 1-to-2 migrator will come to the rescue and help bring things up to the latest standards and syntax changes. The migrator is even smart enough to update your code to use the new error handling and update your docblock comments to the new style of formatting!
 
@@ -217,7 +217,7 @@ There were a ton of things announced throughout all the sessions, so I want to h
 
 * __Open source!__ – The big news for the nerds is that Swift is going open source when Swift 2 is released in the fall. Likely this will lead to Swift being used for more than just iOS development, which makes it even more important to learn. Plus, it will be a great opportunity to get a look under the hood and even to contribute back and get your name in the Swift compiler commit history. 
 
-* __Open source!__ - 对码农有一个重大消息就是在秋天发布Swift 2的时候，Swift将会开源！这意味着不仅可以使用它来iOS开发，更重要的是学习它的源代码。不仅如此，这将是很好的机会来深入源代码，甚至为项目贡献代码，然后在swift编译器提交历史上留下你的名字。
+* __开源!__ - 对码农有一个重大消息就是在秋天发布Swift 2的时候，Swift将会开源！这意味着不仅可以使用它来iOS开发，更重要的是学习它的源代码。不仅如此，这将是很好的机会来深入源代码，甚至为项目贡献代码，然后在swift编译器提交历史上留下你的名字。
 
 #Where To Go From Here?
 
