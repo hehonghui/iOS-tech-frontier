@@ -171,7 +171,7 @@ print("\(greetings.shoutyDescription)")
 
 Note that the __Printable__ protocol is now called __CustomStringConvertible__, which most Foundation objects conform to. With protocol extensions, you can extend wide swaths of the system with your own custom functionality. And rather than adding bits of custom code to many classes and structs and enums, you can write one general implementation and have it apply across a set of types.
 
-注意**Printable**协议现在**CustomStringConvertible**被调用，而大多数的Foundation对象都遵循__Printable__协议。有了协议扩展之，你可以用自定义功能来扩展系统。相比于向很多类、结构体和枚举添加少量的自定义代码，你可以编写一个通用实现，然后应用到不同的数据类型。
+注意**Printable**协议现在被命名为**CustomStringConvertible**，而大多数的Foundation对象都遵循__Printable__协议。有了协议扩展之，你可以用自定义功能来扩展系统。相比于向很多类、结构体和枚举添加少量的自定义代码，你可以编写一个通用实现，然后应用到不同的数据类型。
 
 The Swift team has been busy doing this already — if you’ve ever used __map__ or __filter__ in Swift, you may have thought they would do better as methods rather than as global functions. Thanks to the power of protocol extensions, there are a new set of methods on collection types such as __map__, __filter__, __indexOf__, and more!
 
@@ -197,15 +197,27 @@ You’re also leveraging the power of protocol-oriented programming — check ou
 
 #Grab Bag
 
+#汇总
+
 There were a ton of things announced throughout all the sessions, so I want to highlight a few more quick things:
+
+在WWDC大会中发布很多东西，所以我想强调几样重要的东西：
 
 * __Objective-C generics__ – Apple has already started annotating all their Objective-C code so that types in Swift get the correct kind of optionality. That work continues with Objective-C generics, which will give Swift developers better type hinting. If you’re expecting a set of __UITouch__ objects or an array of strings, that’s exactly what you’ll get rather than a collection of __AnyObjects__.
 
+* __Objective-C 泛型__ - Apple已经开始标注所有的Objective-C代码以便Swift类型能够获取正确类型的optional。使用Objective-C泛型也能正常工作，这样给Swift开发者更好的类型提示。如果你希望出现一些__UITouch__对象或字符串数组，那就会出现你想要的而不是一些__AnyObjects__。
+
 * __Renamed syntax__ – __println__ has left us after only a year; now it’s plain old __print__ which now has a default second boolean argument set to __true__ on whether to print a newline or not. With the __do__ keyword focused on scope for error handling, do-while loops are now __repeat-while__. Similarly, there are many changes to protocol names such as __Printable__ becoming __CustomStringConvertible__.
+
+* __Renamed 语法__ - __println__已经离开我们一年了；现在它是普通旧的__print__，现在它有第二个参数的默认值设置为__true__来决定是否换行。__do__关键字主要用来错误处理，do-while循环现在是使用__repeat-while__。类似地，有很多协议名都改变了，例如：__Printable__改为__CustomStringConvertible__。
 
 * __Migrator__ – With all these small syntax changes, how are you going to get your codebase up to date? The Swift 1-to-2 migrator will come to the rescue and help bring things up to the latest standards and syntax changes. The migrator is even smart enough to update your code to use the new error handling and update your docblock comments to the new style of formatting!
 
+* __Migrator__ - 有很多小的语法改变，你怎样使得你代码变得最新？Swift 1-to-2 migrator会将代码变成最新的标准和改变语法。这个migrator智能到能够更新你的代码使用新的错误处理，和更新块注释到新的格式风格！
+
 * __Open source!__ – The big news for the nerds is that Swift is going open source when Swift 2 is released in the fall. Likely this will lead to Swift being used for more than just iOS development, which makes it even more important to learn. Plus, it will be a great opportunity to get a look under the hood and even to contribute back and get your name in the Swift compiler commit history. 
+
+* __Open source!__ - 对码农有一个重大消息就是在秋天发布Swift 2的时候，Swift将会开源！这意味着不仅可以使用它来iOS开发，更重要的是学习它的源代码。不仅如此，这将是很好的机会来深入源代码，甚至为项目贡献代码，然后在swift编译器提交历史上留下你的名字。
 
 #Where To Go From Here?
 This is just a sampling of the many things released; for the full details, check out the [WWDC session videos](https://developer.apple.com/videos/wwdc/2015/) and the updated [Swift Programming Language book](https://itunes.apple.com/us/book/swift-programming-language/id1002622538?mt=11).
