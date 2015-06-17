@@ -137,11 +137,20 @@ This should make for much clearer code since **guard** lets you specify the stat
 > **注意：** 如果你仍然不明白为什么使用**guard**语句比**if-else**语句更加有用，请查看Swift团队[Eric Cerney‘s post](http://www.raywenderlich.com/u/ecerney)在[Swift guard statement](http://ericcerney.com/swift-guard-statement/)。
 
 #Protocol Extensions
+
+#协议扩展
+
 Object-oriented? Functional? There’s one more to add to the front of the line of what Swift is: a protocol-oriented programming language!
+
+面向对象编程？函数式编程？Swift其实还是一种面向协议的编程语言！
 
 In Swift 1, protocols were like interfaces to specify a set of properties and methods that a class, struct, or enum would then conform to.
 
+在Swift 1，协议就像接口一样可以指定一些属性和方法，然后类，结构体或枚举会遵循它。
+
 Now in Swift 2, you can extend protocols and add default implementations for properties and methods. You can already do this with classes and structs — adding new methods to __String__ or __Array__, for example — but adding these to protocols now gives you a much wider reach.
+
+现在在Swift 2，你可以扩展协议和给属性和方法添加默认实现。你之前已经可以在类或结构体添加新的方法到**String**或**Array**，但现在你可以添加这些到协议，这让你更加广泛地应用。
 
 ```
 extension CustomStringConvertible {
@@ -162,7 +171,11 @@ print("\(greetings.shoutyDescription)")
 
 Note that the __Printable__ protocol is now called __CustomStringConvertible__, which most Foundation objects conform to. With protocol extensions, you can extend wide swaths of the system with your own custom functionality. And rather than adding bits of custom code to many classes and structs and enums, you can write one general implementation and have it apply across a set of types.
 
+注意**Printable**协议现在**CustomStringConvertible**被调用，而大多数的Foundation对象都遵循__Printable__协议。有了协议扩展之，你可以用自定义功能来扩展系统。相比于向很多类、结构体和枚举添加少量的自定义代码，你可以编写一个通用实现，然后应用到不同的数据类型。
+
 The Swift team has been busy doing this already — if you’ve ever used __map__ or __filter__ in Swift, you may have thought they would do better as methods rather than as global functions. Thanks to the power of protocol extensions, there are a new set of methods on collection types such as __map__, __filter__, __indexOf__, and more!
+
+Swift团队已经忙着做这个了 - 如果你在Swift已经使用__map__或__filter__，你可能也认为以方法的方式比全局函数来使用它们更好。多亏了强大的协议扩展，已经有一些新的方法添加到集合类型，例如：__map__，__filter__，__indexOf__和更多！
 
 ```
 et numbers = [1, 5, 6, 10, 16, 42, 45]
@@ -176,9 +189,14 @@ numbers.map { $0 * 2 }.filter { $0 % 3 == 0 }.indexOf(90) // returns 2
 
 Thanks to protocol conformance, your Swift 2 code can be more concise and readable. With the Swift 1 version, you need to look at the calls inside out to understand what’s going on; in the Swift 2 version, the chain of functions is clear.
 
+多亏了协议一致性，你的Swift 2代码会变得更加简洁和易读。在Swift 1版本，你需要查看调用函数内部来理解它的工作原理；在Swfit 2版本，函数链会变得清晰。
+
 You’re also leveraging the power of protocol-oriented programming — check out the [WWDC session on this topic](https://developer.apple.com/videos/wwdc/2015/?id=408) and keep an eye out for future tutorials and articles here on the site!
 
+如果你打算使用面向协议编程 - 请查看[WWDC session on this topic](https://developer.apple.com/videos/wwdc/2015/?id=408)和留意这个网站的教程和文章。
+
 #Grab Bag
+
 There were a ton of things announced throughout all the sessions, so I want to highlight a few more quick things:
 
 * __Objective-C generics__ – Apple has already started annotating all their Objective-C code so that types in Swift get the correct kind of optionality. That work continues with Objective-C generics, which will give Swift developers better type hinting. If you’re expecting a set of __UITouch__ objects or an array of strings, that’s exactly what you’ll get rather than a collection of __AnyObjects__.
