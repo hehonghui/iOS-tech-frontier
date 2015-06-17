@@ -5,16 +5,16 @@ Swift 2 有哪些新特性
 * 原文作者 : [Greg Heo](http://www.raywenderlich.com/u/gregheo)
 * 译文出自 : [开发技术前线 www.devtf.cn](http://www.devtf.cn)
 * 译者 : [Sam Lau](https://github.com/samlaudev) 
-* 校对者: [这里校对者的github用户名](github链接)  
+* 校对者: [Mr.Simple](https://github.com/bboyfeiyu)  
 * 状态 :  完成翻译
 
 At WWDC we found out the Swift team hasn’t been messing around sending crude watch drawings to each other like the rest of us — they’ve been hard at work on Swift 2.
 
-在WWDC我们发现Swift团队已经没有浪费时间在无谓的地方，而是致力于改善Swift 2。
+在WWDC我们发现Swift团队没有浪费时间在无谓的地方，而是致力于改善Swift 2。
 
 We’ll have plenty of written and video Swift 2 tutorials for you soon, but in the meantime I wanted to highlight the most exciting changes so you can be prepared for the great migration to Swift 2 in the fall.
 
-我们将会为你编写和录制很多关于Swift 2的教程，但在此期间我想强调Swift最令人兴奋的改变，那么你可以在秋天为迁移到Swift 2做准备。
+我们将会为你编写和录制很多关于Swift 2的教程，但在此期间我想强调Swift最令人兴奋的改变，为你可以在秋天迁移到Swift 2做准备。
 
 ![](http://cdn2.raywenderlich.com/wp-content/uploads/2015/06/swift-new.jpg)
 
@@ -24,7 +24,7 @@ We’ll have plenty of written and video Swift 2 tutorials for you soon, but in 
 
 As Ray mentioned in his [WWDC 2015 Initial Impressions](http://www.raywenderlich.com/108379/wwdc-2015-initial-impressions) post, error handling has been revamped in Swift 2. Instead of **NSError** objects and double pointers, we’re moving to a new system that looks similar to exception handling.
 
-正如Ray在他的[WWDC 2015 Initial Impressions](http://www.raywenderlich.com/108379/wwdc-2015-initial-impressions)文章，错误处理已经在Swift 2改进了。我们已经迁移到新的系统就像异常处理，而不是**NSError**对象和双指针。
+正如Ray在[WWDC 2015 Initial Impressions](http://www.raywenderlich.com/108379/wwdc-2015-initial-impressions)文章中提及，错误处理已经在Swift 2改进了。我们已经迁移到新的系统就像异常处理，而不是**NSError**对象和双指针。
 
 You may be familiar with code like this:
 
