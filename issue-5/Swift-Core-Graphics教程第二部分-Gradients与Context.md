@@ -1,13 +1,12 @@
 
-# 核心绘图教程2: 渐变与上下文
+Core Graphics教程第二部分(Swift) - Gradients 与 Context
 ---
 
 > * 原文链接 : [Core Graphics Tutorial Part 2: Gradients and Contexts](http://www.raywenderlich.com/90693/modern-core-graphics-with-swift-part-2)
 * 原文作者 : [caroline](http://www.raywenderlich.com/u/caroline)
-* [译文出自 :  开发技术前线 www.devtf.cn](http://www.devtf.cn)
-* 译者 : [Mr.Simple,HarriesChen](https://github.com/bboyfeiyu) 
-* 校对者: [xxx](https://github.com/)
-* 状态 :  
+* 译文出自 :  [开发技术前线](http://www.devtf.cn)
+* 译者 : [HarriesChen](https://github.com/mrchenhao) 
+* 校对者: [HarriesChen](https://github.com/mrchenhao)
 
 ![FinalApp](http://cdn3.raywenderlich.com/wp-content/uploads/2014/12/FinalApp-192x320.png)
 
