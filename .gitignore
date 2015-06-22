@@ -1,1 +1,8 @@
 *.DS_Store
+<<<<<<< HEAD
+=======
+.DS_Store
+.media/
+.tmp/
+Guide.localized/
+>>>>>>> tech/master
