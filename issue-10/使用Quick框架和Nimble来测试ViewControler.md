@@ -6,7 +6,7 @@
 > * 原文链接 : [Testing view controllers with Quick and Nimble ](https://medium.com/@MarcioK/how-you-can-test-view-controllers-with-quick-nimble-328f895b55ee)
 * 译文出自 :  [开发技术前线 www.devtf.cn](http://www.devtf.cn)
 * 译者 : [Mr.Simple](https://github.com/bboyfeiyu)
-* 状态 : 待校对
+* 校对 : [Lollypo](https://github.com/Lollypo)
 
 
 View controllers are one of the pillars of your application
@@ -19,7 +19,7 @@ write tests for view controllers it is still an obscure topic, on this
 tutorial I will try to clarify that with an example using [Quick and
 Nimble](https://github.com/Quick/Quick).
 
-ViewController是iOS应用开发的支柱之一,[它们是用户界面和业务逻辑、模型的纽带](http://www.objc.io/issue-15/behavior-driven-development.html),即便只是修改了它其中的一点代码也可能会引发严重的问题，因此对ViewController进行测试就变得极为重要。然而，为ViewController写测试代码仍然是一个复杂的话题。这篇文章中，我会尝试使用[Quick和Nimble](https://github.com/Quick/Quick)框架来进行演示。
+ViewController是iOS应用开发的支柱之一,[它们是用户界面和业务逻辑、模型的纽带](http://www.objc.io/issue-15/behavior-driven-development.html),即便只是修改了它其中的一点代码也可能会引发严重的问题，因此对ViewController进行测试就变得极为重要。然而，为ViewController写测试代码一直以来都是一个晦涩难懂的话题。这篇文章中，我会尝试使用[Quick和Nimble](https://github.com/Quick/Quick)框架来解开这些疑惑。
 
 #### Quick 和 Nimble 
 
@@ -36,14 +36,14 @@ framework for Swift and Objective-C. Inspired by
 [Ginkgo](https://github.com/onsi/ginkgo).
 
 **Nimble** is a Matcher Framework also for also both languages.
-**Nimble** 是一个用于Swift和Objective-C的匹配框架.
+**Nimble** 是一个同时适用于Swift和Objective-C语言的匹配框架.
 
 In another words Quick is a framework for creating
 [**BDD**](http://en.wikipedia.org/wiki/Behavior-driven_development)
 tests that comes with Nimble that can help to provide more clear
 expectations for your tests.
 
-换句话说，Quick是一个与Nimble一起协作、用于创建清晰的[BDD](http://en.wikipedia.org/wiki/Behavior-driven_development)测试的框架。
+换句话说，Quick是一个用于创建[BDD](http://en.wikipedia.org/wiki/Behavior-driven_development)测试的框架。配合Nimbl，可以为你创建更符合预期目标的测试。
 
 
 
@@ -71,7 +71,7 @@ and running:
 
 
 ### Setting up Quick and Nimble on Pony app
-### 在Pony应用上配置Quick和Nimble
+### 为Pony配置Quick和Nimble
 
 If you have the latest [CocoaPods](http://cocoapods.org) version
 installed, you just have to add them in the Podfile:
@@ -92,7 +92,7 @@ end
 
 
 #### Quick File Templates (Optional) 
-#### Quick文件模板
+#### Quick文件模板（可选）
 
 *你可以使用Alcatraz 或者* [*通过
 Rakefile手动创建*](https://github.com/Quick/Quick/blob/master/Documentation/InstallingFileTemplates.md)
@@ -294,7 +294,7 @@ pattern and some benefits are:
 
 -  Clearly separates what is being tested from the setup and
     verification steps.
-- 将初始化和测试代码分离开来，使代码更简洁;    
+- 明确区分出初始化与验证步骤中有哪些需要被测试；    
 -  Clarifies and focuses attention on a historically successful and
     generally necessary set of test steps.
 -  关注点集中在测试历史记录和必须的测试步骤上。   
@@ -457,7 +457,7 @@ waitUntil{
 - UIKit provide public methods to help trigger view controller states.
 - Testing on view controllers can be tricky sometimes, try to keep
     them thin as possible
-- 你能够使用Quick框架和Nimble来构建更简洁的测试代码;
+- 明确测试目标，你可以使用Quick框架和Nimble来实现更有意义的测试;
 - 你必须要遵守它的生命周期函数 ，例如如果另一个ViewController正在展示或者视图不是你的视图层级的一部分时你不能展示另一个ViewController ;
 - UIKit提供了一些public的函数来帮助你触发view controller 的状态;
 - 测试ViewController有时候是相当蛋疼的，尽量保持这些测试代码的简洁性。
