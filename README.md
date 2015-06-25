@@ -32,10 +32,12 @@
 ## 文章分类
 |   来源    |   介绍     |
 |----------|-------------|
-| [Ray Wenderlich] | iOS社区，经常更新优秀文章[Ray Wenderlich](http://www.raywenderlich.com/) |
-| [App Coda] | iOS社区，经常更新优秀文章[App Coda](http://www.appcoda.com/) |
-| [Medium] | 类似于Reddit的社区，这是其中的iOS板块[Medium](https://medium.com/ios-os-x-development/) |
-| [Others] | 其他来源的优秀文章 |
+| Ray Wenderlich | iOS社区，经常更新优秀文章[Ray Wenderlich](http://www.raywenderlich.com/) |
+| App Coda | iOS社区，经常更新优秀文章[App Coda](http://www.appcoda.com/) |
+| iOS Dev Weekly | 每周发布热点资讯，第三方工具库，教程等[iOS Dev Weekly](http://iosdevweekly.com/issues/) |
+| iOS Development Tips | 干货多多，就是发布的间期有点点长[iOS Development Tips](http://iosdevtips.co) |
+| Medium | 类似于Reddit的社区，这是其中的iOS板块[Medium](https://medium.com/ios-os-x-development/) |
+| Others | 其他来源的优秀文章 |
 
 <b id="recommend" ></b>
 ## 推荐文章
