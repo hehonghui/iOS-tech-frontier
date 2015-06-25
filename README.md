@@ -32,10 +32,12 @@
 ## 文章分类
 |   来源    |   介绍     |
 |----------|-------------|
-| [Ray Wenderlich] | iOS社区，经常更新优秀文章[Ray Wenderlich](http://www.raywenderlich.com/) |
-| [App Coda] | iOS社区，经常更新优秀文章[App Coda](http://www.appcoda.com/) |
-| [Medium] | 类似于Reddit的社区，这是其中的iOS板块[Medium](https://medium.com/ios-os-x-development/) |
-| [Others] | 其他来源的优秀文章 |
+| [Ray Wenderlich](http://www.raywenderlich.com/) | iOS社区，经常更新优秀文章 |
+| [App Coda](http://www.appcoda.com/) | iOS社区，经常更新优秀文章 |
+| [iOS Dev Weekly](http://iosdevweekly.com/issues/) | 每周发布热点资讯，第三方工具库，教程等 |
+| [iOS Development Tips](http://iosdevtips.co) | 干货多多，就是发布的间期有点点长 |
+| [Medium](https://medium.com/ios-os-x-development/) | 类似于Reddit的社区，这是其中的iOS板块 |
+| Others | 其他来源的优秀文章 |
 
 <b id="recommend" ></b>
 ## 推荐文章
@@ -64,6 +66,14 @@
 
 <b id="articles" ></b>
 ## 已完成列表
+# 2015.6.23 ( 第九期 )
+| 文章名称 |   译者  | 
+|---------|--------|
+| [Swift 2 有哪些新特性](issue-9/Swift2有哪些新特性.md)  | [MollyMmm](https://github.com/MollyMmm)      
+| [Swift-EventKit的初学者指南--请求权限](issue-9/Swift-EventKit的初学者指南--请求权限.md)  | [MollyMmm](https://github.com/MollyMmm) 
+| [Swift的异步机制-Future](issue-9/Swift的异步机制-Future.md)  | [Javier Soto](https://twitter.com/Javi)      |
+| [在Swift开发中通过UINavigationController来访问Sub-Controllers](issue-9/在Swift开发中通过UINavigationController来访问Sub-Controllers.md)  | [samw00](http://www.andrewcbancroft.com/2015/06/02/access-sub-controllers-from-a-uinavigationcontroller-in-swift/)      |
+
 
 ### 第八期 (2015.6.12)
 |       文章标题        |         译者           | 
