@@ -6,8 +6,6 @@ June 05, 2015](https://corner.squareup.com/2015/06/dependency-injection-in-objc.
 * 原文作者 : [Square Engineering Blog](https://corner.squareup.com)
 * 译文出自 : [开发技术前线 www.devtf.cn](http://www.devtf.cn)
 * 译者 : [HarriesChen](https://github.com/mrchenhao) 
-* 校对者: [这里校对者的github用户名](github链接)  
-* 状态 :  未完成 / 校对中 / 完成 
 
 ##什么是依赖注入呢?
 依赖注入（DI）是一种非常流行的设计模式在许多的语言之中，比如说Java和C#,但是它似乎并没有在Objective-C广泛的被采用，这篇文章的目的就是简要的介绍一下在Objective-C中使用依赖注入的例子。虽然代码是用Objective-C写的，但是也可以应用到Swift。
