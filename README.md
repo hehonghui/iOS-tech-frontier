@@ -66,6 +66,15 @@
 
 <b id="articles" ></b>
 ## 已完成列表
+
+# 2015.6.29 ( 第十期 )
+| 文章名称 |   译者  | 
+|---------|--------|
+| [使用Quick框架和Nimble来测试ViewControler](issue-10/使用Quick框架和Nimble来测试ViewControler.md)  | [Mr.Simple](https://github.com/bboyfeiyu)      
+| [为watchOS-2而生的WatchKit-初印象](issue-10/为watchOS-2而生的WatchKit-初印象.md)  | [StormXX](https://github.com/StormXX) 
+| [iOS依赖注入](issue-10/iOS依赖注入.md)  | [HarriesChen](https://github.com/mrchenhao)      |
+
+
 # 2015.6.23 ( 第九期 )
 | 文章名称 |   译者  | 
 |---------|--------|
