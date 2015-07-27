@@ -5,8 +5,6 @@ iOS8 用AVAudioPlayer播放音乐（Swift）
 * 原文作者 : [http://www.ioscreator.com](http://www.ioscreator.com/)
 * 译文出自 : [开发技术前线 www.devtf.cn](http://www.devtf.cn)
 * 译者 : [HarriesChen](https://github.com/mrchenhao) 
-* 校对者: [这里校对者的github用户名](github链接)  
-* 状态 :  未完成 / 校对中 / 完成 
 
 
 `AVAudioPlayer `类提供了播放音频文件的功能，在本次教程中，我们将对一个音乐文件进行播放暂停和停止操作，此外还会显示标题和播放时间。本次教程使用iOS8和Xcod6.3.1
