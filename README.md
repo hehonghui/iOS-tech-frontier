@@ -67,6 +67,13 @@
 <b id="articles" ></b>
 ## 已完成列表
 
+# 2015.7.31 ( 第十四期 )
+| 文章名称 |   译者  | 
+|---------|--------|
+| [单例在Swift中的正确实现方式](issue-14/单例在Swift中的正确实现方式.md)  | [Gottabe](https://github.com/Gottabe)      
+| [在Swift怎样创建CocoaPod](issue-14/在Swift怎样创建CocoaPod.md)  | [MrLoong](https://github.com/MrLoong) 
+| [如何做一个iOS分形App](issue-14/如何做一个iOS分形App.md)  | [alier1226](https://github.com/alier1226)      |
+
 # 2015.7.6 ( 第十一期 )
 | 文章名称 |   译者  | 
 |---------|--------|
