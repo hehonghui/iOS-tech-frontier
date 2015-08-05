@@ -3,3 +3,5 @@
 .media/
 .tmp/
 Guide.localized/
+
+issue-15/Strings 在 Swift 2中字符串设计的背后思想
