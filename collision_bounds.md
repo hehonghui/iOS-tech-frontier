@@ -161,7 +161,64 @@ The basket can be created with a single UIView acting as the backboard, a couple
      	[board, leftHoop, rightHoop, floor, ball, hoop].map({self.view.addSubview($0)})
      }
 
-## 入门指南
-大家都知道要写一款精品软件是有难度且很复杂的：不仅要满足特定要求，而且软件还必须具有稳健性，可维护、可测试性强，并且能够灵活适应各种发展与变化。这时候，“清晰架构”就应运而生了，这一架构在开发任何软件应用的时候用起来非常顺手。
+Nothing new here, the hoop is created programmatically and is placed in the constant ```CGPoint hoopPosition```. The order of the views is important though, since we want the hoop to be above the basket ball.
+## 篮板
 
-这个思路很简单：简洁架构 意味着产品系统中遵循一系列的习惯原则：
+篮筐可以由一个UIView充当背板，一对刚体视图来做篮筐的左右两臂，最前面的视图作为篮圈本身(没有物理特性的物体)。使用之前定义好的```Ellipse```类，我们就可以创建一个可见的游戏场景了：
+
+	/* 
+     Build the hoop, setup the world appearance
+     */
+     func buildViews() {
+     	board = UIView(frame: CGRect(x: hoopPosition.x, y: hoopPosition.y, width: 100, height: 100))
+     	board.backgroundColor = .whiteColor()
+     	board.layer.borderColor = UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1).CGColor
+     	board.layer.borderWidth = 2
+     	
+     	board.addSubview({
+     		let v = UIView(frame: CGRect(x: 30, y: 43, width: 40, height: 40))
+     		v.backgroundColor = .clearColor()
+     		v.layer.borderColor = UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 1).CGColor
+     		v.layer.borderWidth = 5
+     		return v
+     	}())
+     	
+     	leftHoop = Ellipse(frame: CGRect(x: hoopPosition.x + 20, y: hoopPosition.y + 80, width: 10, height: 6))
+     	leftHoop.backgroundColor = .clearColor()
+     	leftHoop.layer.cornerRadius = 3
+     	
+     	rightHoop = Ellipse(frame: CGRect(x: hoopPosition.x + 70, y: hoopPosition.y + 80, width: 10, height: 6))
+     	rightHoop.backgroundColor = .clearColor()
+     	rightHoop.layer.cornerRadius = 3
+     	
+     	hoop = UIView(frame: CGRect(x: hoopPosition.x + 20, y: hoopPosition.y + 80, width: 60, height: 6))
+     	hoop.backgroundColor = UIColor(red: 177.0/255.0, green: 25.0/255.0, blue: 25.0/255.0, alpha: 1)
+     	hoop.layer.cornerRadius = 3
+     	
+     	[board, leftHoop, rightHoop, floor, ball, hoop].map({self.view.addSubview($0)})
+     }
+
+到目前为止没有使用任何新的东西我们就通过编程的方式创建了一个篮板，并且把他放在了常量```CGPoint hoopPosition```的位置上。这些视图的顺序也非常重要，因为我们想让篮板在篮筐的上面。
+
+## Nuts and bolts
+
+The most important part of the hoop are the left and right arms. They need a physical round body (so that the collision with the ball is smooth) and need to be bolted to the board and the front hoop. These two will be basic ```UIDynamicItems``` and won’t partecipate directly in the collisions. The newly introduced pin attachment is perfect for this job, it can hold everything together quite nicely as we can see in this rather ugly drawing:
+![](http://fancypixel.github.io/images/posts/2015-06-19/hoop.png)
+
+## 螺母和螺栓(Nuts and bolts)
+篮筐上的左右两臂是最重要的部分。他们需要物理刚体包围(这样才能使与球的碰撞看起来更自然)，而且还需要与篮板和篮筐前面部分拴在一起。左右两臂是基本的```UIDynamicItems```并且不会直接参与碰撞。之前介绍的pin attachment(按住附件)可以很好得处理这个工作，他可以把所有的物体结合在一起，就像下面这幅图示意的一样，画得不太好:
+![](http://fancypixel.github.io/images/posts/2015-06-19/hoop.png)
+
+The pin can be attached only to a couple of views at a time, within a given absolute spatial point:
+
+	let bolts = [
+	CGPoint(x: hoopPosition.x + 25, y: hoopPosition.y + 85), // leftHoop -> Board
+	CGPoint(x: hoopPosition.x + 75, y: hoopPosition.y + 85), // rightHoop -> Board
+	CGPoint(x: hoopPosition.x + 25, y: hoopPosition.y + 85), // hoop -> Board (L)
+	CGPoint(x: hoopPosition.x + 75, y: hoopPosition.y + 85)] // hoop -> Board (R)
+	
+	// Build the board
+	zip([leftHoop, rightHoop, hoop, hoop], offsets).map({
+	(item, offset) in 
+	animator?.addBehavior(UIAttachmentBehavior.pinAttachmentWithItem(item, attachedToItem: board, attachmentAnchor: bolts))
+	})
