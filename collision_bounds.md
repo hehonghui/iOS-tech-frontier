@@ -125,35 +125,35 @@ One thing I really like about it is the physic model of the ball and how the hoo
 
 The basket can be created with a single UIView acting as the backboard, a couple of views with rigid bodies as the left and right arms of the hoop, and a frontmost view as the hoop itself (without a physic body). Using the previously defined class `Ellipse` we can create the visual representation of our game scene:
 
-```<font color=#C1C1B8>/* 
-Build the hoop, setup the world appearance
-*/</font>    
-func buildViews() {    
+      <font color=#C1C1B8>/* 
+    Build the hoop, setup the world appearance
+    */</font>    
+    func buildViews() {    
 	board = <font color=#3494BB>UIView</font>(frame: <font color=#3494BB>CGRect</font>(x: hoopPosition<font color=#006E6D>.x</font>, y: hoopPosition<font color=#006E6D>.y</font>, width: <font color=#006E6D>100</font>, height: <font color=#006E6D>100</font>))    
 	board<font color=#006E6D>.backgroundColor</font> = <font color=#006E6D>.whiteColor</font>()    
 	board<font color=#006E6D>.layer.borderColor</font> = <font color=#3494BB>UIColor</font>(red: <font color=#006E6D>0.98</font>, green: <font color=#006E6D>0.98</font>, blue: <font color=#006E6D>0.98</font>, alpha: <font color=#006E6D>1</font>)<font color=#006E6D>.CGColor</font>    
 	board<font color=#006E6D>.layer.borderWidth</font> = <font color=#006E6D>2</font>    
-  board<font color=#006E6D>.addSubview</font>({    
-  	let v = <font color=#3494BB>UIView</font>(frame: <font color=#3494BB>CGRect</font>(x: <font color=#006E6D>30</font>, y: <font color=#006E6D>43</font>, width: <font color=#006E6D>40</font>, height: <font color=#006E6D>40</font>))    
+     board<font color=#006E6D>.addSubview</font>({    
+     let v = <font color=#3494BB>UIView</font>(frame: <font color=#3494BB>CGRect</font>(x: <font color=#006E6D>30</font>, y: <font color=#006E6D>43</font>, width: <font color=#006E6D>40</font>, height: <font color=#006E6D>40</font>))    
     v<font color=#006E6D>.backgroundColor</font> = <font color=#006E6D>.clearColor</font>()    
     v<font color=#006E6D>.layer.borderColor</font> = <font color=#3494BB>UIColor</font>(red: <font color=#006E6D>0.4</font>, green: <font color=#006E6D>0.4</font>, blue: <font color=#006E6D>0.4</font>, alpha: <font color=#006E6D>1</font>)<font color=#006E6D>.CGColor</font>    
     v<font color=#006E6D>.layer.borderWidth</font> = <font color=#006E6D>5</font>    
     **return** v    
     }())    
-  leftHoop = Ellipse(frame: <font color=#3494BB>CGRect</font>(x: hoopPosition.x + 20, y: hoopPosition.y + 80, width: 10, height: 6))    
-  leftHoop.backgroundColor = .clearColor()    
-  leftHoop.layer.cornerRadius = 3    
-  rightHoop = Ellipse(frame: <font color=#3494BB>CGRect</font>(x: hoopPosition.x + 70, y: hoopPosition.y + 80, width: 10, height: 6))    
-  rightHoop.backgroundColor = .clearColor()    
-  rightHoop.layer.cornerRadius = 3```
+     leftHoop = Ellipse(frame: <font color=#3494BB>CGRect</font>(x: hoopPosition.x + 20, y: hoopPosition.y + 80, width: 10, height: 6))    
+     leftHoop.backgroundColor = .clearColor()    
+     leftHoop.layer.cornerRadius = 3    
+     rightHoop = Ellipse(frame: <font color=#3494BB>CGRect</font>(x: hoopPosition.x + 70, y: hoopPosition.y + 80, width: 10, height: 6))    
+     rightHoop.backgroundColor = .clearColor()    
+     rightHoop.layer.cornerRadius = 3     
  
   
-  hoop = <font color=#3494BB>UIView</font>(frame: <font color=#3494BB>CGRect</font>(x: hoopPosition.x + 20, y: hoopPosition.y + 80, width: 60, height: 6))    
-  hoop.backgroundColor = <font color=#3494BB>UIColor</font>(red: 177.0/255.0, green: 25.0/255.0, blue: 25.0/255.0, alpha: 1)    
-  hoop.layer.cornerRadius = 3
+     hoop = <font color=#3494BB>UIView</font>(frame: <font color=#3494BB>CGRect</font>(x: hoopPosition.x + 20, y: hoopPosition.y + 80, width: 60, height: 6))    
+     hoop.backgroundColor = <font color=#3494BB>UIColor</font>(red: 177.0/255.0, green: 25.0/255.0, blue: 25.0/255.0, alpha: 1)    
+     hoop.layer.cornerRadius = 3
 
-  [board, leftHoop, rightHoop, floor, ball, hoop].map({**self**.view.addSubview($0)})    
-}```
+     [board, leftHoop, rightHoop, floor, ball, hoop].map({**self**.view.addSubview($0)})    
+    }
 
 ## 入门指南
 大家都知道要写一款精品软件是有难度且很复杂的：不仅要满足特定要求，而且软件还必须具有稳健性，可维护、可测试性强，并且能够灵活适应各种发展与变化。这时候，“清晰架构”就应运而生了，这一架构在开发任何软件应用的时候用起来非常顺手。
