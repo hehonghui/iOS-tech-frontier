@@ -219,6 +219,217 @@ The pin can be attached only to a couple of views at a time, within a given abso
 	
 	// Build the board
 	zip([leftHoop, rightHoop, hoop, hoop], offsets).map({
-	(item, offset) in 
-	animator?.addBehavior(UIAttachmentBehavior.pinAttachmentWithItem(item, attachedToItem: board, attachmentAnchor: bolts))
+       (item, offset) in
+       animator?.addBehavior(UIAttachmentBehavior.pinAttachmentWithItem(item, attachedToItem: board, attachmentAnchor: bolts))
 	})
+	
+pin(按住)一次只能将两个视图固定在一起，且最终会被固定在一个空间内绝对的点上：
+
+	let bolts = [
+	CGPoint(x: hoopPosition.x + 25, y: hoopPosition.y + 85), // leftHoop -> Board
+	CGPoint(x: hoopPosition.x + 75, y: hoopPosition.y + 85), // rightHoop -> Board
+	CGPoint(x: hoopPosition.x + 25, y: hoopPosition.y + 85), // hoop -> Board (L)
+	CGPoint(x: hoopPosition.x + 75, y: hoopPosition.y + 85)] // hoop -> Board (R)
+	
+	// Build the board
+	zip([leftHoop, rightHoop, hoop, hoop], offsets).map({
+       (item, offset) in
+       animator?.addBehavior(UIAttachmentBehavior.pinAttachmentWithItem(item, attachedToItem: board, attachmentAnchor: bolts))
+	})
+	
+If you’re not participating in the race to Swift’s functional awesomeness you’re probably not familiar with zip and map. It might seem contrived at first, but it’s rather simple: each view is coupled with the offset point in which we’re going to pin the attachment, resulting in an array of tuples that is then used in the map function that, as the name suggests, creates a mapping with each element of the array with the provided closure. This results in both the left and right arms of the hoop to be bolted to the board and the front hoop as follows:
+
+* Left arm bolted to the left of the board
+* Right arm bolted to the right of the board
+* Hoop bolted to the left of the board
+* Hoop bolted to the left of the board
+
+如果你没有接触过swift的函数精髓的话你可能会对zip和map比较疑惑。刚开始看上去有点不自然，但其实非常简单：每个视图与pin attachment的一定偏移点组合在一起，产生了一个元组的数组，然后使用map函数，map就像名字所代表的意思一样，创建了一个单个元素组成的数组与提供的闭包的之间的映射。这样就完成了将篮板左右臂与篮板和前筐组合起来，具体关系如下：
+
+* 左臂与做篮板组合；
+* 右臂与右篮板组合；
+* 篮筐与左篮板组合；
+* xxx;
+
+The next step requires us to hang the board, letting it rest loosely, so that a collision can cause it to swivel a bit like it does in Ball King:
+
+	// Set the density of the hoop, and fix its angle
+	// Hang the hoop
+	animator?.addBehavior({
+		let attachment = UIAttachmentBehavior(item: board, attachedToAnchor: CGPoint(x: hoopPosition.x, y: hoopPosition.y))
+		attachment.length = 2
+		attachment.damping = 5
+		return attachment
+		}())
+		
+	animator?.addBehavior({
+		let behavior = UIDynamicItemBehavior(items: [leftHoop, rightHoop])
+		behavior.density = 10
+		behavior.allowsRotation = false
+		return behavior
+		}())
+		
+	// Block the board rotation
+	animator?.addBehavior({
+		let behavior = UIDynamicItemBehavior(items: [board])
+		behavior.allowsRotation = false
+		return behavior
+		}())
+		
+下一步需要我们去悬挂篮板，让他松散一些，这样当被撞击时才能转动一点，就像Ball King中的那样：
+
+	// Set the density of the hoop, and fix its angle
+	// Hang the hoop
+	animator?.addBehavior({
+		let attachment = UIAttachmentBehavior(item: board, attachedToAnchor: CGPoint(x: hoopPosition.x, y: hoopPosition.y))
+		attachment.length = 2
+		attachment.damping = 5
+		return attachment
+		}())
+		
+	animator?.addBehavior({
+		let behavior = UIDynamicItemBehavior(items: [leftHoop, rightHoop])
+		behavior.density = 10
+		behavior.allowsRotation = false
+		return behavior
+		}())
+		
+	// Block the board rotation
+	animator?.addBehavior({
+		let behavior = UIDynamicItemBehavior(items: [board])
+		behavior.allowsRotation = false
+		return behavior
+		}())
+
+
+The hoop is ready to go. Let’s take care of the ball, starting with a custom subclass of ```UIImageView``` with a rounded physics body, just like the ```Ellipse``` class:
+
+	class Ball: UIImageView {
+		override var collisionBoundsType: UIDynamicItemCollisionBoundsType {
+    	return .Ellipse
+    	}
+    }
+    
+We can then istantiate the ball as a common UIImageView:
+
+	let ball: Ball = {
+		let ball = Ball(frame: CGRect(x: 0, y: 0, width: 28, height: 28))
+		ball.image = UIImage(named: "ball")
+		return ball
+	}()
+
+Finally we set its physical properties:
+
+	// Set the elasticity and density of the ball
+	animator?.addBehavior({
+		let behavior = UIDynamicItemBehavior(items: [ball])
+		behavior.elasticity = 1
+		behavior.density = 3
+		behavior.action = {
+			if !CGRectIntersectsRect(self.ball.frame, self.view.frame) {
+				self.setupBehaviors()
+				self.ball.center = CGPoint(x: 40, y: self.view.frame.size.height - 100)
+			}
+		}
+		return behavior
+	}())
+	
+In this bit of code I set the elasticity (how much it should bounce after a collision), density (think of it as the *weight*) and a handy action closure that resets the world state when the ball exits the play area (the main view).
+
+篮框已经就绪了！让我们来把注意力放在篮球上，首先来创建一个自定义的```UIImageView```的子类，并且用一个圆形的物理特性的物体包围，就像```Ellipse```类一样：
+
+	class Ball: UIImageView {
+		override var collisionBoundsType: UIDynamicItemCollisionBoundsType {
+    	return .Ellipse
+    	}
+    }
+
+我们可以用UIImageView的实例来充当篮球。
+
+	let ball: Ball = {
+		let ball = Ball(frame: CGRect(x: 0, y: 0, width: 28, height: 28))
+		ball.image = UIImage(named: "ball")
+		return ball
+	}()
+
+
+接下来设置球的物理特性：
+
+	// Set the elasticity and density of the ball
+	animator?.addBehavior({
+		let behavior = UIDynamicItemBehavior(items: [ball])
+		behavior.elasticity = 1
+		behavior.density = 3
+		behavior.action = {
+			if !CGRectIntersectsRect(self.ball.frame, self.view.frame) {
+				self.setupBehaviors()
+				self.ball.center = CGPoint(x: 40, y: self.view.frame.size.height - 100)
+			}
+		}
+		return behavior
+	}())
+
+
+在这段代码中我设置了球体的弹性(当碰撞后产生多大的反弹)，密度（把它当做一个*重物*），以及一个便利动作闭包(handy action closure)以用来充值世界的状态当球从当前的活动区域(主视图)出去时。
+
+## Collisions and gravity
+
+I mentioned the new ```anchored``` property of ```UIDynamicItemBehavior```, which disables the dynamic behavior of an object while keeping it in the collision’s loop. Sounds like a great way to build a steady floor:
+
+	// Anchor the floor
+	animator?.addBehavior({
+		let behavior = UIDynamicItemBehavior(items: [floor])
+		behavior.anchored = true
+		return behavior
+	}())
+	
+## 碰撞和重力
+我提到过UIDynamicBehavior的一个新的属性:anchored。它可以让对象(object)在一个碰撞循环当中失去动态行为(dynamic behavior)。可以利用这个属性来构建固定的地面。
+
+	// Anchor the floor
+	animator?.addBehavior({
+		let behavior = UIDynamicItemBehavior(items: [floor])
+		behavior.anchored = true
+		return behavior
+	}())
+	
+Forget to set this property and you’ll be scratching your head a lot. I know I did.
+Ok, everything is set, it just needs some gravity and a set of collisions:
+
+	animator?.addBehavior(UICollisionBehavior(items: [leftHoop, rightHoop, floor, ball]))
+	animator?.addBehavior(UIGravityBehavior(items: [ball]))
+
+The gravity is a field behavior that applies a down force of 1 point per second as default. The collision behavior takes as parameter only the views that should collide with each other. The world is set up, now we can apply an instantaneous force to the ball and keep our fingers crossed:
+
+	let push = UIPushBehavior(items: [ball], mode: .Instantaneous)
+	push.angle = -1.35
+	push.magnitude = 1.56
+	animator?.addBehavior(push)
+
+如果你一不小心忘记了设置这个属性那么你一定会非常抓狂，因为我就做过这样的事情。好了，所有东西都就绪了，就差一点重力和碰撞了。
+
+	animator?.addBehavior(UICollisionBehavior(items: [leftHoop, rightHoop, floor, ball]))
+	animator?.addBehavior(UIGravityBehavior(items: [ball]))
+	
+重力是一个1point每秒的向下的场行为的作用力。碰撞行为仅仅是当视图相互碰撞是来作为一个参数对待。世界已经构建完成了，现在我们来为球施加一个实例化的力，然后滑动我们的手指:
+
+	let push = UIPushBehavior(items: [ball], mode: .Instantaneous)
+	push.angle = -1.35
+	push.magnitude = 1.56
+	animator?.addBehavior(push)
+	
+![](http://fancypixel.github.io/images/posts/2015-06-19/ball.gif)
+
+And there you go, it’s really rough around the edges, but that was a lot of fun to build (yes, the clouds and the bushes are the same drawing, like in [Super Mario](https://www.youtube.com/watch?v=ai7d1K4Yf6A)).
+As always you can find the source on our [GitHub page](https://github.com/FancyPixel/BallSwift).
+
+Until next time,
+
+Andrea - [*@theandreamazz*](https://twitter.com/theandreamazz)
+
+![](http://fancypixel.github.io/images/posts/2015-06-19/ball.gif)
+
+好了，虽然屏幕边缘没有处理看起来有些粗略，但是这个东西看起来还是非常有趣的！(灌木丛和云也同样被添加上去了，像超级玛丽那样。)
+所有的资源都被放在了[这里](https://www.youtube.com/watch?v=ai7d1K4Yf6A)。     
+下次再见！     
+Andrea - [*@theandreamazz*](https://twitter.com/theandreamazz)
