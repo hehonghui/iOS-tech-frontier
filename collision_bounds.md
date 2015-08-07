@@ -25,9 +25,9 @@ The first release of UIDynamics shipped with a collision system (provided by [UI
 
 The property is readonly, so if we want to change it we need to provide our own subclass:
 
-```**class Ellipse: UIView {**    
-   **override var** collisionBoundsType: UIDynamicItemCollisionBoundsType {
-    **return** .Ellipse    
+```class Ellipse: UIView {    
+   override var collisionBoundsType: UIDynamicItemCollisionBoundsType {
+    return .Ellipse    
   }    
 }```
 
@@ -47,16 +47,16 @@ UIDynamics的第一个正式发布的版本中所使用的碰撞系统(由[UICol
   }    
 }```
 
-This is a UIView with the default collision bound:
+This is a UIView with the default collision bound:    
 ![](http://fancypixel.github.io/images/posts/2015-06-19/slide.gif)
 
-This is the same UIView with the` .Ellipse`:
+This is the same UIView with the` .Ellipse`:    
 ![](http://fancypixel.github.io/images/posts/2015-06-19/roll.gif)
 
-这个是使用UIView默认的边缘碰撞:
+这个是使用UIView默认的边缘碰撞:    
 ![](http://fancypixel.github.io/images/posts/2015-06-19/slide.gif)
 
-这个是同一个UIView使用` .Ellipse`的效果:
+这个是同一个UIView使用` .Ellipse`的效果:    
 ![](http://fancypixel.github.io/images/posts/2015-06-19/roll.gif)
 
 This covers round views, if we want to get fancy and draw a more complex view with a coherent rigid body we can use the enum property `.Path` and also override this property:    
@@ -125,7 +125,7 @@ One thing I really like about it is the physic model of the ball and how the hoo
 
 The basket can be created with a single UIView acting as the backboard, a couple of views with rigid bodies as the left and right arms of the hoop, and a frontmost view as the hoop itself (without a physic body). Using the previously defined class `Ellipse` we can create the visual representation of our game scene:
 
-<font color=#C1C1B8>/* 
+```<font color=#C1C1B8>/* 
 Build the hoop, setup the world appearance
 */</font>    
 func buildViews() {    
@@ -155,7 +155,7 @@ func buildViews() {
   hoop.layer.cornerRadius = 3
 
   [board, leftHoop, rightHoop, floor, ball, hoop].map({**self**.view.addSubview($0)})    
-}
+}```
 
 ## 入门指南
 大家都知道要写一款精品软件是有难度且很复杂的：不仅要满足特定要求，而且软件还必须具有稳健性，可维护、可测试性强，并且能够灵活适应各种发展与变化。这时候，“清晰架构”就应运而生了，这一架构在开发任何软件应用的时候用起来非常顺手。
