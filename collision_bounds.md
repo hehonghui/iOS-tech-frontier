@@ -25,11 +25,11 @@ The first release of UIDynamics shipped with a collision system (provided by [UI
 
 The property is readonly, so if we want to change it we need to provide our own subclass:
 
-```class Ellipse: UIView {    
-   override var collisionBoundsType: UIDynamicItemCollisionBoundsType {
-    return .Ellipse    
-  }    
-}```
+	class Ellipse: UIView {    
+	override var collisionBoundsType:UIDynamicItemCollisionBoundsType {
+    		return .Ellipse    
+    	}
+    }
 
 ## 边缘碰撞
 
@@ -41,11 +41,11 @@ UIDynamics的第一个正式发布的版本中所使用的碰撞系统(由[UICol
 
 该属性为只读，所以如果我们想要改变他的话需要提供我们自己子类：
 
-```**class Ellipse: UIView {**    
-   **override var** collisionBoundsType: UIDynamicItemCollisionBoundsType {
-    **return** .Ellipse    
-  }    
-}```
+	class Ellipse: UIView {    
+		override var collisionBoundsType: UIDynamicItemCollisionBoundsType {
+    	return .Ellipse    
+    	}    
+    }
 
 This is a UIView with the default collision bound:    
 ![](http://fancypixel.github.io/images/posts/2015-06-19/slide.gif)
@@ -59,14 +59,17 @@ This is the same UIView with the` .Ellipse`:
 这个是同一个UIView使用` .Ellipse`的效果:    
 ![](http://fancypixel.github.io/images/posts/2015-06-19/roll.gif)
 
-This covers round views, if we want to get fancy and draw a more complex view with a coherent rigid body we can use the enum property `.Path` and also override this property:    
-``` **var** collisionBoundingPath: UIBezierPath **{ get }**```
+This covers round views, if we want to get fancy and draw a more complex view with a coherent rigid body we can use the enum property `.Path` and also override this property:
+
+	var collisionBoundingPath: UIBezierPath { get }
     
 The path can be whatever you can think of, as long as it’s convex (this means that for any given couple of points inside the polygon, the segment between the two is always entirely contained in the polygon itself) and counter-clockwise wound.
 The convex requirement could be a significant limit, so `UIDynamicItemGroup` was introduced to specify shapes as a group of different shapes. This way as long as each shape in the group is convex we are fine even if the resulting polygon composition is concave.
 
-这是个圆形的视图，如果我们想要更好的，画更复杂的带有一致刚性的视图，我们可以使用枚举的`.Path`属性而后重写这个属性:    
-``` **var** collisionBoundingPath: UIBezierPath **{ get }**```
+这是个圆形的视图，如果我们想要更好的，画更复杂的带有一致刚性的视图，我们可以使用枚举的`.Path`属性而后重写这个属性:
+    
+	var collisionBoundingPath: UIBezierPath { get }
+
 路径(path)只要是你想要的都可以，只要他是个凸面的(意思是说对于所有给定的点必须在多边形上，线段的每一段总是完全包含在多边形上)并且逆时针方向相切。
 
 凸面是一个非常重要的限制，所以`UIDynamicItemGroup`被引入，其用来指定这些形状(shapes)作为一个组。这种方式只要求组中的每一个形状是凸面，所以组合起来的形状是一个凹面也没关系。
@@ -82,8 +85,8 @@ Field behaviors are a new type of behavior that is applied to the whole scene. T
 ## Dynamic Item Behavior
 `UIDynamicItemBehavior` received a couple of interesting new properties:
 
-```var charge: CGFloat    
-var anchored: Bool```   
+	var charge: CGFloat
+	var anchored: Bool 
  
 `charge` represent the electric charge that can influence how an item moves in an electric or magnetic field (yeah, it’s bonkers), while `anchored` basically turns a shape into a static object that participates in the collisions, but without response (if something crashes into the item, it won’t budge), so it’s perfect to represent something like a floor or a wall.
 
@@ -91,7 +94,8 @@ var anchored: Bool```
 
 `UIDynamicItemBehavior`现在有了一对新的属性:    
 
-```var charge:CGFloat var anchored:Bool```    
+	var charge:CGFloat
+	var anchored:Bool
 
 `charge`表示电量(electric charge)，它可以影响item在一个电场或者磁场当中的移动(没错，这听起来非常疯狂！)，而`anchored`主要是把一个形状(shape)变为一个静态的物体，这个物体来参与一系列的碰撞，但是碰撞对于这个静态物体来说并不会有什么反应(如果有另一个item撞上这个静态物体，静态物体不会动)，所以他可以非常完美得充当一些物体，比如像地板或者墙壁。
 
@@ -125,35 +129,32 @@ One thing I really like about it is the physic model of the ball and how the hoo
 
 The basket can be created with a single UIView acting as the backboard, a couple of views with rigid bodies as the left and right arms of the hoop, and a frontmost view as the hoop itself (without a physic body). Using the previously defined class `Ellipse` we can create the visual representation of our game scene:
 
-      <font color=#C1C1B8>/* 
-    Build the hoop, setup the world appearance
-    */</font>    
-    func buildViews() {    
-	board = <font color=#3494BB>UIView</font>(frame: <font color=#3494BB>CGRect</font>(x: hoopPosition<font color=#006E6D>.x</font>, y: hoopPosition<font color=#006E6D>.y</font>, width: <font color=#006E6D>100</font>, height: <font color=#006E6D>100</font>))    
-	board<font color=#006E6D>.backgroundColor</font> = <font color=#006E6D>.whiteColor</font>()    
-	board<font color=#006E6D>.layer.borderColor</font> = <font color=#3494BB>UIColor</font>(red: <font color=#006E6D>0.98</font>, green: <font color=#006E6D>0.98</font>, blue: <font color=#006E6D>0.98</font>, alpha: <font color=#006E6D>1</font>)<font color=#006E6D>.CGColor</font>    
-	board<font color=#006E6D>.layer.borderWidth</font> = <font color=#006E6D>2</font>    
-     board<font color=#006E6D>.addSubview</font>({    
-     let v = <font color=#3494BB>UIView</font>(frame: <font color=#3494BB>CGRect</font>(x: <font color=#006E6D>30</font>, y: <font color=#006E6D>43</font>, width: <font color=#006E6D>40</font>, height: <font color=#006E6D>40</font>))    
-    v<font color=#006E6D>.backgroundColor</font> = <font color=#006E6D>.clearColor</font>()    
-    v<font color=#006E6D>.layer.borderColor</font> = <font color=#3494BB>UIColor</font>(red: <font color=#006E6D>0.4</font>, green: <font color=#006E6D>0.4</font>, blue: <font color=#006E6D>0.4</font>, alpha: <font color=#006E6D>1</font>)<font color=#006E6D>.CGColor</font>    
-    v<font color=#006E6D>.layer.borderWidth</font> = <font color=#006E6D>5</font>    
-    **return** v    
-    }())    
-     leftHoop = Ellipse(frame: <font color=#3494BB>CGRect</font>(x: hoopPosition.x + 20, y: hoopPosition.y + 80, width: 10, height: 6))    
-     leftHoop.backgroundColor = .clearColor()    
-     leftHoop.layer.cornerRadius = 3    
-     rightHoop = Ellipse(frame: <font color=#3494BB>CGRect</font>(x: hoopPosition.x + 70, y: hoopPosition.y + 80, width: 10, height: 6))    
-     rightHoop.backgroundColor = .clearColor()    
-     rightHoop.layer.cornerRadius = 3     
- 
-  
-     hoop = <font color=#3494BB>UIView</font>(frame: <font color=#3494BB>CGRect</font>(x: hoopPosition.x + 20, y: hoopPosition.y + 80, width: 60, height: 6))    
-     hoop.backgroundColor = <font color=#3494BB>UIColor</font>(red: 177.0/255.0, green: 25.0/255.0, blue: 25.0/255.0, alpha: 1)    
+     /* 
+     Build the hoop, setup the world appearance
+     */
+     func buildViews() {
+     board = UIView(frame: CGRect(x: hoopPosition.x, y: hoopPosition.y, width: 100, height: 100))
+     board.backgroundColor = .whiteColor()
+     board.layer.borderColor = UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1).CGColor
+     board.layer.borderWidth = 2
+     board.addSubview({
+     let v = UIView(frame: CGRect(x: 30, y: 43, width: 40, height: 40))
+     v.backgroundColor = .clearColor()
+     v.layer.borderColor = UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 1).CGColor
+     v.layer.borderWidth = 5
+     return v
+     }())
+     leftHoop = Ellipse(frame: CGRect(x: hoopPosition.x + 20, y: hoopPosition.y + 80, width: 10, height: 6))
+     leftHoop.backgroundColor = .clearColor()
+     leftHoop.layer.cornerRadius = 3
+     rightHoop = Ellipse(frame: CGRect(x: hoopPosition.x + 70, y: hoopPosition.y + 80, width: 10, height: 6))
+     rightHoop.backgroundColor = .clearColor()
+     rightHoop.layer.cornerRadius = 3
+     hoop = UIView(frame: CGRect(x: hoopPosition.x + 20, y: hoopPosition.y + 80, width: 60, height: 6))
+     hoop.backgroundColor = UIColor(red: 177.0/255.0, green: 25.0/255.0, blue: 25.0/255.0, alpha: 1)
      hoop.layer.cornerRadius = 3
-
-     [board, leftHoop, rightHoop, floor, ball, hoop].map({**self**.view.addSubview($0)})    
-    }
+     [board, leftHoop, rightHoop, floor, ball, hoop].map({self.view.addSubview($0)})
+     }
 
 ## 入门指南
 大家都知道要写一款精品软件是有难度且很复杂的：不仅要满足特定要求，而且软件还必须具有稳健性，可维护、可测试性强，并且能够灵活适应各种发展与变化。这时候，“清晰架构”就应运而生了，这一架构在开发任何软件应用的时候用起来非常顺手。
