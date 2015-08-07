@@ -26,7 +26,7 @@ The first release of UIDynamics shipped with a collision system (provided by [UI
 The property is readonly, so if we want to change it we need to provide our own subclass:
 
 	class Ellipse: UIView {    
-	override var collisionBoundsType:UIDynamicItemCollisionBoundsType {
+		override var collisionBoundsType:UIDynamicItemCollisionBoundsType {
     		return .Ellipse    
     	}
     }
@@ -43,7 +43,7 @@ UIDynamics的第一个正式发布的版本中所使用的碰撞系统(由[UICol
 
 	class Ellipse: UIView {    
 		override var collisionBoundsType: UIDynamicItemCollisionBoundsType {
-    	return .Ellipse    
+    		return .Ellipse    
     	}    
     }
 
@@ -133,27 +133,32 @@ The basket can be created with a single UIView acting as the backboard, a couple
      Build the hoop, setup the world appearance
      */
      func buildViews() {
-     board = UIView(frame: CGRect(x: hoopPosition.x, y: hoopPosition.y, width: 100, height: 100))
-     board.backgroundColor = .whiteColor()
-     board.layer.borderColor = UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1).CGColor
-     board.layer.borderWidth = 2
-     board.addSubview({
-     let v = UIView(frame: CGRect(x: 30, y: 43, width: 40, height: 40))
-     v.backgroundColor = .clearColor()
-     v.layer.borderColor = UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 1).CGColor
-     v.layer.borderWidth = 5
-     return v
-     }())
-     leftHoop = Ellipse(frame: CGRect(x: hoopPosition.x + 20, y: hoopPosition.y + 80, width: 10, height: 6))
-     leftHoop.backgroundColor = .clearColor()
-     leftHoop.layer.cornerRadius = 3
-     rightHoop = Ellipse(frame: CGRect(x: hoopPosition.x + 70, y: hoopPosition.y + 80, width: 10, height: 6))
-     rightHoop.backgroundColor = .clearColor()
-     rightHoop.layer.cornerRadius = 3
-     hoop = UIView(frame: CGRect(x: hoopPosition.x + 20, y: hoopPosition.y + 80, width: 60, height: 6))
-     hoop.backgroundColor = UIColor(red: 177.0/255.0, green: 25.0/255.0, blue: 25.0/255.0, alpha: 1)
-     hoop.layer.cornerRadius = 3
-     [board, leftHoop, rightHoop, floor, ball, hoop].map({self.view.addSubview($0)})
+     	board = UIView(frame: CGRect(x: hoopPosition.x, y: hoopPosition.y, width: 100, height: 100))
+     	board.backgroundColor = .whiteColor()
+     	board.layer.borderColor = UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1).CGColor
+     	board.layer.borderWidth = 2
+     	
+     	board.addSubview({
+     		let v = UIView(frame: CGRect(x: 30, y: 43, width: 40, height: 40))
+     		v.backgroundColor = .clearColor()
+     		v.layer.borderColor = UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 1).CGColor
+     		v.layer.borderWidth = 5
+     		return v
+     	}())
+     	
+     	leftHoop = Ellipse(frame: CGRect(x: hoopPosition.x + 20, y: hoopPosition.y + 80, width: 10, height: 6))
+     	leftHoop.backgroundColor = .clearColor()
+     	leftHoop.layer.cornerRadius = 3
+     	
+     	rightHoop = Ellipse(frame: CGRect(x: hoopPosition.x + 70, y: hoopPosition.y + 80, width: 10, height: 6))
+     	rightHoop.backgroundColor = .clearColor()
+     	rightHoop.layer.cornerRadius = 3
+     	
+     	hoop = UIView(frame: CGRect(x: hoopPosition.x + 20, y: hoopPosition.y + 80, width: 60, height: 6))
+     	hoop.backgroundColor = UIColor(red: 177.0/255.0, green: 25.0/255.0, blue: 25.0/255.0, alpha: 1)
+     	hoop.layer.cornerRadius = 3
+     	
+     	[board, leftHoop, rightHoop, floor, ball, hoop].map({self.view.addSubview($0)})
      }
 
 ## 入门指南
