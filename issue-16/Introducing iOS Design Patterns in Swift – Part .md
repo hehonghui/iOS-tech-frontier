@@ -1,3 +1,10 @@
+* 原文链接：[Introducing iOS Design Patterns in Swift – Part 2/2](http://www.raywenderlich.com/90773/introducing-ios-design-patterns-in-swift-part-2)
+* 原文作者：[ Apple ](https://developer.apple.com/)
+* [译文出自：开发者前线 www.devtf.cn](www.devtf.cn)
+* 译者：[lastdays](https://github.com/MrLoong)
+* 校对者：MrLoong
+* 状态：完成
+* 
 #Introducing iOS Design Patterns in Swift – Part 2/2
 
 ##Getting Started 让我们开始
