@@ -1,3 +1,12 @@
+* 原文链接：[Brigade’s Experience Using an MVC Alternative](https://medium.com/brigade-engineering/brigades-experience-using-an-mvc-alternative-36ef1601a41f)
+* 原文作者： [Ryan Quan](https://medium.com/@ryanquan)
+* 译文出自：[开发者前线 www.devtf.cn](www.devtf.cn)
+* 译者：[Quzhiyu](https://github.com/Quzhiyu)
+* 校对者：
+* 状态：未校验
+
+#Brigade’s Experience Using an MVC Alternative
+
 Any iOS developer will tell you that iOS apps are built upon the [Model-View-Controller](https://developer.apple.com/library/ios/documentation/general/conceptual/devpedia-cocoacore/MVC.html) (MVC) design pattern. They might also tell you that some like to call it the “Massive View Controller” design pattern. Reason being, you’ll often find you have code that clearly doesn’t fit in the view or model, so it gets chucked into the controller, resulting in a bloated controller that is difficult to maintain because you have one giant class doing everything.
 
 任何iOS开发者都会告诉你iOS应用程序是建立于[模型视图控制器](https://developer.apple.com/library/ios/documentation/general/conceptual/devpedia-cocoacore/MVC.html)（MVC）设计模式。他们也可能告诉你有些人叫它“Massive View Controller”设计模式。因为，你会经常发现你的代码有明显的不适合视图或者模型，所以它被抛到了控制器，导致臃肿的控制器很难维持,因为你有一个巨大的类做的一切。
