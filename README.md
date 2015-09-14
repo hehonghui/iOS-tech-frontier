@@ -70,7 +70,7 @@
 # 2015.9.14 ( 第十六期 )
 | 文章名称 |   译者  | 
 |---------|--------|
-| [使用一个MVC替代Brigade’s Experience](issue-16/使用一个MVC替代Brigade’s Experience.md)  | [Quzhiyu](https://github.com/Quzhiyu)      
+| [使用一个MVC替代Brigade’s Experience](issue-16/使用一个 MVC 替代Brigade’s Experience.md)  | [Quzhiyu](https://github.com/Quzhiyu)      
 | [ReactNavtive框架教程](issue-16/ReactNavtive框架教程.md)  | [kmyhy](https://github.com/kmyhy) 
 | [介绍iOS设计模式1:2(Swift)](issue-16/介绍iOS设计模式1:2(Swift).md)  | [alier1226](https://github.com/alier1226)      |
 | [介绍iOS设计模式2:2(Swift)](issue-16/介绍iOS设计模式2:2(Swift).md)  | [LastDays](https://github.com/MrLoong)      |
