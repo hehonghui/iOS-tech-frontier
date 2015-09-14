@@ -2,54 +2,49 @@
 * 原文作者：[Vincent Ngo](http://www.raywenderlich.com/u/jomoka)
 * [译文出自：开发者前线 www.devtf.cn](www.devtf.cn)
 * 译者：[lastdays](https://github.com/MrLoong)
-* 校对者：MrLoong
+* 校对者：[lastdays](https://github.com/MrLoong)
 * 状态：完成
 
-#Introducing iOS Design Patterns in Swift – Part 2/2
 
 ##Getting Started 让我们开始
 
-You can download [the project source from the end of part 1](http://cdn1.raywenderlich.com/wp-content/uploads/2014/12/BlueLibrarySwift-Part11.zip) to get started.
+
 
 你可以下载[the project source from the end of part 1](http://cdn1.raywenderlich.com/wp-content/uploads/2014/12/BlueLibrarySwift-Part11.zip)与我们共同来探索
 
-Here’s where you left off the sample music library app at the end of the first part:
 
 这是你在第一部分结束时完成的音乐库App样品
 
 ![](http://cdn3.raywenderlich.com/wp-content/uploads/2014/11/Screen-Shot-2014-11-11-at-12.38.53-AM.png)
 
-The original plan for the app included a horizontal scroller at the top of the screen to switch between albums. Instead of coding a single-purpose horizontal scroller, why not make it reusable for any view?
 
 应用程序的最初设计包括在屏幕的顶端上上水平滚动条的专辑切换。但是为什么不重写它适配所有view，而不是单一的编辑一个简单的滚动条？
 
-To make this view reusable, all decisions about its content should be left to another object: a delegate. The horizontal scroller should declare methods that its delegate implements in order to work with the scroller, similar to how the UITableView delegate methods work. We’ll implement this when we discuss the next design pattern.
+
 
 
 为了使这个view可重用。关于其内容的所有决定都应该留给下一个对象：一个委托。水平滚动条要声明一个delegate implements为了scroller的工作。类似于UITableView delegate。当我们讨论设计模式的时候我们会实现这个。
 
-The Adapter Pattern 适配器模式
+##适配器模式
 
-An Adapter allows classes with incompatible interfaces to work together. It wraps itself around an object and exposes a standard interface to interact with that object.
+
 
 Adapter允许classes与不兼容的接口一起工作。它围绕一个对象进行封装，并公开一个标准接口与该对象进行交互。
 
-If you’re familiar with the Adapter pattern then you’ll notice that Apple implements it in a slightly different manner – Apple uses protocols to do the job. You may be familiar with protocols like UITableViewDelegate, UIScrollViewDelegate, NSCoding and NSCopying. As an example, with the NSCopying protocol, any class can provide a standard copy method.
+
 
 如果你很熟悉适配器你将注意到，App使用了略微不同的方式去实现它--App通过协议来实现它。
 你可能会感觉它很像UITableViewDelegate，UIScrollViewDelegate, NSCoding 和 NSCopying。作为一个示例，随着NSCopying协议发展，任何class都能提供一个标准的copy方法。
 
-##How to Use the Adapter Pattern  怎样使用适配器
+##  怎样使用适配器
 
 之前提到的horizontal scroller看起来像这个样子
 
 ![](http://cdn2.raywenderlich.com/wp-content/uploads/2014/11/swiftDesignPattern7.png)
 
-To begin implementing it, right click on the View group in the Project Navigator, select New File… and select, iOS > Cocoa Touch class and then click Next. Set the class name to HorizontalScroller and make it a subclass of UIView.
+
 
 开始实现它，在Project Navigator点击View group 选择New File…并且选择iOS > Cocoa Touch class然后点击Next。建立类名为HorizontalScroller并且继承于UIView。
-
-Open HorizontalScroller.swift and insert the following code above the class HorizontalScroller line:
 
 打开HorizontalScroller.swift并且加入下面的代码类：
 
@@ -76,12 +71,11 @@ optional func initialViewIndex(scroller: HorizontalScroller) -> Int
 
 ```
 
-Here you have both required and optional methods. Required methods must be implemented by the delegate and usually contain some data that is absolutely required by the class. In this case, the required details are the number of views, the view at a specific index, and the behavior when the view is tapped. The optional method here is the initial view; if it’s not implemented then the HorizontalScroller will default to the first index.
+
 
 这里有需求和可选择的方法。所需的方法必须由委托来执行，通常包含一些数据，这是绝对必须的。
 在这种情况下，所需的细节是view数量，特殊的索引视图，并且挖掘试图的行为。这里的可选方法是初始视图。如果没有实现，HorizontalScroller讲默认为第一个索引。
 
-In HorizontalScroller.swift, add the following code to the HorizontalScroller class definition:
 
 在HorizontalScroller.swift，
 
@@ -92,11 +86,10 @@ weak var delegate: HorizontalScrollerDelegate?
 
 ```
 
-The attribute of the property you created above is defined as weak. This is necessary in order to prevent a retain cycle. If a class keeps a strong reference to its delegate and the delegate keeps a strong reference back to the conforming class, your app will leak memory since neither class will release the memory allocated to the other. All properties in swift are strong by default!
 
 你上面创建的创建的属性被定义为弱引用。这是必要的，以防止保留一个周期。如果一类对它的委托有强引用的话，该委托保持强引用并且返回一个标准的类，你的app将发生内存泄露，因为这两个类将释放分配给其他的内存。所有的属性在swift中被默认为强引用
 
-The delegate is an optional, so it’s possible whoever is using this class doesn’t provide a delegate. But if they do, it will conform to HorizontalScrollerDelegate and you can be sure the protocol methods will be implemented there.
+
 
 委托是可选的，所以有可能使用这个类的人不提供一个委托。但如果他们这样做，它将使HorizontalScrollerDelegate一致并且你可以确保协议方法在那里实现。
 
@@ -114,14 +107,6 @@ private var scroller : UIScrollView!
 var viewArray = [UIView]()
 
 ```
-
-Taking each comment block in turn:
-
-* Define constants to make it easy to modify the layout at design time. The view’s dimensions inside the scroller will be 100 x 100 with a 10 
-point margin from its enclosing rectangle.
-
-* Create the scroll view containing the views.
-* Create an array that holds all the album covers.
 
 
 滚动每一个评论块:
@@ -165,16 +150,6 @@ func initializeScrollView() {
 
 ```
 
-The initializers delegate most of the work to initializeScrollView(). Here’s what’s going on in that method:
-
-* Create’s a new UIScrollView instance and add it to the parent view.
-
-* Turn off autoresizing masks. This is so you can apply your own constraints
-
-* Apply constraints to the scrollview. You want the scroll view to 
-completely fill the HorizontalScroller
-
-* Create a tap gesture recognizer. The tap gesture recognizer detects touches on the scroll view and checks if an album cover has been tapped. If so, it will notify the HorizontalScroller delegate.
 
 initializers delegate必须工作在initializeScrollView()。这是实现方法：
 
@@ -219,8 +194,6 @@ func viewAtIndex(index :Int) -> UIView {
 
 ```
 
-viewAtIndex simply returns the view at a particular index. You will be using this method later to highlight the album cover you have tapped on.
-
 viewatindex仅仅返回视图在一个特定的指数。使用此方法，以突出显示专辑封面。
 
 Now add the following code to reload the scroller:
@@ -263,19 +236,11 @@ func reload() {
 
 ```
 
-The reload method is modeled after reloadData in UITableView; it reloads all the data used to construct the horizontal scroller.
+
 
 重载方法仿照UITableView中的reloadData；他重新载入所有用于构建水平滚动条的数据
 
-Stepping through the code comment-by-comment:
 
-* Checks to see if there is a delegate before we perform any reload.
-* Since you’re clearing the album covers, you also need to reset the viewArray. 
-* Remove all the subviews previously added to the scroll view.
-* All the views are positioned starting from the given offset. Currently it’s 100, but it can be easily tweaked by changing the constant VIEW_OFFSET at the top of the file.
-* The HorizontalScroller asks its delegate for the views one at a time and it lays them next to each another horizontally with the previously defined padding.
-* Store the view in viewArray to keep track of all the views in the scroll view.
-* Once all the views are in place, set the content offset for the scroll view to allow the user to scroll through all the albums covers.
 
 
 
@@ -289,7 +254,7 @@ Stepping through the code comment-by-comment:
 * 在viewarra在存储视图中跟踪滚动视图子视图.
 * 一旦所有的视图都到位，设置的滚动视图的内容偏移，让用户滚动通过所有的专辑封面.
 
-You execute reload when your data has changed. You also need to call this method when you add HorizontalScroller to another view. Add the following code to HorizontalScroller.swift to cover the latter scenario:
+
 
 当你的数据发生改变时，你可以重新加载。你也需要调用这个方法时，你horizontalscroller添加到另一个视图。将下面的代码添加到horizontalscroller.swift覆盖后者：
 
@@ -300,11 +265,11 @@ override func didMoveToSuperview() {
 
 ```
 
-didMoveToSuperview is called on a view when it’s added to another view as a subview. This is the right time to reload the contents of the scroller.
+
 
 didmovetosuperview查看时，它添加到另一个视图作为一个视图。重新规范内容正确的时间。
 
-The last piece of the HorizontalScroller puzzle is to make sure the album you’re viewing is always centered inside the scroll view. To do this, you’ll need to perform some calculations when the user drags the scroll view with their finger.
+
 
 horizontalscroller的最后一块拼图是确保你看的专辑总是集中在滚动视图。这样做，你将需要执行一些计算，当用户拖动滚动查看他们的手指。
 
@@ -324,12 +289,11 @@ Add the following method:
 
 ```
 
-The above code takes into account the current offset of the scroll view and the dimensions and the padding of the views in order to calculate the distance of the current view from the center. The last line is important: once the view is centered, you then inform the delegate that the selected view has changed.
 
 
 上面的代码考虑到滚动视图和视图的当前偏移量，以及视图的填充量，以便计算当前视图从中心的距离。最后一行很重要：一次视图是居中的，然后通知委托，选定以更改的视图。
 
-To detect that the user finished dragging inside the scroll view, you’ll need to implement some UIScrollViewDelegate methods. Add the following class extension to the bottom of the file; remember, this must be added after the curly braces of the main class declaration!
+
 
 发现用户在完成拖动滚动视图，你需要实现一些uiscrollviewdelegate方法。将下面的类扩展添加到文件底部；请记住，这必须在主类声明的大括号之后添加！
 
@@ -348,11 +312,10 @@ extension HorizontalScroller: UIScrollViewDelegate {
 
 ```
 
-scrollViewDidEndDragging(_:willDecelerate:) informs the delegate when the user finishes dragging. The decelerate parameter is true if the scroll view hasn’t come to a complete stop yet. When the scroll action ends, the the system calls scrollViewDidEndDecelerating. In both cases you should call the new method to center the current view since the current view probably has changed after the user dragged the scroll view.
+
 
 scrollviewdidenddragging（_：willdecelerate：）通知委托当用户完成拖动。如果滚动视图尚未完全停止来参数是真实的。当滚动行动结束，该系统调scrollviewdidenddecelerating。在这两种情况下，调用新方法以当前视图为中心，因为当前视图可能在用户拖动滚动视图后发生改变。
 
-Lastly don’t forget to set the delegate. Within initializeScrollView() add the following code after scroller = UIScrollView():
 
 最后别忘了设定委托。在initializescrollview()添加以下代码后
 
@@ -363,26 +326,25 @@ scroller.delegate = self;
 
 scroller = UIScrollView():
 
-Your HorizontalScroller is ready for use! Browse through the code you’ve just written; you’ll see there’s not one single mention of the Album or AlbumView classes. That’s excellent, because this means that the new scroller is truly independent and reusable.
+
 
 你的horizontalscroller准备就绪！浏览你刚才写的代码；你会看到有没有一个提到的专辑或albumview类。那是很好的，因为这意味着新的滚动条是真正独立的和可重复使用
 
 Build your project to make sure everything compiles properly.
 建立项目，确保所有编译正确
 
-Now that HorizontalScroller is complete, it’s time to use it in your app. First, open Main.storyboard. Click on the top gray rectangular view and click on the identity inspector. Change the class name to HorizontalScroller as shown below:
+
 
 现在，horizontalscroller是完整的，它的时间来使用它在您的应用程序。首先，打开main.storyboard。点击顶部灰色的矩形视图，点击identity。改变类的名称来horizontalscroller如下所示：
 
 ![](http://cdn5.raywenderlich.com/wp-content/uploads/2014/11/swiftDesignPattwern9-700x414.png)
 
-Next, open the assistant editor and control drag from the gray rectangular view to ViewController.swift to create an outlet. Name the name the outlet scroller, as shown below:
+
 
 接下来，打开助理编辑和控制从灰色的矩形视图拖到viewcontroller.swift创建一个出口。名称出口滚动，如下图所示：
 
 ![](http://cdn3.raywenderlich.com/wp-content/uploads/2014/11/swiftDesignPattern10.png)
 
-Next, open ViewController.swift. It’s time to start implementing some of the HorizontalScrollerDelegate methods!
 
 接下来，打开viewcontroller.swift。现在是时候开始实施的一些horizontalscrollerdelegate方法！
 
@@ -407,12 +369,6 @@ extension ViewController: HorizontalScrollerDelegate {
 
 ```
 
-Let’s go over the delegate method you just implemented line by line:
-
-* First you grab the previously selected album, and deselect the album cover.
-* * Store the current album cover index you just clicked
-* Grab the album cover that is currently selected and highlight the selection.
-
 
 让我们以下列的方式去执行委托方法吧：:   1
 
@@ -429,7 +385,7 @@ func numberOfViewsForHorizontalScroller(scroller: HorizontalScroller) -> (Int) {
 
 ```
 
-This, as you’ll recognize, is the protocol method returning the number of views for the scroll view. Since the scroll view will display covers for all the album data, the count is the number of album records.
+
 
 正如你所认识的，这是一种在滚动视图中返回视图的方法。由于滚动视图将显示所有的专辑数据的封面，count是专辑记录的数量。
 
@@ -450,15 +406,13 @@ func horizontalScrollerViewAtIndex(scroller: HorizontalScroller, index: Int) -> 
 
 ```
 
-Here you create a new AlbumView, next check to see whether or not the user has selected this album. Then you can set it as highlighted or not depending on whether the album is selected. Lastly, you pass it to the HorizontalScroller.
+
 
 在这里，你创建一个新的albumview，接下来检查用户是否选择这张专辑。然后，您可以将其设置为突出显示或不取决于是否选择相册。最后，你通过它的horizontalscroller。
 
-That’s it! Only three short methods to display a nice looking horizontal scroller.
 
 这是它！仅仅三个短的方法显示一个漂亮的水平滚动条的方法。
 
-Yes, you still need to actually create the scroller and add it to your main view but before doing that, add the following method to the main class definition:
 
 是的，你还需要创建滚动条，并把它添加到你的主要观点，但在这之前，将下面的方法添加到主类的定义：
 
@@ -476,7 +430,7 @@ func reloadScroller() {
 
 ```
 
-This method loads album data via LibraryAPI and then sets the currently displayed view based on the current value of the current view index. If the current view index is less than 0, meaning that no view was currently selected, then the first album in the list is displayed. Otherwise, the last album is displayed.
+
 
 此方法加载相册数据通过libraryapi然后设置当前显示基于当前视图索引的当前值。如果当前视图索引小于0，则表示当前没有选择视图，然后在列表中显示的第一张专辑。否则，最后一张专辑被显示。
 
@@ -486,48 +440,42 @@ reloadScroller()
 
 ```
 
-Since the HorizontalScroller was created in the storyboard, all you need to do is set the delegate, and call reloadScroller(), which will load the subviews for the scroller to display album data.
+由于horizontalscroller是创建在storyboard中，所有你需要做的是设置代理，叫reloadscroller()，将负荷的滚动条来显示专辑数据视图。
+
 
 由于horizontalscroller是创建在storyboard中，所有你需要做的是设置代理，叫reloadscroller()，将负荷的滚动条来显示专辑数据视图。
 
-Since the HorizontalScroller was created in the storyboard, all you need to do is set the delegate, and call reloadScroller(), which will load the subviews for the scroller to display album data.
-
-由于horizontalscroller是创建在storyboard中，所有你需要做的是设置代理，叫reloadscroller()，将负荷的滚动条来显示专辑数据视图。
-
-Build and run your project and take a look at your awesome new horizontal scroller:
 编译和运行你的项目，新的水平滚动条，看看：
 
 ![](http://cdn4.raywenderlich.com/wp-content/uploads/2014/11/swiftDesignPattern12.png)
 
 ##The Observer Pattern
-In the Observer pattern, one object notifies other objects of any state changes. The objects involved don’t need to know about one another – thus encouraging a decoupled design. This pattern’s most often used to notify interested objects when a property has changed.
 
 在观察者模式，一个对象的状态变化通知其他任何对象。所涉及的对象不需要知道彼此的，从而鼓励一个解耦设计。当一个属性发生改变时，这个模式最常用于通知感兴趣的对象。
 
-The usual implementation requires that an observer registers interest in the state of another object. When the state changes, all the observing objects are notified of the change.
+
 
 通常的实现要求一个观察者在另一个对象的状态寄存器。当状态发生改变时，所有的观察对象都会被通知。
 
-If you want to stick to the MVC concept (hint: you do), you need to allow Model objects to communicate with View objects, but without direct references between them. And that’s where the Observer pattern comes in.
+
 
 如果你想坚持MVC的概念（提示：你这样做），你需要让模型对象和视图对象沟通，但他们之间没有直接的参考。这就是观察者模式的所在。
 
-Cocoa implements the observer pattern in two familiar ways: Notifications and Key-Value Observing (KVO).
+
 
 Cocoa在两个熟悉的方式实现观察者模式：通知和键值观察（KVO）。
 
 ##Notifications
-Not be be confused with Push or Local notifications, Notifications are based on a subscribe-and-publish model that allows an object (the publisher) to send messages to other objects (subscribers/listeners). The publisher never needs to know anything about the subscribers.
+
 
 不要被混淆与推送本地通知，通知是基于订阅和发布模式，允许对象（发行商）发送消息到其他对象（用户/听众）。出版商从不需要了解有关用户的任何事情。
 
-Notifications are heavily used by Apple. For example, when the keyboard is shown/hidden the system sends a UIKeyboardWillShowNotification/UIKeyboardWillHideNotification, respectively. When your app goes to the background, the system sends a UIApplicationDidEnterBackgroundNotification notification.
+
 
 通知被苹果严重使用。例如，当键盘显示/隐藏系统发送uikeyboardwillshownotification / uikeyboardwillhidenotification，分别。当你的应用程序进入后台，系统将一个uiapplicationdidenterbackgroundnotification通知。
 
 ##How to Use Notifications
 
-Go to AlbumView.swift and insert the following code to the end of the init(frame: CGRect, albumCover: String) initializer:
 
 去albumview.swift在初始化结束中插入下面的代码（框架：CGRect，albumcover：初始化字符串）：
 
@@ -536,11 +484,10 @@ NSNotificationCenter.defaultCenter().postNotificationName("BLDownloadImageNotifi
 
 ```
 
-This line sends a notification through the NSNotificationCenter singleton. The notification info contains the UIImageView to populate and the URL of the cover image to be downloaded. That’s all the information you need to perform the cover download task.
+
 
 这条线穿过NSNotificationCenter发送通知单。通知信息包含在UIImageView和封面图像被下载的URL。这是所有的信息，您需要执行的封面下载任务。
 
-Add the following line to init in LibraryAPI.swift, directly after super.init():
 
 在libraryapi.swift init中，直接在super.init()后面添加下面一行
 
@@ -549,11 +496,11 @@ NSNotificationCenter.defaultCenter().addObserver(self, selector:"downloadImage:"
 
 ```
 
-This is the other side of the equation: the observer. Every time an AlbumView class posts a BLDownloadImageNotification notification, since LibraryAPI has registered as an observer for the same notification, the system notifies LibraryAPI. Then LibraryAPI calls downloadImage() in response.
+
 
 这是等式的另一边：观察者。每一次albumview类岗位bldownloadimagenotification通知，自libraryapi注册同一通知观察者，系统会通知libraryapi。然后libraryapi通知downloadimage()响应。
 
-However, before you implement downloadImage() you must remember to unsubscribe from this notification when your class is deallocated. If you do not properly unsubscribe from a notification your class registered for, a notification might be sent to a deallocated instance. This can result in application crashes.
+
 
 然而，在你实现downloadimage()你要记得退订此通知时候释放。如果你不正确的退订通知你们班登记，通知会发送到回收实例。这可能会导致应用程序崩溃。
 
@@ -566,15 +513,15 @@ deinit {
 }
 
 ```
-When this object is deallocated, it removes itself as an observer from all notifications it had registered for.
+
 
 当这个对象被释放，它使自己从所有通知已注册的观察者。
 
-There’s one more thing to do. It would probably be a good idea to save the downloaded covers locally so the app won’t need to download the same covers over and over again.
+
 
 还有一件事要做。这可能是一个好主意，以节省下载资源并且覆盖本地，所以应用程序将不需要下载相同的盖过一遍又一遍。
 
-Open PersistencyManager.swift and add the methods below:
+
 
 打开persistencymanager.swift并添加下面的方法：
 
@@ -598,7 +545,6 @@ func getImage(filename: String) -> UIImage? {
 
 ```
 
-This code is pretty straightforward. The downloaded images will be saved in the Documents directory, and getImage() will return nil if a matching file is not found in the Documents directory.
 
 这个代码非常简单。下载的图片将被保存在文件目录，并将getimage()如果匹配的文件不在文件目录中找到返回nil。
 
@@ -630,37 +576,32 @@ Now add the following method to LibraryAPI.swift:
   }
 
 ```
-Again, you’re using the Facade pattern to hide the complexity of downloading an image from the other classes. The notification sender doesn’t care if the image came from the web or from the file system.
+
 
 再次，你使用的是隐藏的复杂性，从其他类下载图像的外观模式。通知发件人不关心图像来自网络或文件系统。
 
-Build and run your app and check out the beautiful covers inside your HorizontalScroller:
+
 
 建立并运行你的应用程序看看美丽的覆盖在你的horizontalscroller：
 
 ![](http://cdn4.raywenderlich.com/wp-content/uploads/2014/11/swiftDesignPattern13.png)
 
-Stop your app and run it again. Notice that there’s no delay in loading the covers because they’ve been saved locally. You can even disconnect from the Internet and your app will work flawlessly. However, there’s one odd bit here: the spinner never stops spinning! What’s going on?
+
 
 停止应用程序和运行它。注意，有没有延迟加载的封面，因为他们已经保存在本地。你甚至可以断开互联网和您的应用程序将正常工作。然而，有一个奇怪的点这里：微调从未停止旋转！发生了什么事？
 
-You started the spinner when downloading the image, but you haven’t implemented the logic to stop the spinner once the image is downloaded. You could send out a notification every time an image has been downloaded, but instead, you’ll do that using the other Observer pattern, KVO.
 
 你开始旋转时下载的图像，但是你还没有实现的逻辑映像下载完成后停止旋转。你可以发送一个通知，每一次的图像已被下载，但相反的，你会使用其他观察者模式，KVO。
 
 ##Key-Value Observing (KVO) 键值观察（KVO）
 
-In KVO, an object can ask to be notified of any changes to a specific property; either its own or that of another object. If you’re interested, you can read more about this on Apple’s KVO Programming Guide.
 
 在KVO，对象可以被通知到一个特定的财产的任何变化；要么自己或另一个对象。如果你有兴趣，你可以更多地了解这个[Apple’s KVO Programming Guide](https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/KeyValueObserving/KeyValueObserving.html)。
 
 ##How to Use the KVO Pattern 如何使用KVO模式
 
-As mentioned above, the KVO mechanism allows an object to observe changes to a property. In your case, you can use KVO to observe changes to the image property of the UIImageView that holds the image.
 
 如上所述，该KVO机制允许一个对象观察变化的属性。在你的情况，你可以使用KVO观察到保存图像的UIImageView图像属性。
-
-Open AlbumView.swift and add the following code to init(frame:albumCover:), just after you add coverImage as a subView:
 
 打开albumview.swift并添加以下代码以init（框架：albumcover：），只在你添加载体图像作为子视图：
 
@@ -669,11 +610,9 @@ coverImage.addObserver(self, forKeyPath: "image", options: nil, context: nil)
 
 ```
 
-This adds self, which is the current class, as an observer for the image property of coverImage.
 
 这增加了self，这是当前类，对载体图像图像特性观察。
 
-You also need to unregister as an observer when you’re done. Still in AlbumView.swift, add the following code:
 
 你还需要注销作为观察者,仍在albumview.swift，添加以下代码：
 
@@ -684,7 +623,7 @@ deinit {
 
 ```
 
-Finally, add this method:
+
 最后添加此方法
 
 ```
@@ -696,29 +635,29 @@ override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject
 
 ```
 
-You must implement this method in every class acting as an observer. The system executes this method every time an observed property changes. In the above code, you stop the spinner when the “image” property changes. This way, when an image is loaded, the spinner will stop spinning.
+
 
 你必须在每一个类中实现这种方法作为一个观察者。系统每一次都会有一次观测到的性能变化来执行这个方法。在上面的代码中，你停止旋转时的“形象”性质的变化。这样，当一个图像被加载，微调将停止转动。
 
-Build and run your project. The spinner should disappear:
+
 建设和运行您的项目。微调应该消失：
 
 ![](http://cdn1.raywenderlich.com/wp-content/uploads/2014/11/swiftDesignPattern14.png)
 
-If you play around with your app a bit and terminate it, you’ll notice that the state of your app isn’t saved. The last album you viewed won’t be the default album when the app launches.
+
 
 如果你适当使用和终止它，你会注意到，你的应用程序的状态没有保存。你看的最后一张专辑当应用程序启动时不会是默认的相册。
 
 ##The Memento Pattern 备忘录模式
 
 
-The memento pattern captures and externalizes an object’s internal state. In other words, it saves your stuff somewhere. Later on, this externalized state can be restored without violating encapsulation; that is, private data remains private.
+
 
 备忘录模式捕捉和表现对象的内部状态。换句话说，它可以节省你的东西。后来，这种外在的状态可以在不破坏封装恢复；即，私有数据保密。
 
-How to Use the Memento Pattern 如何使用备忘录模式
+##如何使用备忘录模式
 
-Add the following two methods to ViewController.swift:
+
 在viewcontroller.swift中添加下面的两种方法：
 
 ```
@@ -737,15 +676,14 @@ func loadPreviousState() {
 
 ```
 
-saveCurrentState saves the current album index to NSUserDefaults – NSUserDefaults is a standard data store provided by iOS for saving application specific settings and data.
 
 saveCurrentState保存当前专辑指数NSUserDefaults – NSUserDefaults是一种标准的数据存储提供的iOS应用程序特定的设置和数据保存。
 
-loadPreviousState loads the previously saved index. This isn’t quite the full implementation of the Memento pattern, but you’re getting there.
+
 
 loadpreviousstate加载以前保存的指标。这不是该备忘录模式实现比较充分的，但是你要有。
 
-Now, Add the following line to viewDidLoad in ViewController.swift before the scroller.delegate = self:
+
 
 现在，添加下面一行在viewcontroller.swift viewDidLoad前scroller.delegate =self：
 
@@ -754,7 +692,7 @@ loadPreviousState()
 
 ```
 
-That loads the previously saved state when the app starts. But where do you save the current state of the app for loading from? You’ll use Notifications to do this. iOS sends a UIApplicationDidEnterBackgroundNotification notification when the app enters the background. You can use this notification to call saveCurrentState. Isn’t that convenient?
+
 
 当应用程序启动时加载先前保存的状态。但是，你从哪里来拯救这个应用程序的当前状态？你会使用通知来做这个。iOS发送uiapplicationdidenterbackgroundnotification通知当应用程序进入后台。你可以使用该通知称savecurrentstate。那不方便吗？
 
@@ -766,11 +704,11 @@ NSNotificationCenter.defaultCenter().addObserver(self, selector:"saveCurrentStat
 
 ```
 
-Now, when the app is about to enter the background, the ViewController will automatically save the current state by calling saveCurrentState.
+
 
 现在，当应用程序即将进入后台，视图会自动调用的savecurrentstate保存当前状态。
 
-Add the following code to the class:
+
 向类添加下面的代码：
 
 ```
@@ -780,25 +718,25 @@ deinit {
 
 ```
 
-This ensures you remove the class as an observer when the ViewController is deallocated.
+
 
 这将确保你将类作为一个观察者的时候释放视图。
 
-Build and run your app. Navigate to one of the albums, send the app to the background with the Home button (Command+Shift+H if you are on the simulator) and then shut down your app from Xcode. Relaunch, and check that the previously selected album is centered:
+
 
 构建和运行您的应用程序。导航到一个相册，把应用程序的主页按钮的背景（命令+ Shift +如果你在模拟器），然后关闭你的应用程序从Xcode。重新启动，并检查先前选定的专辑的中心：
 
 ![](http://cdn1.raywenderlich.com/wp-content/uploads/2014/11/swiftDesignPattern15.png)
 
-It looks like the album data is correct, but the scroller isn’t centered on the correct album. What gives?
+
 
 它看起来像这张专辑的数据是正确的，但不是以正确版本的专辑。给什么？
 
-This is what the optional method initialViewIndexForHorizontalScroller was meant for! Since that method’s not implemented in the delegate, ViewController in this case, the initial view is always set to the first view.
+
 
 这是可选的方法initialviewindexforhorizontalscroller的意思是！因为这方法不在委托执行，在这种情况下，视图，初始视图总是设置为第一视角。
 
-To fix that, add the following code to ViewController.swift:
+
 
 为了解决这个问题，将下面的代码添加到viewcontroller.swift：
 
@@ -809,36 +747,35 @@ func initialViewIndex(scroller: HorizontalScroller) -> Int {
 
 ```
 
-Now the HorizontalScroller first view is set to whatever album is indicated by currentAlbumIndex. This is a great way to make sure the app experience remains personal and resumable.
+
 
 现在horizontalscroller第一视角设置为任何专辑由currentalbumindex。这是为了确保应用程序的经验仍然是个人和恢复一个的方式。
 
-Run your app again. Scroll to an album as before, put the app in the background, stop the app, then relaunch to make sure the problem is fixed:
+
 
 再次运行您的应用程序。滚动到一张专辑之前，把应用程序的背景下，停止应用程序，然后重新启动以保证问题是固定的：
 
 ![](http://cdn2.raywenderlich.com/wp-content/uploads/2014/11/swiftDesignPattern16-230x320.png)
 
-If you look at PersistencyManager‘s init, you’ll notice the album data is hardcoded and recreated every time PersistencyManager is created. But it’s better to create the list of albums once and store them in a file. How would you save the Album data to a file?
+
 
 如果你看persistencymanager的初始化，你会注意到这张专辑是硬编码的数据并重新创建每一次persistencymanager创建。但最好在一个文件中创建一个相册列表。如何将相册数据保存到文件中？
 
-One option is to iterate through Album‘s properties, save them to a plist file and then recreate the Album instances when they’re needed. This isn’t the best option, as it requires you to write specific code depending on what data/properties are there in each class. For example, if you later created a Movie class with different properties, the saving and loading of that data would require new code.
+
 
 然后他们需要重现重新创建专辑的情况时，一种选择是遍历专辑的性质，将它们保存到一个plist文件。这不是最好的选择，因为它需要你写特定的代码，根据什么数据/属性是在每个类。例如，如果你创建了一个具有不同性质的电影类，保存和加载该数据将需要新的代码。
 
-Additionally, you won’t be able to save the private variables for each class instance since they are not accessible to an external class. That’s exactly why Apple created the archiving mechanism.
 
 此外，您将无法为每个类实例保存私有变量，因为它们不能访问外部类。这正是苹果创造的归档机制的原因。
 
 ##Archiving
 
-One of Apple’s specialized implementations of the Memento pattern is Archiving. This converts an object into a stream that can be saved and later restored without exposing private properties to external classes. You can read more about this functionality in Chapter 16 of the iOS 6 by Tutorials book. Or in [Apple’s Archives and Serializations Programming Guide](https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/Archiving/Archiving.html).
+
 
 苹果的一个专门的implementations是归档模式实现。这将一个对象转换为一个流，可以保存和稍后恢复，而不暴露私有属性到外部类。你可以阅读更多关于这个功能在iOS 16的6章的教程书。[Apple’s Archives and Serializations Programming Guide](https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/Archiving/Archiving.html).
 
-##How to Use Archiving 如何使用Archiving
- Open Album.swift and change the class line as follows:
+## 如何使用Archiving
+
  
  打开album.swift改变班线如下：
 
@@ -847,7 +784,7 @@ class Album: NSObject, NSCoding {
 
 ```
 
-Add the following two methods to Album.swift:
+
 
 在album.swift添加下面的两种方法:
 
@@ -872,15 +809,12 @@ func encodeWithCoder(aCoder: NSCoder) {
 
 ```
 
-As part of the NSCoding protocol, encodeWithCoder will be called when you ask for an Album instance to be archived. Conversely, the init(coder:) initializer will be used to reconstruct or unarchive from a saved instance. It’s simple, yet powerful.
 
 在NSCoding协议的一部分，encodewithcoder会给你打电话的时候，问一个专辑实例进行归档。相反，init（编码器）初始化将用来重建或解压缩从保存的实例。它虽然简单，但强大。
 
-Now that the Album class can be archived, add the code that actually saves and loads the list of albums.
-
 现在，该相册类可以被归档，添加的代码，实际上保存和加载的专辑列表。
 
-Add the following method to PersistencyManager.swift:
+
 
 添加下面的方法到persistencymanager.swift：
 
@@ -893,17 +827,15 @@ func saveAlbums() {
 
 ```
 
-This will be the method that’s called to save the albums. NSKeyedArchiver archives the album array into a file called albums.bin.
 
 这将是一种被称为保存专辑的方法。nskeyedarchiver档案专辑阵列为一个名为albums.bin。
 
 
 
-When you archive an object which contains other objects, the archiver automatically tries to recursively archive the child objects and any child objects of the children and so on. In this instance, the archival starts with albums, which is an array of Album instances. Since Array and Album both support the NSCopying interface, everything in the array is automatically archived.
 
 当你archive的对象包含其他对象，该文档会自动尝试递归archive的子对象和孩子任何子对象等。在这种情况下，archive开始与专辑，这是一个数组的相册实例。由于数组和专辑都支持NSCopying接口，数组中的每件事都是archive。
 
-Now replace init in PersistencyManager.swift with the following code:
+
 现在替换init在persistencymanager.swift用下面的代码：
 
 ```
@@ -956,19 +888,18 @@ let album5 = Album(title: "American Pie",
 
 ```
 
-You have moved the placeholder album creation code into a separate method createPlaceholderAlbum() for readability. In the new code, NSKeyedUnarchiver loads the album data from the file, if it exists. If it doesn’t exist, it creates the album data and immediately saves it for the next launch of the app.
+
 
 你有移动占位符创作专辑代码可读性的一个单独的方法createplaceholderalbum()。在新的代码，如果它存在的话,nskeyedunarchiver加载相册数据从文件。如果它不存在，它创建的相册数据，并立即保存它为下一次推出的应用程序。
 
-You’ll also want to save the album data every time the app goes into the background. This might not seem necessary now but what if you later add the option to change album data? Then you’d want this to ensure that all your changes are saved.
 
 你还想保存相册数据，每次应用程序进入背景。这似乎不是必要的，但如果你后来添加的选项来改变专辑的数据？然后，你会希望这个，以确保所有的变化被保存。
 
-Since the main application accesses all services via LibraryAPI, this is how the application will let PersistencyManager know that it needs to save album data.
+
 
 由于主要的应用程序访问所有服务通过libraryapi，这就是应用程序将让persistencymanager知道它需要保存相册数据。
 
-Now add the method implementation to LibraryAPI.swift:
+
 
 现在添加以下实现方法到 LibraryAPI.swift中
 
@@ -979,11 +910,10 @@ func saveAlbums() {
 
 ```
 
-This code simply passes on a call to LibraryAPI to save the albums on to PersistencyMangaer.
 
 此代码只会在调用libraryapi保存相册上persistencymangaer。
 
-Add the following code to the end of saveCurrentState in ViewController.swift:
+
 
 将下面的代码添加到saveCurrentState在ViewController.swift结束：
 
@@ -992,17 +922,15 @@ LibraryAPI.sharedInstance.saveAlbums()
 
 ```
 
-And the above code uses LibraryAPI to trigger the saving of album data whenever the ViewController saves its state.
 
 和上面的代码使用libraryapi触发数据视图专辑时保存其状态的保存。
 
 ##Final Touches
 
-You are going to add the final touches to your music application by allowing the user to perform delete actions to remove an album, or undo actions in case they change their mind!
 
 您将通过允许用户执行删除操作来删除一个相册，或撤消操作以使其改变自己的想法，从而为您的音乐应用程序添加最后的触摸！
 
-Add the following property to ViewController:
+
 添加以下属性视图：
 
 ```
@@ -1011,11 +939,11 @@ var undoStack: [(Album, Int)] = []
 
 ```
 
-This creates an empty undo stack. The undoStack will hold a tuple of two arguments. The first is an Album and the second is the index of the album.
+
 
 这将创建一个空的撤销堆栈。的undoStack将举行一个元组的两参数。第一张是一张专辑，二是这张专辑的索引。
 
-Add the following code after reloadScroller() in viewDidLoad::
+
 
 在viewDidLoad中的reloadscroller()后添加以下代码：
 
@@ -1029,15 +957,13 @@ toolbar.setItems(toolbarButtonItems, animated: true)
 
 ```
 
-The above code creates a toolbar with two buttons and a flexible space between them. The undo button is disabled here because the undo stack starts off empty. Note that the toolbar is already in the storyboard, so all you need to do is set the toolbar items.
 
 上面的代码创建了一个工具栏，其中有2个按钮和一个灵活的空间。撤消按钮在这里被禁用，因为撤消堆栈开始空。注意工具栏已经在故事情节中，所以你需要做的是设置工具栏的项目。
 
-You’ll add three method to ViewController.swift for handling album management actions: add, delete, and undo.
 
 你会加入三个方法在viewcontroller.swift，专辑管理动作处理：添加，删除，和撤销。
 
-The first is the method for adding a new album:
+
 第一个是增加新专辑的方法：
 
 ```
@@ -1049,11 +975,11 @@ func addAlbumAtIndex(album: Album,index: Int) {
 
 ```
 
-Here you add the album, set it as the current album index, and reload the scroller.
+
 
 在这里你添加相册，将其设置为当前专辑索引，并重新加载滚动。
 
-Next comes the delete method:
+
 
 下一步是删除方法：
 
@@ -1088,7 +1014,7 @@ func deleteAlbum() {
 * 因为在撤消堆栈中有一个动作，您需要启用撤消按钮.
 
 
-Finally, add the method for the undo action:
+
 
 最后，添加撤消操作的方法：
 
@@ -1112,11 +1038,7 @@ func undoAction() {
 
 ```
 
-Finally consider the comments for the method above:
 
-* The method “pops” the object out of the stack, giving you a tuple containing the deleted Album and its index. You then proceed to add the album back.
-* Since you also deleted the last object in the stack when you “popped” it, you now need to check if the stack is empty. If it is, that means that there are no more actions to undo. So you disable the Undo button.
-* You also know that since you undid an action, there should be at least one album cover. Hence you enable the trash button.
 
 最后考虑上述方法的意见：
 
@@ -1124,17 +1046,16 @@ Finally consider the comments for the method above:
 * 自从你在堆栈中的最后一个对象被删除时，你就需要检查堆栈是否为空。如果是，那就意味着没有更多的动作来撤消。所以你禁用了撤消按钮
 * 你也知道，既然你毁掉了一个行动，至少应该有一张专辑封面。因此你启用了垃圾桶。
 
-Build and run your app to test out your undo mechanism, delete an album (or two) and hit the Undo button to see it in action:
 
 建立和运行你的应用程序来测试你的撤销机制，删除一张专辑（或两者），并点击撤消按钮看到它的动作：
 
 ![](http://cdn2.raywenderlich.com/wp-content/uploads/2014/11/swiftDesignPattern1.png)
 
-This is also a good place to test out whether changes to your album data is retained between sessions. Now, if you delete an album, send the app to the background, and then terminate the app, the next time you start the app the displayed album list should reflect the deletion.
+
 
 这也是一个很好的地方，以测试是否更改您的相册数据保留在会话之间。现在，如果你删除了一张专辑，把应用程序发送到后台，然后终止应用程序，下一次你启动应用程序的显示相册列表应该反映删除。
 
-If you want to get all the albums back, just delete the app and run it again from Xcode to install a fresh copy with the starter data.
+
 
 如果你想得到所有的专辑回来，只是删除应用程序并运行它再从Xcode安装一个新的副本的入门资料。
 
