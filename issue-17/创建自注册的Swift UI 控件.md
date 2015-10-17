@@ -184,4 +184,4 @@ Here is an explanation of each step:
 ##结束语
 There are many ways to solve a coding problem. It’s best to take a good look at your options up front and think about the pros and cons of each. I hope through these articles you’re also learning the beauty of sequence diagrams. They allow you to document and understand object interactions that occur at run time. I don’t just use these for my articles. I use them for my real-world coding designs. You’ll find that they can help you identify potential problems as well as help you visualize new and more efficient solutions to your coding challenges.
 
-要解决输入问题有许多方法。最好的方法是先看一下摆在你目前的选择，然后逐个分析其中的利弊。我希望你能看到本文中序列图的好处。它能让你将对象之间在运行时的交互画出来。我在编写代码时也使用了这个方法。你会发现它们能帮助你找出潜在的问题，更能帮你找出编程问题中的新的、更高效的解决方案。
+要解决编程问题有许多方法。最好的方法是先看一下摆在你目前的选择，然后逐个分析其中的利弊。我希望你能看到本文中序列图的好处。它能让你将对象之间在运行时的交互画出来。我在编写代码时也使用了这个方法。你会发现它们能帮助你找出潜在的问题，更能帮你找出编程问题中的新的、更高效的解决方案。
