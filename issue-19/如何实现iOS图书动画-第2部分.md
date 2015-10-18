@@ -2,8 +2,8 @@
 * 原文作者 : [Vincent Ngo](http://www.raywenderlich.com/u/jomoka)
 * 译文出自 : [开发技术前线 www.devtf.cn](http://www.devtf.cn)
 * 译者 : [kmyhy](https://github.com/kmyhy) 
-* 校对者: 这里校对者的github用户名
-* 状态 : 校对中
+* 校对者：[LastDay](http://lastday.github.io)
+* 状态：完成
 
 
 
