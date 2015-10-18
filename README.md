@@ -67,7 +67,15 @@
 <b id="articles" ></b>
 ## 已完成列表
 
-# 2015.9.14 ( 第十八期 )
+### 第十九期 (2015.10.18)
+|       文章标题        |         译者           | 
+|----------------------|------------------------| 
+|  [创建自注册的Swift UI 控件](issue-19/创建自注册的Swift UI 控件.md) |  [kmyhy](https://github.com/kmyhy)  | 
+|  [如何实现iOS图书动画-第1部分](issue-19/如何实现iOS图书动画-第1部分.md) |  [kmyhy](https://github.com/kmyhy)   | 
+|  [如何实现iOS图书动画-第2部分](issue-19/如何实现iOS图书动画-第2部分.md) |  [kmyhy](https://github.com/kmyhy)  | 
+|  [iOS9 Core Data教学](issue-19/iOS9 Core Data教学.md) |  [LastDay](http://lastday.github.io)  | 
+
+# 2015.9.28 ( 第十八期 )
 | 文章名称 |   译者  | 
 |---------|--------|
 | [什么是Dependency Injection(依赖注入)？](issue-18/1.md)  | [@祈祈祈祈祈祈](http://weibo.com/u/2801408731) 
