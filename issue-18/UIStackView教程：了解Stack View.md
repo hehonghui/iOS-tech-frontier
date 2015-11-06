@@ -683,7 +683,9 @@ Select the middle stack view from the outline view and drag it between the first
 > stack view. The little blue circle should be positioned at the left
 > edge between the two stack views and not at the right edge:
 
-> 
+> 注意：让箭头稍微偏向你正在拖的Stack View左边一点，以便它能够作为外层 Stack View 的 subview 添加。蓝色的小圆圈应当位于两个 Stack View 之间的左端而不是右端：
+
+
  <img src="http://cdn2.raywenderlich.com/wp-content/uploads/2015/09/57-drag-and-drop-to-reposition-section_639x130.png"/>
  
 And now the weather section is third from the top, but since the Hide button isn’t part of the stack view, it won’t be moved, so its frame will now be misplaced.
