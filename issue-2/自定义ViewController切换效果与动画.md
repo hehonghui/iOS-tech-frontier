@@ -40,7 +40,7 @@ class CustomPresentAnimationController: NSObject, UIViewControllerAnimatedTransi
 `UIViewControllerAnimatedTransitioning`协议中有两个我们接下来需要添加的方法。将以下方法添加到类中。
 
 ```
-func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -&gt; NSTimeInterval {
+func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
     return 2.5
 }
     
@@ -52,7 +52,7 @@ func animateTransition(transitionContext: UIViewControllerContextTransitioning) 
     let containerView = transitionContext.containerView()
     let bounds = UIScreen.mainScreen().bounds
     toViewController.view.frame = CGRectOffset(finalFrameForVC, 0, bounds.size.height)
-    containerView.addSubview(toViewController.view)
+    containerView?.addSubview(toViewController.view)
         
     UIView.animateWithDuration(transitionDuration(transitionContext), delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.0, options: .CurveLinear, animations: {
         fromViewController.view.alpha = 0.5
@@ -104,7 +104,7 @@ override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 将下列`UIViewControllerTransitioningDelegate`方法添加到类中。这一步会返回我们的自定义animation controller实例。
 
 ```
-func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -&gt; UIViewControllerAnimatedTransitioning? {
+func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
     return customPresentAnimationController
 }
 ```
@@ -146,7 +146,7 @@ class CustomDismissAnimationController: NSObject, UIViewControllerAnimatedTransi
 将以下代码添加到类中。
 
 ```
-func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -&gt; NSTimeInterval {
+func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
     return 2
 }
 
@@ -157,8 +157,8 @@ func animateTransition(transitionContext: UIViewControllerContextTransitioning) 
     let containerView = transitionContext.containerView()
     toViewController.view.frame = finalFrameForVC
     toViewController.view.alpha = 0.5
-    containerView.addSubview(toViewController.view)
-    containerView.sendSubviewToBack(toViewController.view)
+    containerView?.addSubview(toViewController.view)
+    containerView?.sendSubviewToBack(toViewController.view)
     
     UIView.animateWithDuration(transitionDuration(transitionContext), animations: {
         fromViewController.view.frame = CGRectInset(fromViewController.view.frame, fromViewController.view.frame.size.width / 2, fromViewController.view.frame.size.height / 2)
@@ -183,7 +183,7 @@ let customDismissAnimationController = CustomDismissAnimationController()
 添加以下功能至类中。
 
 ```
-func animationControllerForDismissedController(dismissed: UIViewController) -&gt; UIViewControllerAnimatedTransitioning? {
+func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
     return customDismissAnimationController
 }
 ```
@@ -208,12 +208,12 @@ func animateTransition(transitionContext: UIViewControllerContextTransitioning) 
     let containerView = transitionContext.containerView()
     toViewController.view.frame = finalFrameForVC
     toViewController.view.alpha = 0.5
-    containerView.addSubview(toViewController.view)
-    containerView.sendSubviewToBack(toViewController.view)
+    containerView?.addSubview(toViewController.view)
+    containerView?.sendSubviewToBack(toViewController.view)
         
     let snapshotView = fromViewController.view.snapshotViewAfterScreenUpdates(false)
     snapshotView.frame = fromViewController.view.frame
-    containerView.addSubview(snapshotView)
+    containerView?.addSubview(snapshotView)
         
     fromViewController.view.removeFromSuperview()
         
@@ -255,7 +255,7 @@ class CustomNavigationAnimationController: NSObject, UIViewControllerAnimatedTra
 ```
 var reverse: Bool = false
     
-func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -&gt; NSTimeInterval {
+func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
     return 1.5
 }
     
@@ -278,7 +278,7 @@ func animateTransition(transitionContext: UIViewControllerContextTransitioning) 
         
     containerView.transform = CGAffineTransformMakeTranslation(direction * containerView.frame.size.width / 2.0, 0)
     toView.layer.transform = viewToTransform
-    containerView.addSubview(toView)
+    containerView?.addSubview(toView)
         
     UIView.animateWithDuration(transitionDuration(transitionContext), animations: {
         containerView.transform = CGAffineTransformMakeTranslation(-direction * containerView.frame.size.width / 2.0, 0)
@@ -286,7 +286,7 @@ func animateTransition(transitionContext: UIViewControllerContextTransitioning) 
         toView.layer.transform = CATransform3DIdentity
     }, completion: {
         finished in
-        containerView.transform = CGAffineTransformIdentity
+        containerView?.transform = CGAffineTransformIdentity
         fromView.layer.transform = CATransform3DIdentity
         toView.layer.transform = CATransform3DIdentity
         fromView.layer.anchorPoint = CGPointMake(0.5, 0.5)
@@ -330,7 +330,7 @@ navigationController?.delegate = self
 然后将以下代码添加到类中。
 
 ```
-func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -&gt; UIViewControllerAnimatedTransitioning? {
+func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
     customNavigationAnimationController.reverse = operation == .Pop
     return customNavigationAnimationController
 }
@@ -431,7 +431,7 @@ if operation == .Push {
 然后添加以下代码到类中。
 
 ```
-func navigationController(navigationController: UINavigationController, interactionControllerForAnimationController animationController: UIViewControllerAnimatedTransitioning) -&gt; UIViewControllerInteractiveTransitioning? {
+func navigationController(navigationController: UINavigationController, interactionControllerForAnimationController animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
     return customInteractionController.transitionInProgress ? customInteractionController : nil
 }
 ```
