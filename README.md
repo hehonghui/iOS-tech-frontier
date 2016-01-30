@@ -67,6 +67,34 @@
 <b id="articles" ></b>
 ## 已完成列表
 
+# 2015.10.18 ( 第十九期 )
+|       文章标题        |         译者           | 
+|----------------------|------------------------| 
+|  [创建自注册的Swift UI 控件](issue-19/创建自注册的Swift UI 控件.md) |  [kmyhy](https://github.com/kmyhy)  | 
+|  [如何实现iOS图书动画-第1部分](issue-19/如何实现iOS图书动画-第1部分.md) |  [kmyhy](https://github.com/kmyhy)   | 
+|  [如何实现iOS图书动画-第2部分](issue-19/如何实现iOS图书动画-第2部分.md) |  [kmyhy](https://github.com/kmyhy)  | 
+|  [iOS9 Core Data教学](issue-19/iOS9 Core Data教学.md) |  [LastDay](http://lastday.github.io)  | 
+
+# 2015.9.28 ( 第十八期 )
+| 文章名称 |   译者  | 
+|---------|--------|
+| [什么是Dependency Injection(依赖注入)？](issue-18/1.md)  | [@祈祈祈祈祈祈](http://weibo.com/u/2801408731) 
+
+# 2015.9.14 ( 第十七期 )
+| 文章名称 |   译者  | 
+|---------|--------|
+| [objective - 在LLDB中的调用](issue-17/1.md)  | [LastDays](https://github.com/MrLoong) 
+| [如何实现iOS图书动画:第1部分](issue-17/2.md)  | [](https://github.com/alier1226)      |
+
+
+# 2015.9.14 ( 第十六期 )
+| 文章名称 |   译者  | 
+|---------|--------|
+| [ReactNavtive框架教程](issue-16/ReactNavtive框架教程.md)  | [kmyhy](https://github.com/kmyhy) 
+| [介绍iOS设计模式1:2(Swift)](issue-16/介绍iOS设计模式1:2(Swift).md)  | [alier1226](https://github.com/alier1226)      |
+| [介绍iOS设计模式2:2(Swift)](issue-16/介绍iOS设计模式2:2(Swift).md)  | [LastDays](https://github.com/MrLoong)      |
+| [使用一个MVC替代Brigade’s Experience](issue-16/使用一个MVC.md)  | [Quzhiyu](https://github.com/Quzhiyu)
+
 # 2015.7.31 ( 第十四期 )
 | 文章名称 |   译者  | 
 |---------|--------|
